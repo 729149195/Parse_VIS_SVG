@@ -4,9 +4,9 @@ from flask_cors import CORS
 from flask_socketio import SocketIO
 import os
 import json
-from werkzeug.utils import secure_filename
 from modules.CreateGM import SVGParser
-import threading
+from modules.TestGM_bbox import SVGDrawer
+from flask import send_file, make_response
 
 
 app = Flask(__name__)
@@ -15,16 +15,6 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # 允许跨域
 UPLOAD_FOLDER = './uploads'
 OUTPUT_FOLDER = './GMoutput'
 OUTPUT_FILE = 'GMinfo.json'
-
-
-def process_file(file_path):
-    svg_parser = SVGParser(file_path)
-    # 假设有一种方式来获取处理的进度
-    for i in range(100):
-        time.sleep(0.1)  # 模拟处理进度
-        progress = i + 1
-        socketio.emit('progress', {'progress': progress})  # 向客户端发送进度
-
 
 @app.route('/upload', methods=['POST'])
 def upload_svg():
@@ -49,6 +39,7 @@ def remove_file():
     else:
         return jsonify({'error': 'File not found'}), 404
 
+
 @app.route('/evaluate', methods=['POST'])
 def evaluate_svg():
     data = request.json
@@ -58,7 +49,7 @@ def evaluate_svg():
         # 使用 SVGParser 处理文件
         svg_parser = SVGParser(file_path)
         svg_parser.run()
-
+        SVGDrawer("./GMoutput/GMinfo.json").run()
         # 读取输出文件
         output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)
         if os.path.exists(output_path):
