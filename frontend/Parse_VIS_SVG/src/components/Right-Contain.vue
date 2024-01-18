@@ -3,7 +3,7 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.3em; font-weight: 700;" v-if="gmInfoData">{{ currentFileName }} </span>
+        <span style="font-size:1.3em; font-weight: 700;">{{ currentFileName }} </span>
         <el-button v-if="gmInfoData" class="button" type="primary" plain><span
             style="margin-right: 3px;">导出</span><el-icon style="margin-right: -4px;">
             <Download />
@@ -14,10 +14,13 @@
       <span style="font-size:1.1em; font-weight: 700;">process :</span>
       <el-card class="box-card-process" shadow="hover">
         <el-scrollbar height="35vh">
-          <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">nodes-num : {{
-            gmInfoData.DiGraph.nodes }}</el-tag></span>
-          <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em;">edges-num : {{
-            gmInfoData.DiGraph.edges }}</el-tag></span>
+          <img :src="imageURLWithTimestamp" alt="GMinfo Image" style="width: 290px;" v-if="gmInfoData"/>
+          <div>
+            <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">nodes-num : {{
+              gmInfoData.DiGraph.nodes }}</el-tag></span>
+            <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em;">edges-num : {{
+              gmInfoData.DiGraph.edges }}</el-tag></span>
+          </div>
           <el-empty description="No Data" :image-size="150" v-if="!gmInfoData" />
           <div v-if="gmInfoData" class="gm-info">
             <div v-for="(value, key) in gmInfoData.DiGraph.Nodes" :key="key">
@@ -33,7 +36,6 @@
         <el-scrollbar height="36vh">
           <el-empty description="No Data" :image-size="150" v-if="!gmInfoData" />
           <div v-if="gmInfoData" class="gm-info">
-            <!-- <el-rate v-model="value" disabled show-score text-color="#ff9900" score-template="{value} points" /> -->
             <div v-for="(value, key) in gmInfoData.DiGraph.Edges" :key="key">
               {{ key }}: {{ value }}
             </div>
@@ -47,15 +49,31 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
 const currentFileName = computed(() => {
-  return store.state.currentPreviewFileName.replace('.svg', '');
+  if (store.state.currentPreviewFileName)
+    return store.state.currentPreviewFileName.replace('.svg', '');
 });
 const gmInfoData = computed(() => store.state.gmInfoData);
 const isLoading = computed(() => store.state.loading);
+
+const baseURL = "http://localhost:8000/static/GMinfo.png";
+const lastUpdate = ref(new Date().getTime());
+
+const imageURLWithTimestamp = computed(() => {
+  return `${baseURL}?t=${lastUpdate.value}`;
+});
+
+const updateImage = () => {
+  lastUpdate.value = new Date().getTime();  // 更新时间戳
+};
+
+watch(gmInfoData, () => {
+  updateImage();  // 当 gmInfoData 改变时调用 updateImage
+});
 
 const svg = `
         <path class="path" d="

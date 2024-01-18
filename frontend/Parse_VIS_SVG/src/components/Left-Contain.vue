@@ -1,6 +1,6 @@
 <template>
     <el-scrollbar height="100vh">
-        <div class="left-container" >
+        <div class="left-container">
             <el-upload class="upload-area" drag :action="uploadUrl" multiple :on-change="handleFileChange"
                 :before-upload="beforeUpload" accept=".svg" :on-preview="handlePreview" :on-remove="handleRemove"
                 list-type="picture">
@@ -29,7 +29,8 @@ import { ElNotification } from 'element-plus'
 const uploadUrl = 'http://localhost:8000/upload'; // 后端上传地址
 const evaluateUrl = 'http://localhost:8000/evaluate'; // 后端处理地址
 const svgPreview = ref(null);
-let currentPreviewFileName = ref(null); // 保存当前预览的文件名
+let currentPreviewFileName = ref("666"); // 保存当前预览的文件名
+let FileName = ref("666");
 const store = useStore();
 const progress = ref(0);
 const customColorMethod = (percentage) => {
@@ -43,12 +44,12 @@ const customColorMethod = (percentage) => {
 }
 
 const uploadSuccessd = () => {
-  ElNotification({
-    title: 'Success Parsed',
-    // message: 'This is a success message',
-    type: 'success',
-    duration: 1000,
-  })
+    ElNotification({
+        title: 'Success Parsed',
+        // message: 'This is a success message',
+        type: 'success',
+        duration: 1000,
+    })
 }
 
 function updateFileName(filename) {
@@ -96,8 +97,7 @@ const handleFileChange = (file, fileList) => {
 
 const handlePreview = (file) => {
     svgPreview.value = URL.createObjectURL(file.raw);
-    if(currentPreviewFileName != file.name) 
-    {
+    if (currentPreviewFileName != file.name) {
         progress.value = 0;
     }
     currentPreviewFileName = file.name; // 保存文件名
@@ -108,35 +108,35 @@ const beforeUpload = (file) => {
 };
 
 const evaluateSVG = async () => {
-    store.commit('setLoading', true);
-    store.commit('setGMInfoData', null);
-    store.commit('setCurrentPreviewFileName', null);
-    progress.value = Math.floor(Math.random() * 10);
-    try {
-        const response = await fetch(evaluateUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ filename: currentPreviewFileName })  // 替换为实际的文件名
-        });
-        progress.value = Math.floor(Math.random() * 30);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        store.commit('setLoading', true);
+        store.commit('setGMInfoData', null);
+        store.commit('setCurrentPreviewFileName', null);
+        progress.value = Math.floor(Math.random() * 10);
+        try {
+            const response = await fetch(evaluateUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ filename: currentPreviewFileName })  // 替换为实际的文件名
+            });
+            progress.value = Math.floor(Math.random() * 30);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            progress.value = Math.floor(Math.random() * 40);
+            const data = await response.json();
+            updateFileName(currentPreviewFileName)
+            progress.value = Math.floor(Math.random() * 80);
+            store.commit('setGMInfoData', data);
+            progress.value = Math.floor(Math.random() * 90);
+            console.log('GMinfo.json data:', data);  // 打印响应数据
+        } catch (error) {
+            console.error('Error fetching GMinfo.json:', error);
         }
-        progress.value = Math.floor(Math.random() * 40);
-        const data = await response.json();
-        updateFileName(currentPreviewFileName)
-        progress.value = Math.floor(Math.random() * 80);
-        store.commit('setGMInfoData', data);
-        progress.value = Math.floor(Math.random() * 90);
-        console.log('GMinfo.json data:', data);  // 打印响应数据
-    } catch (error) {
-        console.error('Error fetching GMinfo.json:', error);
-    }
-    progress.value = 100;
-    store.commit('setLoading', false);
-    uploadSuccessd()
+        progress.value = 100;
+        store.commit('setLoading', false);
+        uploadSuccessd()
 };
 </script>
 
