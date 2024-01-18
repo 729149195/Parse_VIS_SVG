@@ -3,7 +3,7 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.3em; font-weight: 700;">{{ currentFileName }} </span>
+        <span style="font-size:1.3em; font-weight: 700;" v-if="gmInfoData">{{ currentFileName }} </span>
         <el-button v-if="gmInfoData" class="button" type="primary" plain><span
             style="margin-right: 3px;">导出</span><el-icon style="margin-right: -4px;">
             <Download />
