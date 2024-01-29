@@ -13,8 +13,10 @@
                 </div>
             </el-upload>
             <el-progress :percentage="progress" v-if="progress" striped :color="customColorMethod"
-                :show-text="false"></el-progress>
-            <img v-if="svgPreview" :src="svgPreview" alt="SVG Preview" class="svg-preview" />
+                :show-text="true"></el-progress>
+            <el-card class="box-card-current-file" shadow="hover" v-if="svgPreview">
+                <img :src="svgPreview" alt="SVG Preview" class="svg-preview" />
+            </el-card>
             <el-button type="primary" @click="evaluateSVG" class="evaluate-button">Process</el-button>
         </div>
     </el-scrollbar>
@@ -108,35 +110,35 @@ const beforeUpload = (file) => {
 };
 
 const evaluateSVG = async () => {
-        store.commit('setLoading', true);
-        store.commit('setGMInfoData', null);
-        store.commit('setCurrentPreviewFileName', null);
-        progress.value = Math.floor(Math.random() * 10);
-        try {
-            const response = await fetch(evaluateUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ filename: currentPreviewFileName })  // 替换为实际的文件名
-            });
-            progress.value = Math.floor(Math.random() * 30);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            progress.value = Math.floor(Math.random() * 40);
-            const data = await response.json();
-            updateFileName(currentPreviewFileName)
-            progress.value = Math.floor(Math.random() * 80);
-            store.commit('setGMInfoData', data);
-            progress.value = Math.floor(Math.random() * 90);
-            console.log('GMinfo.json data:', data);  // 打印响应数据
-        } catch (error) {
-            console.error('Error fetching GMinfo.json:', error);
+    store.commit('setLoading', true);
+    store.commit('setGMInfoData', null);
+    store.commit('setCurrentPreviewFileName', null);
+    progress.value = Math.floor(Math.random() * 10);
+    try {
+        const response = await fetch(evaluateUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ filename: currentPreviewFileName })  // 替换为实际的文件名
+        });
+        progress.value = Math.floor(Math.random() * 30);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        progress.value = 100;
-        store.commit('setLoading', false);
-        uploadSuccessd()
+        progress.value = Math.floor(Math.random() * 40);
+        const data = await response.json();
+        updateFileName(currentPreviewFileName)
+        progress.value = Math.floor(Math.random() * 80);
+        store.commit('setGMInfoData', data);
+        progress.value = Math.floor(Math.random() * 90);
+        // console.log('GMinfo.json data:', data);  // 打印响应数据
+    } catch (error) {
+        console.error('Error fetching GMinfo.json:', error);
+    }
+    progress.value = 100;
+    store.commit('setLoading', false);
+    uploadSuccessd()
 };
 </script>
 
@@ -158,5 +160,10 @@ const evaluateSVG = async () => {
     max-height: 300px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.box-card-current-file{
+    margin: 5px 0 5px 0;
+    padding: 0;
 }
 </style>

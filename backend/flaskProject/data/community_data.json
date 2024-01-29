@@ -1,0 +1,154 @@
+{
+    "nodes": [
+        {
+            "id": "svg/svg/g/path",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g/path_1",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g_1/polygon",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/g_1/polyline",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/g_2/line",
+            "group": 2
+        },
+        {
+            "id": "svg/svg/g_2/ellipse",
+            "group": 2
+        },
+        {
+            "id": "svg/svg/g_3/circle",
+            "group": 3
+        },
+        {
+            "id": "svg/svg/g_3/rect",
+            "group": 3
+        },
+        {
+            "id": "svg/svg/g_4/g_5/path_2",
+            "group": 4
+        },
+        {
+            "id": "svg/svg/g_4/g_5/path_3",
+            "group": 4
+        },
+        {
+            "id": "svg/svg/g_4/path_4",
+            "group": 5
+        },
+        {
+            "id": "svg/svg/g_4/path_5",
+            "group": 5
+        },
+        {
+            "id": "svg/svg/g_6/text",
+            "group": 6
+        },
+        {
+            "id": "svg/svg/g_6/text_1",
+            "group": 6
+        },
+        {
+            "id": "svg/svg/g_7/polygon_1",
+            "group": 7
+        },
+        {
+            "id": "svg/svg/g_7/polyline_1",
+            "group": 7
+        },
+        {
+            "id": "svg/svg/g_8/line_1",
+            "group": 8
+        },
+        {
+            "id": "svg/svg/g_8/ellipse_1",
+            "group": 8
+        },
+        {
+            "id": "svg/svg/circle_1",
+            "group": 9
+        },
+        {
+            "id": "svg/svg/rect_1",
+            "group": 9
+        },
+        {
+            "id": "svg/svg/circle_2",
+            "group": 9
+        },
+        {
+            "id": "svg/svg/rect_2",
+            "group": 9
+        }
+    ],
+    "links": [
+        {
+            "source": "svg/svg/g/path",
+            "target": "svg/svg/g/path_1",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_1/polygon",
+            "target": "svg/svg/g_1/polyline",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_2/line",
+            "target": "svg/svg/g_2/ellipse",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_3/circle",
+            "target": "svg/svg/g_3/rect",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_4/g_5/path_2",
+            "target": "svg/svg/g_4/g_5/path_3",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_4/path_4",
+            "target": "svg/svg/g_4/path_5",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_6/text",
+            "target": "svg/svg/g_6/text_1",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_7/polygon_1",
+            "target": "svg/svg/g_7/polyline_1",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/g_8/line_1",
+            "target": "svg/svg/g_8/ellipse_1",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/circle_1",
+            "target": "svg/svg/rect_1",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/rect_1",
+            "target": "svg/svg/circle_2",
+            "value": 1
+        },
+        {
+            "source": "svg/svg/circle_2",
+            "target": "svg/svg/rect_2",
+            "value": 1
+        }
+    ]
+}

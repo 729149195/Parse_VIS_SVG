@@ -1,5 +1,5 @@
 import time
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
 import os
@@ -7,6 +7,7 @@ import json
 from modules.CreateGM import SVGParser
 from modules.TestGM_bbox import SVGDrawer
 from flask import send_file, make_response
+from modules.Community_Detection import CommunityDetector
 
 
 app = Flask(__name__)
@@ -50,6 +51,8 @@ def evaluate_svg():
         svg_parser = SVGParser(file_path)
         svg_parser.run()
         SVGDrawer("./GMoutput/GMinfo.json").run()
+        detector = CommunityDetector("./GMoutput/GMinfo.json")
+        detector.execute()
         # 读取输出文件
         output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)
         if os.path.exists(output_path):
@@ -60,6 +63,12 @@ def evaluate_svg():
             return jsonify({'error': 'Result file not found'}), 404
     else:
         return jsonify({'error': 'File not found'}), 404
+
+
+@app.route('/community_data')
+def data():
+    directory = os.path.join(app.root_path, 'data')  # 文件夹路径
+    return send_from_directory(directory, 'community_data.json')
 
 
 if __name__ == '__main__':
