@@ -97,12 +97,18 @@ const handleFileChange = (file, fileList) => {
     }
 };
 
-const handlePreview = (file) => {
+const handlePreview = async (file) => {
     svgPreview.value = URL.createObjectURL(file.raw);
     if (currentPreviewFileName != file.name) {
         progress.value = 0;
     }
     currentPreviewFileName = file.name; // 保存文件名
+    store.commit('setSelectedSvg', svgPreview.value);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        store.commit('setSelectedSvg', e.target.result); // 将SVG内容存储到 Vuex
+    };
+    reader.readAsText(file.raw);
 };
 
 const beforeUpload = (file) => {
@@ -162,7 +168,7 @@ const evaluateSVG = async () => {
     margin-bottom: 5px;
 }
 
-.box-card-current-file{
+.box-card-current-file {
     margin: 5px 0 5px 0;
     padding: 0;
 }

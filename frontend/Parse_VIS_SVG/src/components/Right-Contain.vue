@@ -24,37 +24,50 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="35vh">
+        <el-scrollbar height="29vh">
           <div style="display: flex; justify-content: space-evenly;">
             <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
                 style="width: 25%; margin-right: 10px;" v-if="gmInfoData" shadow="hover"
                 class="community_detection_card"><span class="card_title">basis_1</span><img :src="imageURLWithTimestamp"
-                  alt="GMinfo Image" style="width: 100%;" v-if="gmInfoData" /></el-card></el-tooltip>
-
-            <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
-                style="width: 25%;  margin-right: 10px;" v-if="gmInfoData" shadow="hover"
-                class="community_detection_card"><span class="card_title">basis_2</span><img :src="imageURLWithTimestamp"
-                  alt="GMinfo Image" style="width: 100%;" v-if="gmInfoData" /></el-card></el-tooltip>
-
-            <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
-                style="width: 25%;  margin-right: 10px;" v-if="gmInfoData" shadow="hover"
-                class="community_detection_card"><span class="card_title">basis_3</span><img :src="imageURLWithTimestamp"
-                  alt="GMinfo Image" style="width: 100%;" v-if="gmInfoData" /></el-card></el-tooltip>
+                  alt="GMinfo Image" style="width: 100%;" v-if="gmInfoData" /></el-card>
+            </el-tooltip>
 
             <el-tooltip class="box-item" effect="dark" content="Click to enlarge the svg" placement="top"
-              v-if="gmInfoData"><el-card style=" width: 25%; padding: 0 !important;" v-if="gmInfoData" shadow="hover"
-                @Click="community_dialogVisible = true" class="community_detection_card"><span
+              v-if="gmInfoData"><el-card style=" width: 25%; padding: 0 !important; margin-right: 10px;" v-if="gmInfoData"
+                shadow="hover" @Click="community_dialogVisible = true" class="community_detection_card"><span
                   class="card_title">community_detection</span>
                 <CommunityDetection />
-              </el-card></el-tooltip>
+              </el-card>
+            </el-tooltip>
+            <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
+                style="width: 50%;  margin-right: 10px; display: flex; justify-content: center; align-items: center;"
+                v-if="gmInfoData" shadow="hover" @Click="community_and_initsvg_dialogVisible = true"
+                class="community_detection_card"><el-icon size="50px">
+                  <Histogram />
+                </el-icon><el-icon size="35px">
+                  <Ticket />
+                </el-icon></el-card>
+            </el-tooltip>
 
             <el-dialog v-model="community_dialogVisible" style="padding: 0 !important;">
               <CommunityDetection :key="updateKey" />
             </el-dialog>
-          </div>
-          <div v-if="gmInfoData" style="margin-top: 10px;">
-            <el-input v-model="Expected_pattern" style="width: 90%; " placeholder="Please input Your expected pattern" />
-            <el-button type="primary" style="width: 9%;">perceive</el-button>
+
+            <el-dialog v-model="community_and_initsvg_dialogVisible" style="padding: 0 !important; width: 90%;"
+              title="Community counterpart element">
+              <!-- 功能实现处 -->
+              <div style="display: flex;">
+                <el-card style="width: 50%; margin: 5px;" shadow="never" class="center"><span class="card_title" >Init SVG</span><br>
+                  <div v-html="selectedSvg" class="svg-container"></div>
+                </el-card>
+                <el-card style="width: 50%; margin: 5px;" shadow="never"><span
+                    class="card_title">community_detection</span><br>
+                  <CommunityDetection :key="updateKey" />
+                </el-card>
+              </div>
+
+
+            </el-dialog>
           </div>
           <el-empty description="No Data" :image-size="150" v-if="!gmInfoData" />
         </el-scrollbar>
@@ -65,9 +78,14 @@
       <span style="font-size:1.1em; font-weight: 700; padding-top: 15px;"> Perceived results and recommendations :</span>
       <!-- 结果卡片 -->
       <el-card class="box-card-result" shadow="hover">
-        <el-scrollbar height="36vh">
+        <el-scrollbar height="42vh">
+          <div v-if="gmInfoData" style="margin-bottom: 10px;">
+            <el-input v-model="Expected_pattern" style="width: 90%; " placeholder="Please input Your expected pattern" />
+            <el-button type="primary" style="width: 9%;" @click="perceive = !perceive">perceive</el-button>
+          </div>
           <el-empty description="No Data" :image-size="150" v-if="!gmInfoData" />
-          <span class="result_title" v-if="gmInfoData">Quantitative evaluation</span>
+          <span class="result_title" v-if="gmInfoData">Quantitative evaluation <span v-if="perceive">{{ Expected_pattern
+          }}</span></span>
           <el-card v-if="gmInfoData" shadow="hover">
 
             <el-row :gutter="10" style="margin-left: 20px;margin-right: 20px;justify-content: space-around;">
@@ -94,7 +112,7 @@
                   </div>
                 </div>
               </el-col>
-              <el-col :span="4">
+              <!-- <el-col :span="4">
                 <div class="statistic-card">
                   <el-statistic :value="gmInfoData.DiGraph.edges * 11">
                     <template #title>
@@ -115,7 +133,7 @@
                     </div>
                   </div>
                 </div>
-              </el-col>
+              </el-col> -->
               <el-col :span="4">
                 <div class="statistic-card">
                   <el-statistic :value="gmInfoData.DiGraph.nodes * 113">
@@ -161,7 +179,7 @@
                   </div>
                 </div>
               </el-col>
-              <el-col :span="4">
+              <!-- <el-col :span="4">
                 <div class="statistic-card">
                   <el-statistic :value="gmInfoData.DiGraph.nodes * 3">
                     <template #title>
@@ -183,28 +201,30 @@
                     </div>
                   </div>
                 </div>
-              </el-col>
+              </el-col> -->
 
             </el-row>
           </el-card>
-          <span class="result_title" v-if="gmInfoData">Recommendations for improvement</span>
+          <span class="result_title" v-if="gmInfoData">Recommendations for improvement <span v-if="perceive">{{
+            Expected_pattern }}</span></span>
           <el-card v-if="gmInfoData" shadow="hover">
             <el-button type="primary" style="width: 70%; height: 50px;" @click="report_dialogVisible = true">Interactive
               report</el-button>
             <el-button type="primary" style="width: 28%; height: 50px;">Case Studies & Examples</el-button>
-            <el-dialog v-model="report_dialogVisible" title="Report on modifications to the dimensions" max-height="80vh" width="70vw">
-              
-                <el-tabs v-model="activeName" class="report-tabs" >
-                  <el-scrollbar height="36vh">
+            <el-dialog v-model="report_dialogVisible" title="Report on modifications to the dimensions" max-height="80vh"
+              width="70vw">
+
+              <el-tabs v-model="activeName" class="report-tabs">
+                <el-scrollbar height="36vh">
                   <el-tab-pane label="Overview" name="first">Overview</el-tab-pane>
                   <el-tab-pane label="Clarity" name="second">Clarity</el-tab-pane>
-                  <el-tab-pane label="Aesthetics" name="third">Aesthetics</el-tab-pane>
+                  <!-- <el-tab-pane label="Aesthetics" name="third">Aesthetics</el-tab-pane> -->
                   <el-tab-pane label="Accuracy" name="fourth">Accuracy</el-tab-pane>
                   <el-tab-pane label="Efficiency" name="fifth">Efficiency</el-tab-pane>
-                  <el-tab-pane label="Accessibility" name="sixth">Accessibility</el-tab-pane>
+                  <!-- <el-tab-pane label="Accessibility" name="sixth">Accessibility</el-tab-pane> -->
                 </el-scrollbar>
-                </el-tabs>
-              
+              </el-tabs>
+
             </el-dialog>
           </el-card>
         </el-scrollbar>
@@ -216,41 +236,53 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
 import { Warning } from '@element-plus/icons-vue';
 
 const value1 = ref(1.2)
-const value2 = ref(4.7)
+// const value2 = ref(4.7)
 const value3 = ref(0.7)
 const value4 = ref(3.7)
-const value5 = ref(2.7)
+// const value5 = ref(2.7)
+const perceive = ref(false);
 const activeName = ref('first')
 const community_dialogVisible = ref(false)
+const community_and_initsvg_dialogVisible = ref(false)
 const report_dialogVisible = ref(false)
 const Expected_pattern = ref('')
 const store = useStore();
 const updateKey = ref(0);
+const gmInfoData = computed(() => store.state.gmInfoData);
+const isLoading = computed(() => store.state.loading);
+const selectedSvg = computed(() => store.state.selectedSvg);
+const baseURL = "http://localhost:8000/static/GMinfo.png";
+const lastUpdate = ref(new Date().getTime());
 
 const refreshComponent = () => {
   updateKey.value++;
 };
+
+
 watch(community_dialogVisible, (newValue) => {
   if (newValue) {
     refreshComponent(); // 当对话框打开时，刷新组件
   }
 });
 
+watch(community_and_initsvg_dialogVisible, (newValue) => {
+  if (newValue) {
+    refreshComponent(); // 当对话框打开时，刷新组件
+  }
+});
+
+
 const currentFileName = computed(() => {
   if (store.state.currentPreviewFileName)
     return store.state.currentPreviewFileName.replace('.svg', '');
 });
-const gmInfoData = computed(() => store.state.gmInfoData);
-const isLoading = computed(() => store.state.loading);
 
-const baseURL = "http://localhost:8000/static/GMinfo.png";
-const lastUpdate = ref(new Date().getTime());
 
 const imageURLWithTimestamp = computed(() => {
   return `${baseURL}?t=${lastUpdate.value}`;
@@ -361,7 +393,27 @@ const svg = `
   color: var(--el-color-error);
 }
 
-.report-tabs > .el-tabs__content {
+.report-tabs>.el-tabs__content {
   padding: 5px;
+}
+
+.svg-container  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  svg{
+    width: 100% !important; /* 最大宽度为容器宽度 */
+    height: 100% !important;
+    object-fit: contain !important; /* 保持比例 */
+  }
+}
+
+.center{
+  .el-card__body{
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>

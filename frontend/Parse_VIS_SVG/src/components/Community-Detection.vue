@@ -1,5 +1,5 @@
 <template>
-    <svg ref="svgRef" :key="updateKey"></svg>
+    <svg ref="svgRef" :key="updateKey" width="900" height="600"></svg>
 </template>
 
 <script setup>
@@ -33,18 +33,18 @@ const renderGraph = () => {
     // 检查对话框是否已经打开并且SVG已经渲染
     if (!graphData.value || !svgRef.value || !svgRef.value.clientWidth) return;
 
-    const width = svgRef.value.clientWidth * 3.2; // 动态获取宽度
-    const height = svgRef.value.clientHeight * 5; // 动态获取高度
+    const width = svgRef.value.clientWidth; // 动态获取宽度
+    const height = svgRef.value.clientHeight; // 动态获取高度
 
     d3.select(svgRef.value).selectAll("*").remove(); //清除之前的内容
 
     const svg = d3.select(svgRef.value)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
         .call(zoom);
-    
+
     g = svg.append("g"); // 创建g元素并赋值给变量g
 
-    
+
     const color = d3.scaleOrdinal(d3.schemeCategory10);
     const links = graphData.value.links.map(d => ({ ...d }));
     const nodes = graphData.value.nodes.map(d => ({ ...d }));
@@ -90,7 +90,7 @@ const renderGraph = () => {
         .attr("dy", ".35em") // 垂直居中文本
         .style("user-select", "none") // 防止文本被选中
         .style("pointer-events", "none"); // 防止文本响应鼠标事件
-    
+
     node.append("title")
         .text(d => d.id);
 

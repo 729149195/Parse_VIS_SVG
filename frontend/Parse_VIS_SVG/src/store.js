@@ -1,4 +1,3 @@
-// store.js
 import { createStore } from 'vuex';
 
 export default createStore({
@@ -7,6 +6,7 @@ export default createStore({
       currentPreviewFileName: null,
       gmInfoData: null, 
       loading: false,
+      selectedSvg: null,
     };
   },
   mutations: {
@@ -18,6 +18,9 @@ export default createStore({
     },
     setLoading(state, isLoading) {
       state.loading = isLoading; 
+    },
+    setSelectedSvg(state, svgUrl) {
+      state.selectedSvg = svgUrl;
     },
   },
 });
