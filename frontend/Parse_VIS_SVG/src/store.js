@@ -7,6 +7,10 @@ export default createStore({
       gmInfoData: null, 
       loading: false,
       selectedSvg: null,
+      selectedNodes: {
+        nodeIds: [],
+        group: null
+    },
     };
   },
   mutations: {
@@ -22,5 +26,9 @@ export default createStore({
     setSelectedSvg(state, svgUrl) {
       state.selectedSvg = svgUrl;
     },
+    UPDATE_SELECTED_NODES(state, payload) {
+      state.selectedNodes.nodeIds = payload.nodeIds;
+      state.selectedNodes.group = payload.group;
+  },
   },
 });

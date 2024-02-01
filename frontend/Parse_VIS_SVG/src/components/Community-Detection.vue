@@ -5,6 +5,8 @@
 <script setup>
 import * as d3 from 'd3';
 import { onMounted, ref, watch, nextTick } from 'vue';
+import { useStore } from 'vuex';
+const store = useStore();
 
 const svgRef = ref(null);
 const updateKey = ref(0); // 定义 updateKey
@@ -72,7 +74,17 @@ const renderGraph = () => {
         .data(nodes)
         .join("circle")
         .attr("r", 8)
-        .attr("fill", d => color(d.group));
+        .attr("id", d => {
+            const parts = d.id.split("/");
+            return parts[parts.length - 1];
+        })
+        .attr("community-group", d => d.group)
+        .attr("style", "cursor: pointer;")
+        .attr("fill", d => color(d.group))
+        .on("click", (event, d) => {
+            handleNodeClick(d);
+        });
+
 
     const labels = svg.append("g")
         .attr("class", "labels")
@@ -130,6 +142,16 @@ const renderGraph = () => {
         if (!event.active) simulation.alphaTarget(0);
         event.subject.fx = null;
         event.subject.fy = null;
+    }
+    function handleNodeClick(clickedNode) {
+        const sameGroupNodes = nodes.filter(node => node.group === clickedNode.group);
+        const nodeIds = sameGroupNodes.map(node => {
+            const parts = node.id.split("/");
+            return parts[parts.length - 1];
+        });
+
+        // 提交 Vuex mutation 或 action
+        store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: clickedNode.group });
     }
 
     simulation.on("tick", ticked);

@@ -8,7 +8,7 @@ from modules.CreateGM import SVGParser
 from modules.TestGM_bbox import SVGDrawer
 from flask import send_file, make_response
 from modules.Community_Detection import CommunityDetector
-
+from modules.Add_id import add_svg_id
 
 app = Flask(__name__)
 CORS(app)
@@ -55,6 +55,7 @@ def evaluate_svg():
         detector.execute()
         # 读取输出文件
         output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)
+        add_svg_id(file_path,"./GMoutput/GMinfo.json")
         if os.path.exists(output_path):
             with open(output_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)

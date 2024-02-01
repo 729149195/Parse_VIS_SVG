@@ -501,13 +501,13 @@ class SVGParser:
                 self.graph.add_edge(parent_path, node_id)
 
             previous_sibling_id = None
-            new_layer_counter = layer_counter
+            new_layer_counter = 0
             for child in reversed(element):
                 child_layer = f"{layer}_{new_layer_counter}"
                 child_id = add_element_to_graph(
                     child,
                     parent_path=node_id,
-                    level=level + 1,
+                    level=level,
                     layer=child_layer,
                     inherited_attrs=combined_attributes,
                     layer_counter=new_layer_counter,

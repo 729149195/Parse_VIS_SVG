@@ -3,7 +3,7 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.3em; font-weight: 700;">CurrentFile : {{ currentFileName }} <span v-if="!gmInfoData">Not
+        <span style="font-size:1.3em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span v-if="!gmInfoData">Not
             uploaded or not selected</span></span>
         <div>
           <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">nodes-num : {{
@@ -24,7 +24,7 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="29vh">
+        <el-scrollbar height="27.5vh">
           <div style="display: flex; justify-content: space-evenly;">
             <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
                 style="width: 25%; margin-right: 10px;" v-if="gmInfoData" shadow="hover"
@@ -49,15 +49,16 @@
                 </el-icon></el-card>
             </el-tooltip>
 
-            <el-dialog v-model="community_dialogVisible" style="padding: 0 !important;">
+            <el-dialog v-model="community_dialogVisible" style="padding: 0 !important;" draggable>
               <CommunityDetection :key="updateKey" />
             </el-dialog>
 
             <el-dialog v-model="community_and_initsvg_dialogVisible" style="padding: 0 !important; width: 90%;"
-              title="Community counterpart element">
+              title="Community counterpart element" draggable>
               <!-- 功能实现处 -->
               <div style="display: flex;">
-                <el-card style="width: 50%; margin: 5px;" shadow="never" class="center"><span class="card_title" >Init SVG</span><br>
+                <el-card style="width: 50%; margin: 5px;" shadow="never" class="center"><span class="card_title">Init
+                    SVG</span><br>
                   <div v-html="selectedSvg" class="svg-container"></div>
                 </el-card>
                 <el-card style="width: 50%; margin: 5px;" shadow="never"><span
@@ -65,17 +66,19 @@
                   <CommunityDetection :key="updateKey" />
                 </el-card>
               </div>
-
-
+              <el-card style="width: 100%;" shadow="never">
+                <span class="card_title">Selected community : {{ selectedCommunity }}</span><br>
+                <span class="card_title">The nodes in this community : {{ selectedNodeIds.join(', ') }}</span><br>
+              </el-card>
             </el-dialog>
           </div>
-          <el-empty description="No Data" :image-size="150" v-if="!gmInfoData" />
+          <el-empty description="No Data" :image-size="100" v-if="!gmInfoData" />
         </el-scrollbar>
       </el-card>
       <el-icon>
         <Odometer />
       </el-icon>
-      <span style="font-size:1.1em; font-weight: 700; padding-top: 15px;"> Perceived results and recommendations :</span>
+      <span style="font-size:1.1em; font-weight: 700;;"> Perceived results and recommendations :</span>
       <!-- 结果卡片 -->
       <el-card class="box-card-result" shadow="hover">
         <el-scrollbar height="42vh">
@@ -257,6 +260,8 @@ const updateKey = ref(0);
 const gmInfoData = computed(() => store.state.gmInfoData);
 const isLoading = computed(() => store.state.loading);
 const selectedSvg = computed(() => store.state.selectedSvg);
+const selectedCommunity = computed(() => store.state.selectedNodes.group);
+const selectedNodeIds = computed(() => store.state.selectedNodes.nodeIds);
 const baseURL = "http://localhost:8000/static/GMinfo.png";
 const lastUpdate = ref(new Date().getTime());
 
@@ -278,10 +283,10 @@ watch(community_and_initsvg_dialogVisible, (newValue) => {
 });
 
 
-const currentFileName = computed(() => {
-  if (store.state.currentPreviewFileName)
-    return store.state.currentPreviewFileName.replace('.svg', '');
-});
+// const currentFileName = computed(() => {
+//   if (store.state.currentPreviewFileName)
+//     return store.state.currentPreviewFileName.replace('.svg', '');
+// });
 
 
 const imageURLWithTimestamp = computed(() => {
@@ -397,23 +402,31 @@ const svg = `
   padding: 5px;
 }
 
-.svg-container  {
+.svg-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90%;
   width: 100%;
-  svg{
-    width: 100% !important; /* 最大宽度为容器宽度 */
+  overflow: auto;
+
+  svg {
+    width: 100% !important;
+    /* 最大宽度为容器宽度 */
     height: 100% !important;
-    object-fit: contain !important; /* 保持比例 */
+    object-fit: contain !important;
+    /* 保持比例 */
   }
 }
 
-.center{
-  .el-card__body{
+.center {
+  .el-card__body {
     height: 100%;
     width: 100%;
   }
+}
+
+.box-card-process {
+  margin-bottom: 10px;
 }
 </style>

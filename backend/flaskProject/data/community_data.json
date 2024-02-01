@@ -1,1300 +1,153 @@
 {
     "nodes": [
         {
-            "id": "svg/svg/g/g_1/g_2/path",
+            "id": "svg/svg/g/path",
             "group": 0
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_4/g_5/path_1",
+            "id": "svg/svg/g/path_1",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g_1/polygon",
             "group": 1
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_4/g_5/g_6/g_7/text",
+            "id": "svg/svg/g_1/polyline",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/g_2/line",
             "group": 2
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_4/g_5/path_2",
+            "id": "svg/svg/g_2/ellipse",
+            "group": 2
+        },
+        {
+            "id": "svg/svg/g_3/circle",
             "group": 3
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/path_3",
+            "id": "svg/svg/g_3/rect",
+            "group": 3
+        },
+        {
+            "id": "svg/svg/g_4/g_5/path_2",
             "group": 4
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_11/text_1",
+            "id": "svg/svg/g_4/g_5/path_3",
+            "group": 4
+        },
+        {
+            "id": "svg/svg/g_4/path_4",
             "group": 5
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/path_4",
+            "id": "svg/svg/g_4/path_5",
+            "group": 5
+        },
+        {
+            "id": "svg/svg/g_6/text",
             "group": 6
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_16/path_5",
+            "id": "svg/svg/g_6/text_1",
+            "group": 6
+        },
+        {
+            "id": "svg/svg/g_7/polygon_1",
             "group": 7
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_16/g_17/g_18/text_2",
+            "id": "svg/svg/g_7/polyline_1",
+            "group": 7
+        },
+        {
+            "id": "svg/svg/g_8/line_1",
             "group": 8
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_16/g_17/g_19/path_6",
+            "id": "svg/svg/g_8/ellipse_1",
+            "group": 8
+        },
+        {
+            "id": "svg/svg/circle_1",
             "group": 9
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_16/path_7",
-            "group": 10
+            "id": "svg/svg/rect_1",
+            "group": 9
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_20/path_8",
-            "group": 11
+            "id": "svg/svg/circle_2",
+            "group": 9
         },
         {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_20/g_21/g_22/text_3",
-            "group": 12
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_20/g_21/g_23/path_9",
-            "group": 13
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_20/path_10",
-            "group": 14
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_24/path_11",
-            "group": 15
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_24/g_25/g_26/text_4",
-            "group": 16
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_24/g_25/g_27/path_12",
-            "group": 17
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_24/path_13",
-            "group": 18
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_28/path_14",
-            "group": 19
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_28/g_29/g_30/text_5",
-            "group": 20
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_28/g_29/g_31/path_15",
-            "group": 21
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_28/path_16",
-            "group": 22
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_32/path_17",
-            "group": 23
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_32/g_33/g_34/text_6",
-            "group": 24
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_32/g_33/g_35/path_18",
-            "group": 25
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_32/path_19",
-            "group": 26
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_36/path_20",
-            "group": 27
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_36/g_37/g_38/text_7",
-            "group": 28
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_36/g_37/g_39/path_21",
-            "group": 29
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_36/path_22",
-            "group": 30
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_40/path_23",
-            "group": 31
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_40/g_41/g_42/text_8",
-            "group": 32
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_40/g_41/g_43/path_24",
-            "group": 33
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_40/path_25",
-            "group": 34
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_44/path_26",
-            "group": 35
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_44/g_45/g_46/text_9",
-            "group": 36
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_44/g_45/g_47/path_27",
-            "group": 37
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/g_14/g_15/g_44/path_28",
-            "group": 38
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/g_10/g_12/g_13/path_29",
-            "group": 39
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_8/g_9/path_30",
-            "group": 40
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_10",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_11",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_12",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_13",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_14",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_15",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_16",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_17",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_18",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_19",
-            "group": 42
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_20",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_21",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_22",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_23",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_24",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_25",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_26",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_27",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_28",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_29",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_30",
-            "group": 44
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_31",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_32",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_33",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_34",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_35",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_36",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_37",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_38",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_39",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_40",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_41",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_42",
-            "group": 45
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_43",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_44",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_45",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_46",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_47",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_48",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_49",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_50",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_51",
-            "group": 47
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_52",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_53",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_54",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_55",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_56",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_57",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_58",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_59",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_60",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_61",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_62",
-            "group": 49
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_63",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_64",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_65",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_66",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_67",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_68",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_69",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_70",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_71",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_72",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_73",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_74",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_48/text_75",
-            "group": 52
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_49/path_31",
-            "group": 54
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_50/text_76",
-            "group": 55
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_50/text_77",
-            "group": 55
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_51/line",
-            "group": 56
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_51/line_1",
-            "group": 56
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_53/path_32",
-            "group": 57
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_53/g_54/g_55/path_33",
-            "group": 58
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_53/path_34",
-            "group": 59
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_56/path_35",
-            "group": 60
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_56/g_57/g_58/path_36",
-            "group": 61
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_56/path_37",
-            "group": 62
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_59/path_38",
-            "group": 63
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_59/g_60/g_61/path_39",
-            "group": 64
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_59/path_40",
-            "group": 65
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_62/path_41",
-            "group": 66
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_62/g_63/g_64/path_42",
-            "group": 67
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_62/path_43",
-            "group": 68
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_65/path_44",
-            "group": 69
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_65/g_66/g_67/path_45",
-            "group": 70
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_65/path_46",
-            "group": 71
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_68/path_47",
-            "group": 72
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_68/g_69/g_70/path_48",
-            "group": 73
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_68/path_49",
-            "group": 74
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_71/path_50",
-            "group": 75
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_71/g_72/g_73/path_51",
-            "group": 76
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_71/path_52",
-            "group": 77
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_74/path_53",
-            "group": 78
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_74/g_75/g_76/path_54",
-            "group": 79
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_52/g_74/path_55",
-            "group": 80
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/path_56",
-            "group": 81
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_80/text_78",
-            "group": 82
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_81/line_2",
-            "group": 83
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_79",
-            "group": 84
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_80",
-            "group": 84
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_81",
-            "group": 84
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_82",
-            "group": 84
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_83",
-            "group": 84
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_3",
-            "group": 85
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_4",
-            "group": 85
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_5",
-            "group": 85
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_6",
-            "group": 85
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_7",
-            "group": 85
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/path_57",
-            "group": 86
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/path_58",
-            "group": 87
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_87/text_84",
-            "group": 88
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_88/line_8",
-            "group": 89
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_85",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_86",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_87",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_88",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_89",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_90",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_91",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_92",
-            "group": 50
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_93",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_94",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_95",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_96",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_97",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_98",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_99",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_100",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_101",
-            "group": 51
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_9",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_10",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_11",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_12",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_13",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_14",
-            "group": 53
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_15",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_16",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_17",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_18",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_19",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_20",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_21",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_22",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_23",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_24",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_25",
-            "group": 41
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/path_59",
-            "group": 43
-        },
-        {
-            "id": "svg/svg/g/g_1/g_2/path_60",
-            "group": 46
-        },
-        {
-            "id": "svg/svg/rect",
-            "group": 48
+            "id": "svg/svg/rect_2",
+            "group": 9
         }
     ],
     "links": [
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_10",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_11",
+            "source": "svg/svg/g/path",
+            "target": "svg/svg/g/path_1",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_11",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_12",
+            "source": "svg/svg/g_1/polygon",
+            "target": "svg/svg/g_1/polyline",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_12",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_13",
+            "source": "svg/svg/g_2/line",
+            "target": "svg/svg/g_2/ellipse",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_13",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_14",
+            "source": "svg/svg/g_3/circle",
+            "target": "svg/svg/g_3/rect",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_14",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_15",
+            "source": "svg/svg/g_4/g_5/path_2",
+            "target": "svg/svg/g_4/g_5/path_3",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_15",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_16",
+            "source": "svg/svg/g_4/path_4",
+            "target": "svg/svg/g_4/path_5",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_16",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_17",
+            "source": "svg/svg/g_6/text",
+            "target": "svg/svg/g_6/text_1",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_17",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_18",
+            "source": "svg/svg/g_7/polygon_1",
+            "target": "svg/svg/g_7/polyline_1",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_18",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_19",
+            "source": "svg/svg/g_8/line_1",
+            "target": "svg/svg/g_8/ellipse_1",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_19",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_20",
+            "source": "svg/svg/circle_1",
+            "target": "svg/svg/rect_1",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_20",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_21",
+            "source": "svg/svg/rect_1",
+            "target": "svg/svg/circle_2",
             "value": 1
         },
         {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_21",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_22",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_22",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_23",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_23",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_24",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_24",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_25",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_25",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_26",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_26",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_27",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_27",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_28",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_28",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_29",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_29",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_30",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_30",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_31",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_31",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_32",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_32",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_33",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_33",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_34",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_34",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_35",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_35",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_36",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_36",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_37",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_37",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_38",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_38",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_39",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_39",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_40",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_40",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_41",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_41",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_42",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_42",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_43",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_43",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_44",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_44",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_45",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_45",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_46",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_46",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_47",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_47",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_48",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_48",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_49",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_49",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_50",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_50",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_51",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_51",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_52",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_52",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_53",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_53",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_54",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_54",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_55",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_55",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_56",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_56",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_57",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_57",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_58",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_58",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_59",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_59",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_60",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_60",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_61",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_61",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_62",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_62",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_63",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_63",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_64",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_64",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_65",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_65",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_66",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_66",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_67",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_67",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_68",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_68",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_69",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_69",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_70",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_70",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_71",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_71",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_72",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_72",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_73",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_73",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_74",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_48/text_74",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_48/text_75",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_50/text_76",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_50/text_77",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_51/line",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_51/line_1",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_79",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_80",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_80",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_81",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_81",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_82",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_82",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_82/text_83",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_3",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_4",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_4",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_5",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_5",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_6",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_6",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_77/g_78/g_79/g_83/line_7",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_85",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_86",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_86",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_87",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_87",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_88",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_88",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_89",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_89",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_90",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_90",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_91",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_91",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_92",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_92",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_93",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_93",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_94",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_94",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_95",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_95",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_96",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_96",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_97",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_97",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_98",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_98",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_99",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_99",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_100",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_100",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_89/text_101",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_9",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_10",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_10",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_11",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_11",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_12",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_12",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_13",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_13",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_14",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_14",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_15",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_15",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_16",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_16",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_17",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_17",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_18",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_18",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_19",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_19",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_20",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_20",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_21",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_21",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_22",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_22",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_23",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_23",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_24",
-            "value": 1
-        },
-        {
-            "source": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_24",
-            "target": "svg/svg/g/g_1/g_2/g_3/g_84/g_85/g_86/g_90/line_25",
+            "source": "svg/svg/circle_2",
+            "target": "svg/svg/rect_2",
             "value": 1
         }
     ]
