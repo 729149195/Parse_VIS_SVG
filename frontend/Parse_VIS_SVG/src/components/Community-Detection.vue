@@ -28,6 +28,13 @@ const fetchData = async () => {
     } catch (error) {
         console.error("Failed to fetch data:", error);
     }
+    
+    const allnodeid = graphData.value.nodes.map(d => {
+        const parts = d.id.split("/");
+        return parts[parts.length - 1];
+    });
+    // console.log(allnodeid)
+    store.commit('SET_ALL_VISIBLE_NODES', allnodeid);
 };
 
 // D3 渲染逻辑

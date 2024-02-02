@@ -66,6 +66,24 @@ def evaluate_svg():
         return jsonify({'error': 'File not found'}), 404
 
 
+@app.route('/get-svg', methods=['GET'])
+def get_svg():
+    # 获取前端传递的 filename 参数
+    filename = request.args.get('filename')
+    if not filename:
+        return jsonify({'error': 'Filename is required'}), 400
+
+    # 构造文件路径
+    filepath = os.path.join(UPLOAD_FOLDER, filename)
+
+    # 检查文件是否存在
+    if not os.path.exists(filepath) or not os.path.isfile(filepath):
+        return jsonify({'error': 'File not found'}), 404
+
+    # 返回文件内容
+    return send_from_directory(UPLOAD_FOLDER, filename)
+
+
 @app.route('/community_data')
 def data():
     directory = os.path.join(app.root_path, 'data')  # 文件夹路径

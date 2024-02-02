@@ -30,9 +30,10 @@ import { ElNotification } from 'element-plus'
 
 const uploadUrl = 'http://localhost:8000/upload'; // 后端上传地址
 const evaluateUrl = 'http://localhost:8000/evaluate'; // 后端处理地址
+const updatedSvg = 'http://localhost:8000/get-svg' //后端跟新svg地址
+const removefile = 'http://localhost:8000/remove' //移除文件地址
 const svgPreview = ref(null);
-let currentPreviewFileName = ref("666"); // 保存当前预览的文件名
-let FileName = ref("666");
+let currentPreviewFileName = ref("file_name"); // 保存当前预览的文件名
 const store = useStore();
 const progress = ref(0);
 const customColorMethod = (percentage) => {
@@ -74,7 +75,7 @@ const handleRemove = file => {
 
 const notifyBackendAboutFileRemoval = async (filename) => {
     try {
-        await fetch('http://localhost:8000/remove', {
+        await fetch(removefile, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -128,6 +129,20 @@ const evaluateSVG = async () => {
             },
             body: JSON.stringify({ filename: currentPreviewFileName })  // 替换为实际的文件名
         });
+        progress.value = Math.floor(Math.random() * 20);
+
+        try {
+            const response = await fetch(`http://localhost:8000/get-svg?filename=${currentPreviewFileName}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.text();
+            store.commit('setSelectedSvg', data);
+        } catch (error) {
+            console.error('There was a problem fetching the SVG file:', error);
+        }
+
+
         progress.value = Math.floor(Math.random() * 30);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -135,6 +150,8 @@ const evaluateSVG = async () => {
         progress.value = Math.floor(Math.random() * 40);
         const data = await response.json();
         updateFileName(currentPreviewFileName)
+        progress.value = Math.floor(Math.random() * 60);
+
         progress.value = Math.floor(Math.random() * 80);
         store.commit('setGMInfoData', data);
         progress.value = Math.floor(Math.random() * 90);

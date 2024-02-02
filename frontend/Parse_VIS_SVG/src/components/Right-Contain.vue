@@ -3,7 +3,8 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.3em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span v-if="!gmInfoData">Not
+        <span style="font-size:1.3em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span
+            v-if="!gmInfoData">Not
             uploaded or not selected</span></span>
         <div>
           <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">nodes-num : {{
@@ -59,6 +60,7 @@
               <div style="display: flex;">
                 <el-card style="width: 50%; margin: 5px;" shadow="never" class="center"><span class="card_title">Init
                     SVG</span><br>
+                  <!-- 附加了id的svg -->
                   <div v-html="selectedSvg" class="svg-container"></div>
                 </el-card>
                 <el-card style="width: 50%; margin: 5px;" shadow="never"><span
@@ -245,10 +247,8 @@ import CommunityDetection from './Community-Detection.vue';
 import { Warning } from '@element-plus/icons-vue';
 
 const value1 = ref(1.2)
-// const value2 = ref(4.7)
 const value3 = ref(0.7)
 const value4 = ref(3.7)
-// const value5 = ref(2.7)
 const perceive = ref(false);
 const activeName = ref('first')
 const community_dialogVisible = ref(false)
@@ -262,8 +262,30 @@ const isLoading = computed(() => store.state.loading);
 const selectedSvg = computed(() => store.state.selectedSvg);
 const selectedCommunity = computed(() => store.state.selectedNodes.group);
 const selectedNodeIds = computed(() => store.state.selectedNodes.nodeIds);
+const allVisiableNodes = computed(() => store.state.AllVisiableNodes);
 const baseURL = "http://localhost:8000/static/GMinfo.png";
 const lastUpdate = ref(new Date().getTime());
+
+watch(selectedNodeIds,() => {
+  // console.log("Updated Vuex state:", allVisiableNodes.value);
+  const svgContainer = document.querySelector('.svg-container');
+  if (!svgContainer) return;
+
+  const svg = svgContainer.querySelector('svg');
+  if (!svg) return;
+
+  // 首先重置所有节点的透明度
+  svg.querySelectorAll('*').forEach(node => {
+    node.style.opacity = '';
+  });
+
+  // 调整不在 allVisiableNodes 中的节点的透明度
+  svg.querySelectorAll('*').forEach(node => {
+    if (allVisiableNodes.value.includes(node.id) && !selectedNodeIds.value.includes(node.id)) {
+      node.style.opacity = '0.1'; // 调整透明度
+    }
+  });
+});
 
 const refreshComponent = () => {
   updateKey.value++;
@@ -406,16 +428,13 @@ const svg = `
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  height: 94%;
   width: 100%;
-  overflow: auto;
 
   svg {
     width: 100% !important;
-    /* 最大宽度为容器宽度 */
     height: 100% !important;
     object-fit: contain !important;
-    /* 保持比例 */
   }
 }
 
