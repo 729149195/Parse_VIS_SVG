@@ -42,8 +42,8 @@ const renderGraph = () => {
     // 检查对话框是否已经打开并且SVG已经渲染
     if (!graphData.value || !svgRef.value || !svgRef.value.clientWidth) return;
 
-    const width = svgRef.value.clientWidth; // 动态获取宽度
-    const height = svgRef.value.clientHeight; // 动态获取高度
+    const width = svgRef.value.clientWidth *2; // 动态获取宽度
+    const height = svgRef.value.clientHeight *2; // 动态获取高度
 
     d3.select(svgRef.value).selectAll("*").remove(); //清除之前的内容
 

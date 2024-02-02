@@ -1,4 +1,3 @@
-import time
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
@@ -6,9 +5,9 @@ import os
 import json
 from modules.CreateGM import SVGParser
 from modules.TestGM_bbox import SVGDrawer
-from flask import send_file, make_response
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
+from modules.Convert_toHex import ColorFormatConverter
 
 app = Flask(__name__)
 CORS(app)
@@ -49,13 +48,14 @@ def evaluate_svg():
     if os.path.exists(file_path):
         # 使用 SVGParser 处理文件
         svg_parser = SVGParser(file_path)
-        svg_parser.run()
-        SVGDrawer("./GMoutput/GMinfo.json").run()
+        svg_parser.run()  #解析生成初始MGinfo.json文件
+        converter = ColorFormatConverter("./GMoutput/GMinfo.json")
+        converter.process_file()    # 统一色值为hex
+        SVGDrawer("./GMoutput/GMinfo.json").run()   #绘制定位bbox框图
         detector = CommunityDetector("./GMoutput/GMinfo.json")
-        detector.execute()
-        # 读取输出文件
-        output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)
-        add_svg_id(file_path,"./GMoutput/GMinfo.json")
+        detector.execute()  # 从GMinfo.json提取可见元素并进行社区检测
+        output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)  # 读取输出文件
+        add_svg_id(file_path,"./GMoutput/GMinfo.json")   #为原始svg元素添加对应id
         if os.path.exists(output_path):
             with open(output_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
@@ -72,14 +72,11 @@ def get_svg():
     filename = request.args.get('filename')
     if not filename:
         return jsonify({'error': 'Filename is required'}), 400
-
     # 构造文件路径
     filepath = os.path.join(UPLOAD_FOLDER, filename)
-
     # 检查文件是否存在
     if not os.path.exists(filepath) or not os.path.isfile(filepath):
         return jsonify({'error': 'File not found'}), 404
-
     # 返回文件内容
     return send_from_directory(UPLOAD_FOLDER, filename)
 

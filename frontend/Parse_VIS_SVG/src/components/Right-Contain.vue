@@ -282,7 +282,7 @@ watch(selectedNodeIds,() => {
   // 调整不在 allVisiableNodes 中的节点的透明度
   svg.querySelectorAll('*').forEach(node => {
     if (allVisiableNodes.value.includes(node.id) && !selectedNodeIds.value.includes(node.id)) {
-      node.style.opacity = '0.1'; // 调整透明度
+      node.style.opacity = '0.05'; // 调整透明度
     }
   });
 });
