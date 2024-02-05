@@ -104,12 +104,6 @@ const handlePreview = async (file) => {
         progress.value = 0;
     }
     currentPreviewFileName = file.name; // 保存文件名
-    store.commit('setSelectedSvg', svgPreview.value);
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        store.commit('setSelectedSvg', e.target.result); // 将SVG内容存储到 Vuex
-    };
-    reader.readAsText(file.raw);
 };
 
 const beforeUpload = (file) => {

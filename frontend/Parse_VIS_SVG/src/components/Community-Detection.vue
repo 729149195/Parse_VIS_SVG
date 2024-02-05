@@ -28,12 +28,11 @@ const fetchData = async () => {
     } catch (error) {
         console.error("Failed to fetch data:", error);
     }
-    
+
     const allnodeid = graphData.value.nodes.map(d => {
         const parts = d.id.split("/");
         return parts[parts.length - 1];
     });
-    // console.log(allnodeid)
     store.commit('SET_ALL_VISIBLE_NODES', allnodeid);
 };
 
@@ -42,8 +41,8 @@ const renderGraph = () => {
     // 检查对话框是否已经打开并且SVG已经渲染
     if (!graphData.value || !svgRef.value || !svgRef.value.clientWidth) return;
 
-    const width = svgRef.value.clientWidth *2; // 动态获取宽度
-    const height = svgRef.value.clientHeight *2; // 动态获取高度
+    const width = svgRef.value.clientWidth * 2; // 动态获取宽度
+    const height = svgRef.value.clientHeight * 2; // 动态获取高度
 
     d3.select(svgRef.value).selectAll("*").remove(); //清除之前的内容
 
@@ -53,34 +52,90 @@ const renderGraph = () => {
 
     g = svg.append("g"); // 创建g元素并赋值给变量g
 
-
     const color = d3.scaleOrdinal(d3.schemeCategory10);
     const links = graphData.value.links.map(d => ({ ...d }));
     const nodes = graphData.value.nodes.map(d => ({ ...d }));
 
+    //准备分组数据
+    const groupByGroup = d3.groups(nodes, d => d.group);
+    let groupPaths = {}; // 用于存储每个组的凸包路径
+
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id))
         .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2));
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("x", d3.forceX(width / 2).strength(0.01)) // 添加X轴力
+        .force("y", d3.forceY(height / 2).strength(0.01)) // 添加Y轴力
+        .on("tick", ticked); // 使用 tick 事件实时更新凸包
 
     svg.attr("viewBox", [0, 0, width, height])
         .attr("style", "max-width: 100%; height: auto;");
 
-    const link = svg.append("g")
-        .attr("stroke", "#999")
-        .attr("stroke-opacity", 0.6)
+    const hullGroup = g.append("g").attr("class", "hull-group");
+    const linkGroup = g.append("g").attr("class", "link-group");
+    const nodeGroup = g.append("g").attr("class", "node-group");
+
+    function updateHulls() {
+        hullGroup.selectAll(".hull").remove();
+
+        groupByGroup.forEach(group => {
+            const groupName = group[0];
+            const points = group[1].map(d => [d.x, d.y]);
+            let fakePoints = [];
+            if (points.length === 2) {
+                // Calculate fake points for rounded convex hull effect
+                const dx = points[1][0] - points[0][0];
+                const dy = points[1][1] - points[0][1];
+                const scale = 0.00001;
+                const mx = (points[0][0] + points[1][0]) / 2;
+                const my = (points[0][1] + points[1][1]) / 2;
+                fakePoints = [
+                    [mx + dy * scale, my - dx * scale],
+                    [mx - dy * scale, my + dx * scale]
+                ];
+            }
+
+            const hullPoints = d3.polygonHull(points.concat(fakePoints));
+            if (hullPoints) {
+                hullPoints.push(hullPoints[0]); // Close the path by pushing the first point again
+                groupPaths[groupName] = "M" + hullPoints.join("L") + "Z"; // Ensure path is closed
+            }
+
+            const hullsSelection = hullGroup.selectAll(".hull")
+                .data(Object.entries(groupPaths), d => d[0]);
+
+            hullsSelection.join(
+                enter => enter.append("path")
+                    .attr("class", "hull")
+                    .attr("fill", d => d3.color(color(d[0])).copy({ opacity: 1 }).toString())
+                    .attr("stroke", d => color(d[0]))
+                    .attr("stroke-width", 50)
+                    .attr("stroke-linejoin", "round")
+                    .attr("d", d => d[1]),
+                update => update
+                    .attr("d", d => d[1]),
+                exit => exit.remove()
+            );
+        });
+    }
+
+    updateHulls(); // 更新凸包的位置和样式
+
+    const link = linkGroup.append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-opacity", 0.8)
         .selectAll("line")
         .data(links)
         .join("line")
-        .attr("stroke-width", d => Math.sqrt(d.value));
+        .attr("stroke-width", d => Math.sqrt(d.value*2));
 
-    const node = svg.append("g")
+    const node = nodeGroup.append("g")
         .attr("stroke", "#fff")
         .attr("stroke-width", 2)
         .selectAll("circle")
         .data(nodes)
         .join("circle")
-        .attr("r", 8)
+        .attr("r", 14)
         .attr("id", d => {
             const parts = d.id.split("/");
             return parts[parts.length - 1];
@@ -90,8 +145,17 @@ const renderGraph = () => {
         .attr("fill", d => color(d.group))
         .on("click", (event, d) => {
             handleNodeClick(d);
+        })
+        .on("mouseover", (event, d) => {
+            svg.selectAll(".labels text")
+                .filter(node => node.id === d.id)
+                .style("display", "block");
+        })
+        .on("mouseout", (event, d) => {
+            svg.selectAll(".labels text")
+                .filter(node => node.id === d.id)
+                .style("display", "none");
         });
-
 
     const labels = svg.append("g")
         .attr("class", "labels")
@@ -104,14 +168,13 @@ const renderGraph = () => {
             const parts = d.id.split("/");
             return parts[parts.length - 1];
         })
-        .attr("font-size", "13px")
-        .attr("dx", 10)   // 设置文本相对于节点的位置
+        .attr("font-size", "2.5em")
+        .attr("font-weight", 800)
+        .attr("dx", "2em")   // 设置文本相对于节点的位置
         .attr("dy", ".35em") // 垂直居中文本
-        .style("user-select", "none") // 防止文本被选中
-        .style("pointer-events", "none"); // 防止文本响应鼠标事件
-
-    node.append("title")
-        .text(d => d.id);
+        .attr("opacity", 0.8)
+        .style("pointer-events", "none") 
+        .style("display", "none"); // 默认情况下隐藏文本标签
 
     node.call(d3.drag()
         .on("start", dragstarted)
@@ -119,6 +182,7 @@ const renderGraph = () => {
         .on("end", dragended));
 
     function ticked() {
+        updateHulls(); // 更新凸包的位置和样式
         link
             .attr("x1", d => d.source.x)
             .attr("y1", d => d.source.y)
@@ -170,7 +234,3 @@ onMounted(async () => {
 });
 watch(() => graphData.value, renderGraph, { deep: true });
 </script>
-
-<style>
-/* 您的样式 */
-</style>
