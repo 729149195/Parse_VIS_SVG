@@ -55,8 +55,6 @@ const renderGraph = () => {
     const color = d3.scaleOrdinal(d3.schemeCategory10);
     const links = graphData.value.links.map(d => ({ ...d }));
     const nodes = graphData.value.nodes.map(d => ({ ...d }));
-
-    //准备分组数据
     const groupByGroup = d3.groups(nodes, d => d.group);
     let groupPaths = {}; // 用于存储每个组的凸包路径
 
@@ -64,8 +62,8 @@ const renderGraph = () => {
         .force("link", d3.forceLink(links).id(d => d.id))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX(width / 2).strength(0.01)) // 添加X轴力
-        .force("y", d3.forceY(height / 2).strength(0.01)) // 添加Y轴力
+        .force("x", d3.forceX(width / 2).strength(0.006)) // 添加X轴力
+        .force("y", d3.forceY(height / 2).strength(0.006)) // 添加Y轴力
         .on("tick", ticked); // 使用 tick 事件实时更新凸包
 
     svg.attr("viewBox", [0, 0, width, height])
@@ -75,9 +73,55 @@ const renderGraph = () => {
     const linkGroup = g.append("g").attr("class", "link-group");
     const nodeGroup = g.append("g").attr("class", "node-group");
 
-    function updateHulls() {
-        hullGroup.selectAll(".hull").remove();
+    // hullGroup.selectAll(".hull").remove();
 
+    groupByGroup.forEach(group => {
+        const groupName = group[0];
+        const points = group[1].map(d => [d.x, d.y]);
+        let fakePoints = [];
+        if (points.length === 2) {
+            // Calculate fake points for rounded convex hull effect
+            const dx = points[1][0] - points[0][0];
+            const dy = points[1][1] - points[0][1];
+            const scale = 0.00001;
+            const mx = (points[0][0] + points[1][0]) / 2;
+            const my = (points[0][1] + points[1][1]) / 2;
+            fakePoints = [
+                [mx + dy * scale, my - dx * scale],
+                [mx - dy * scale, my + dx * scale]
+            ];
+        }
+
+        const hullPoints = d3.polygonHull(points.concat(fakePoints));
+        if (hullPoints) {
+            hullPoints.push(hullPoints[0]); // Close the path by pushing the first point again
+            groupPaths[groupName] = "M" + hullPoints.join("L") + "Z"; // Ensure path is closed
+        }
+
+
+        const hullsSelection = hullGroup.selectAll(".hull")
+            .data(Object.entries(groupPaths), d => d[0]);
+
+        hullsSelection.join(
+            enter => enter.append("path")
+                .attr("class", "hull")
+                .attr("fill", d => d3.color(color(d[0])).copy({ opacity: 1 }).toString())
+                .attr("stroke", d => color(d[0]))
+                .attr("stroke-width", 40)
+                .attr("stroke-linejoin", "round")
+                .attr("d", d => d[1])
+                .on('click', (event, d) => {
+                    hullClicked(event, d)
+                })
+                .attr("style", "cursor: pointer;"),
+            update => update
+                .attr("d", d => d[1]),
+            exit => exit.remove()
+        );
+
+    });
+
+    function updateHulls() {
         groupByGroup.forEach(group => {
             const groupName = group[0];
             const points = group[1].map(d => [d.x, d.y]);
@@ -101,6 +145,7 @@ const renderGraph = () => {
                 groupPaths[groupName] = "M" + hullPoints.join("L") + "Z"; // Ensure path is closed
             }
 
+
             const hullsSelection = hullGroup.selectAll(".hull")
                 .data(Object.entries(groupPaths), d => d[0]);
 
@@ -109,17 +154,20 @@ const renderGraph = () => {
                     .attr("class", "hull")
                     .attr("fill", d => d3.color(color(d[0])).copy({ opacity: 1 }).toString())
                     .attr("stroke", d => color(d[0]))
-                    .attr("stroke-width", 50)
+                    .attr("stroke-width", 40)
                     .attr("stroke-linejoin", "round")
-                    .attr("d", d => d[1]),
+                    .attr("d", d => d[1])
+                    .on('click', (event, d) => {
+                        hullClicked(event, d)
+                    })
+                    .attr("style", "cursor: pointer;"),
                 update => update
                     .attr("d", d => d[1]),
                 exit => exit.remove()
             );
+
         });
     }
-
-    updateHulls(); // 更新凸包的位置和样式
 
     const link = linkGroup.append("g")
         .attr("stroke", "#fff")
@@ -127,7 +175,7 @@ const renderGraph = () => {
         .selectAll("line")
         .data(links)
         .join("line")
-        .attr("stroke-width", d => Math.sqrt(d.value*2));
+        .attr("stroke-width", d => Math.sqrt(d.value * 2));
 
     const node = nodeGroup.append("g")
         .attr("stroke", "#fff")
@@ -147,9 +195,15 @@ const renderGraph = () => {
             handleNodeClick(d);
         })
         .on("mouseover", (event, d) => {
+            const [x, y] = d3.pointer(event, svg.node());
+            const xOffset = 30; // 根据需要调整偏移量
+            const yOffset = 10;  // 如有必要，也可以对y进行调整
+
             svg.selectAll(".labels text")
                 .filter(node => node.id === d.id)
-                .style("display", "block");
+                .style("display", "block")
+                .attr("x", x + xOffset)
+                .attr("y", y + yOffset);
         })
         .on("mouseout", (event, d) => {
             svg.selectAll(".labels text")
@@ -162,18 +216,14 @@ const renderGraph = () => {
         .selectAll("text")
         .data(nodes)
         .join("text")
-        .attr("x", d => d.x)
-        .attr("y", d => d.y)
         .text(d => {
             const parts = d.id.split("/");
             return parts[parts.length - 1];
         })
         .attr("font-size", "2.5em")
         .attr("font-weight", 800)
-        .attr("dx", "2em")   // 设置文本相对于节点的位置
-        .attr("dy", ".35em") // 垂直居中文本
         .attr("opacity", 0.8)
-        .style("pointer-events", "none") 
+        .style("pointer-events", "none")
         .style("display", "none"); // 默认情况下隐藏文本标签
 
     node.call(d3.drag()
@@ -223,6 +273,16 @@ const renderGraph = () => {
 
         // 提交 Vuex mutation 或 action
         store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: clickedNode.group });
+    }
+
+    function hullClicked(event, d) {
+        const groupName = d[0];
+        const groupNodes = nodes.filter(node => String(node.group) === groupName);
+        const nodeIds = groupNodes.map(node => {
+            const parts = node.id.split("/");
+            return parts[parts.length - 1];
+        });
+        store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: groupName });
     }
 
     simulation.on("tick", ticked);

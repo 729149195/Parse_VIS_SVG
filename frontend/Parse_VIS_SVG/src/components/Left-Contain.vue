@@ -12,8 +12,9 @@
                 <div>
                 </div>
             </el-upload>
-            <el-progress :percentage="progress" v-if="progress" striped :color="customColorMethod"
+            <el-progress :percentage="progress" v-if="progress > 0 && progress < 100" striped :color="customColorMethod"
                 :show-text="true"></el-progress>
+            <el-progress :percentage="100" status="success" v-if="progress === 100" striped/>
             <el-card class="box-card-current-file" shadow="hover" v-if="svgPreview">
                 <img :src="svgPreview" alt="SVG Preview" class="svg-preview" />
             </el-card>
@@ -36,6 +37,13 @@ const svgPreview = ref(null);
 let currentPreviewFileName = ref("file_name"); // 保存当前预览的文件名
 const store = useStore();
 const progress = ref(0);
+
+const showprogress = (percentage) => {
+    if (percentage === 0) return 0;
+    if(percentage === 100) return 1;
+    else return 2;
+}
+
 const customColorMethod = (percentage) => {
     if (percentage < 30) {
         return '#909399'
@@ -182,5 +190,8 @@ const evaluateSVG = async () => {
 .box-card-current-file {
     margin: 5px 0 5px 0;
     padding: 0;
+}
+.el-progress__text{
+    min-width: 15px !important;
 }
 </style>

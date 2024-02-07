@@ -39,18 +39,18 @@
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
-              <el-card style="width: 99%; " shadow="hover">
+              <el-card style="width: 99%; " shadow="hover" class="statistical">
                 <el-scrollbar>
                   <div style="display: flex; margin-bottom: 5px;">
-                    <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">
-                        nodes-num : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
-                    <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">
-                        edges-num : {{ gmInfoData.DiGraph.edges }}</el-tag></span>
-                    <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">
+                    <span v-if="gmInfoData"><el-tag effect="plain">
+                        nodes number : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
+                    <span v-if="gmInfoData"><el-tag effect="plain">
+                        edges number : {{ gmInfoData.DiGraph.edges }}</el-tag></span>
+                    <span v-if="gmInfoData"><el-tag effect="plain">
                         Selected community : {{ selectedCommunity }}</el-tag></span>
                   </div>
-                  <span v-if="gmInfoData"><el-tag effect="plain" style="font-size: 1em; margin-right: 10px;">
-                      The nodes in this community : {{ selectedNodeIds.join(', ') }}</el-tag></span>
+                  <span v-if="gmInfoData"><el-tag effect="plain">
+                      The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span>
                 </el-scrollbar>
               </el-card>
             </div>
@@ -68,16 +68,17 @@
           <el-empty description="No Data" :image-size="60" v-if="!gmInfoData" />
           <div style="display: flex; justify-content: center;"><el-card v-if="gmInfoData" shadow="hover"
               style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-              <span class="card_title">直方图1：元素比例 横（元素类别）纵：(比例)</span><br>
+              <HisEleProportions/>
             </el-card>
             <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-              <span class="card_title">直方图2：属性比例（缺省）</span><br>
+              <HisAttrProportionsVue/>
             </el-card>
             <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-              <span class="card_title">直方图3：bbox（缺省）</span><br>
+             <HisBbox/>
             </el-card>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important;">
-              <span class="card_title">散点图+一组直方图：横（数量/大小）纵：(内、外强度)</span><br>
+            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important;" @click="changeSH = !changeSH">
+              <ScatCommunity v-if="changeSH"/>
+              <HisCommunity v-if="!changeSH"/>
             </el-card>
           </div>
         </el-scrollbar>
@@ -92,7 +93,13 @@
 import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
+import HisEleProportions from './His-EleProportions.vue';
+import HisAttrProportionsVue from './His-AttrProportions.vue';
+import HisBbox from './His-bbox.vue';
+import ScatCommunity from './Scat-community.vue';
+import HisCommunity from './His-community.vue';
 
+const changeSH =ref(true)
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
 const store = useStore();
@@ -237,6 +244,20 @@ const svg = `
   }
 }
 
+.fourSVG-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+}
+
 .center {
   .el-card__body {
     height: 100%;
@@ -247,4 +268,13 @@ const svg = `
 .box-card-process {
   margin-bottom: 5px;
 }
+
+.statistical{
+  font-size: 1em;;
+  font-weight:900;
+  span{
+    margin-right: 5px;
+  }
+}
+
 </style>
