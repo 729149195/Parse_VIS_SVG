@@ -3,7 +3,7 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.3em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span
+        <span style="font-size:1.2em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span
             v-if="!gmInfoData">Not
             uploaded or not selected</span></span>
         <el-button v-if="gmInfoData" class="button" type="primary" plain><span
@@ -20,7 +20,7 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="54vh">
+        <el-scrollbar height="57.5vh">
           <el-empty description="No Data" :image-size="100" v-if="!gmInfoData" />
           <div style="justify-content: space-evenly;" v-if="gmInfoData">
             <!-- <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
@@ -29,27 +29,27 @@
                   alt="GMinfo Image" style="width: 100%;" v-if="gmInfoData" /></el-card>
             </el-tooltip> -->
             <div style="display: flex;">
-              <el-card style="width: 50%; margin:5px;" shadow="hover" class="center">
+              <el-card style="width: 50%; margin:3px;" shadow="hover" class="center">
                 <span class="card_title">Init SVG</span><br>
                 <div v-html="selectedSvg" class="svg-container"></div>
               </el-card>
-              <el-card style="width: 50%; margin:5px;" shadow="hover"><span
+              <el-card style="width: 50%; margin:3px;" shadow="hover"><span
                   class="card_title">community_detection</span><br>
                 <CommunityDetection :key="updateKey" />
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
-              <el-card style="width: 99%; " shadow="hover" class="statistical">
+              <el-card style="width: 100%; margin:3px;" shadow="hover" class="statistical">
                 <el-scrollbar>
-                  <div style="display: flex; margin-bottom: 5px;">
+                  <div style="display: flex; margin-bottom: 3px;">
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         nodes number : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         edges number : {{ gmInfoData.DiGraph.edges }}</el-tag></span>
-                    <span v-if="gmInfoData"><el-tag effect="plain">
+                    <span v-if="selectedCommunity"><el-tag effect="plain">
                         Selected community : {{ selectedCommunity }}</el-tag></span>
                   </div>
-                  <span v-if="gmInfoData"><el-tag effect="plain">
+                  <span v-if="selectedCommunity"><el-tag effect="plain">
                       The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span>
                 </el-scrollbar>
               </el-card>
@@ -63,25 +63,48 @@
       </el-icon>
       <span style="font-size:1.1em; font-weight: 700;;"> Perceived results and recommendations :</span>
       <!-- 结果卡片 -->
-      <el-card class="box-card-result" shadow="hover">
-        <el-scrollbar height="20vh" style="display: flex; justify-content: center; align-items: center;">
-          <el-empty description="No Data" :image-size="60" v-if="!gmInfoData" />
-          <div style="display: flex; justify-content: center;"><el-card v-if="gmInfoData" shadow="hover"
-              style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-              <HisEleProportions/>
+      <el-card class="box-card-result" shadow="hover" height="22.5vh">
+
+        <el-empty description="No Data" :image-size="60" v-if="!gmInfoData" />
+        <div style="display: flex; justify-content: space-around; ">
+          <el-tooltip placement="top">
+            <template #content>元素比例 <br /> 横轴（元素类别）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
+            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%;">
+              <HisEleProportions />
             </el-card>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-              <HisAttrProportionsVue/>
+          </el-tooltip>
+
+
+          <el-tooltip placement="top">
+            <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
+            <el-card v-if="gmInfoData" shadow="hover" style=" width: 25%;">
+              <HisAttrProportionsVue />
             </el-card>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important; margin-right: 10px;">
-             <HisBbox/>
+          </el-tooltip>
+
+
+          <el-tooltip placement="top">
+            <template #content> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
+            <el-card v-if="gmInfoData" shadow="hover" style=" width: 25%;">
+              <HisBbox />
             </el-card>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%; padding: 0 !important;" @click="changeSH = !changeSH">
-              <ScatCommunity v-if="changeSH"/>
-              <HisCommunity v-if="!changeSH"/>
+          </el-tooltip>
+
+
+          <el-tooltip placement="top">
+            <template #content v-if="changeSH"> 社区散点（当前） ⇄ 社区直方<br /> 横轴（社区编号）<br /> 纵：(社区大小)
+              <br />灰色/蓝色为不可视/可视元素</template>
+            <template #content v-if="!changeSH"> 社区直方（当前） ⇄ 社区散点 <br /> 横轴（社区编号）<br /> 纵：(社区强度)
+              <br />灰色/蓝色为不可视/可视元素</template>
+            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%;" @click="changeSH = !changeSH">
+              <ScatCommunity v-if="changeSH" />
+              <HisCommunity v-if="!changeSH" />
             </el-card>
-          </div>
-        </el-scrollbar>
+          </el-tooltip>
+
+
+        </div>
+
       </el-card>
 
     </div>
@@ -99,7 +122,7 @@ import HisBbox from './His-bbox.vue';
 import ScatCommunity from './Scat-community.vue';
 import HisCommunity from './His-community.vue';
 
-const changeSH =ref(true)
+const changeSH = ref(true)
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
 const store = useStore();
@@ -234,7 +257,7 @@ const svg = `
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 33vh;
+  height: 45vh;
   width: 100%;
 
   svg {
@@ -267,14 +290,25 @@ const svg = `
 
 .box-card-process {
   margin-bottom: 5px;
+
+  .el-card__body {
+    padding: 5px !important;
+  }
 }
 
-.statistical{
-  font-size: 1em;;
-  font-weight:900;
-  span{
+.statistical {
+  font-size: 1em;
+  ;
+  font-weight: 900;
+
+  span {
     margin-right: 5px;
   }
 }
 
+.box-card-result {
+  .el-card__body {
+    padding: 8px !important;
+  }
+}
 </style>

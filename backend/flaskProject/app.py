@@ -8,6 +8,7 @@ from modules.TestGM_bbox import SVGDrawer
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
+from modules.Statisticians import TagCounter
 
 app = Flask(__name__)
 CORS(app)
@@ -51,6 +52,8 @@ def evaluate_svg():
         svg_parser.run()  #解析生成初始MGinfo.json文件
         converter = ColorFormatConverter("./GMoutput/GMinfo.json")
         converter.process_file()    # 统一色值为hex
+        tag_counter = TagCounter()
+        tag_counter.process()
         SVGDrawer("./GMoutput/GMinfo.json").run()   #绘制定位bbox框图
         detector = CommunityDetector("./GMoutput/GMinfo.json")
         detector.execute()  # 从GMinfo.json提取可见元素并进行社区检测
@@ -79,6 +82,16 @@ def get_svg():
         return jsonify({'error': 'File not found'}), 404
     # 返回文件内容
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+@app.route('/ele_num_data', methods=['GET'])
+def histogram_data():
+    data_file_path = os.path.join(app.root_path, 'data', 'ele_num.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        ele_num_data = json.load(data_file)
+        return jsonify(ele_num_data)
 
 
 @app.route('/community_data')

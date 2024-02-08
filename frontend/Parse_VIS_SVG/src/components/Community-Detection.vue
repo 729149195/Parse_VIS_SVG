@@ -1,5 +1,5 @@
 <template>
-    <svg ref="svgRef" :key="updateKey" width="900" height="600"></svg>
+    <svg ref="svgRef" :key="updateKey" width="900" height="710"></svg>
 </template>
 
 <script setup>
@@ -28,7 +28,6 @@ const fetchData = async () => {
     } catch (error) {
         console.error("Failed to fetch data:", error);
     }
-
     const allnodeid = graphData.value.nodes.map(d => {
         const parts = d.id.split("/");
         return parts[parts.length - 1];
@@ -57,6 +56,9 @@ const renderGraph = () => {
     const nodes = graphData.value.nodes.map(d => ({ ...d }));
     const groupByGroup = d3.groups(nodes, d => d.group);
     let groupPaths = {}; // 用于存储每个组的凸包路径
+    // console.log()
+   
+
 
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id))

@@ -11,7 +11,8 @@ export default createStore({
         nodeIds: [],
         group: null
       },
-      AllVisiableNodes: []
+      AllVisiableNodes: [],
+      ele_num_data : null
     };
   },
   mutations: {
@@ -32,8 +33,10 @@ export default createStore({
       state.selectedNodes.group = payload.group;
     },
     SET_ALL_VISIBLE_NODES(state, nodeIds) {
-      
       state.AllVisiableNodes = nodeIds;
+    },
+    GET_ELE_NUM_DATA(state, data) {
+      state.ele_num_data = data;
     }
   },
 });
