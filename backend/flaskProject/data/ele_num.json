@@ -6,27 +6,47 @@
     },
     {
         "tag": "g",
-        "num": 91,
+        "num": 9,
         "visible": false
     },
     {
         "tag": "path",
-        "num": 61,
+        "num": 6,
         "visible": true
     },
     {
-        "tag": "text",
-        "num": 102,
+        "tag": "polygon",
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "polyline",
+        "num": 2,
         "visible": true
     },
     {
         "tag": "line",
-        "num": 26,
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "ellipse",
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "circle",
+        "num": 3,
         "visible": true
     },
     {
         "tag": "rect",
-        "num": 1,
+        "num": 3,
+        "visible": true
+    },
+    {
+        "tag": "text",
+        "num": 2,
         "visible": true
     }
 ]

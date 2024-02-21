@@ -39,7 +39,116 @@ class TagCounter:
             json.dump(result_json, file, indent=4, ensure_ascii=False)
 
 # 使用示例
-if __name__ == "__main__":
-    tag_counter = TagCounter()
-    tag_counter.process()
-    print(f"Results have been written to {tag_counter.output_file_path}")
+# if __name__ == "__main__":
+#     tag_counter = TagCounter()
+#     tag_counter.process()
+#     print(f"Results have been written to {tag_counter.output_file_path}")
+
+
+class AttributeCounter:
+    def __init__(self):
+        self.input_file_path = './GMoutput/GMinfo.json'
+        self.output_file_path = './data/attr_num.json'
+
+    def process(self):
+        result_json = self._count_attributes_from_json()
+        self._write_result_to_file(result_json)
+
+    def _count_attributes_from_json(self):
+        with open(self.input_file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        nodes = data['DiGraph']['Nodes']
+        attribute_counts = {}
+        excluded_attributes = {'bbox', 'd', 'Pcode', 'Pnums'}
+        for node in nodes.values():
+            attributes = node['Attributes']['attributes']
+            for attr in attributes:
+                if attr not in excluded_attributes:
+                    if attr not in attribute_counts:
+                        attribute_counts[attr] = 1
+                    else:
+                        attribute_counts[attr] += 1
+
+        result_json = [{"attribute": attr, "num": count} for attr, count in attribute_counts.items()]
+        return result_json
+
+    def _write_result_to_file(self, result_json):
+        with open(self.output_file_path, 'w', encoding='utf-8') as file:
+            json.dump(result_json, file, indent=4, ensure_ascii=False)
+
+
+# if __name__ == '__main__':
+# counter = AttributeCounter()
+# counter.process()
+
+
+class BBoxCounter:
+    def __init__(self):
+        self.input_file_path = './GMoutput/GMinfo.json'
+        self.output_file_path = './data/bbox_points_count.json'
+
+    def process(self):
+        result_json = self._count_bbox_points()
+        self._write_result_to_file(result_json)
+
+    def _count_bbox_points(self):
+        with open(self.input_file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        nodes = data['DiGraph']['Nodes']
+        points_count = {}
+        for node in nodes.values():
+            bbox = node['Attributes']['attributes']['bbox']
+            for point in bbox:
+                point_tuple = tuple(point)  # 将点列表转换为元组
+                if point_tuple not in points_count:
+                    points_count[point_tuple] = 1
+                else:
+                    points_count[point_tuple] += 1
+
+        result_json = [{"point": list(point), "count": count} for point, count in points_count.items()]  # 将元组转换回列表
+        return result_json
+
+    def _write_result_to_file(self, result_json):
+        with open(self.output_file_path, 'w', encoding='utf-8') as file:
+            json.dump(result_json, file, indent=4, ensure_ascii=False)
+
+
+# counter = BBoxCounter()
+# counter.process()
+
+
+class GroupCounter:
+    def __init__(self):
+        self.input_file_path = './data/community_data.json'
+        self.output_file_path = './data/group_data.json'
+
+    def process(self):
+        result_json = self._count_groups()
+        self._write_result_to_file(result_json)
+
+    def _count_groups(self):
+        with open(self.input_file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        nodes = data['nodes']
+        group_counts = {}
+        for node in nodes:
+            group = node['group']
+            if group not in group_counts:
+                group_counts[group] = 1
+            else:
+                group_counts[group] += 1
+
+        result_json = [{"group": group, "num": count} for group, count in group_counts.items()]
+        return result_json
+
+    def _write_result_to_file(self, result_json):
+        with open(self.output_file_path, 'w', encoding='utf-8') as file:
+            json.dump(result_json, file, indent=4, ensure_ascii=False)
+
+
+# 使用示例
+# counter = GroupCounter()
+# counter.process()

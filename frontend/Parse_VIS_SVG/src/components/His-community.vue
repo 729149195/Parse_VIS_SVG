@@ -1,16 +1,15 @@
 <template>
     <div ref="chartContainer"></div>
 </template>
-  
+
 <script setup>
 import { onMounted, ref, computed } from 'vue';
 import * as d3 from 'd3';
 import { useStore } from 'vuex';
 const store = useStore();
 
-const eleURL = "http://localhost:8000/ele_num_data"
+const eleURL = "http://localhost:8000/group_data"
 const chartContainer = ref(null);
-// const ele_num_array = computed(() => store.state.ele_num_data);  //从store中获取当前svg所有tag及其标签数量的接口
 
 onMounted(async () => {
     if (!chartContainer.value) return;
@@ -20,7 +19,7 @@ onMounted(async () => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        store.commit('GET_ELE_NUM_DATA', data);
+        // store.commit('GET_ELE_NUM_DATA', data);
         render(data)
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
@@ -38,10 +37,9 @@ const render = (data) => {
     const marginLeft = 30;
 
     const x = d3.scaleBand()
-        .domain(data.map(d => d.tag))
+        .domain(data.map(d => d.group))
         .range([marginLeft, width - marginRight])
         .padding(0.1);
-
 
     const y = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.num)]).nice()
@@ -63,25 +61,20 @@ const render = (data) => {
             .on('zoom', (event) => {
                 x.range([marginLeft, width - marginRight].map(d => event.transform.applyX(d)));
                 svg.selectAll('.bars')
-                    .attr('x', d => x(d.tag))
-                    .attr('width', x.bandwidth());
+                    .attr('d', d => roundedRectPath(d, x, y)); // 更新路径
                 svg.selectAll('.bar-text')
-                    .attr('x', d => x(d.tag) + x.bandwidth() / 2); // 更新文本位置
+                    .attr('x', d => x(d.group) + x.bandwidth() / 2); // 更新文本位置
                 svg.selectAll('.x-axis').call(d3.axisBottom(x));
             }));
     };
 
-
     svg.append('g')
-        .selectAll('rect')
+        .selectAll('path')
         .data(data)
-        .join('rect')
+        .join('path')
         .attr('class', 'bars')
-        .attr('fill', d => d.visible ? 'steelblue' : '#999')
-        .attr('x', d => x(d.tag))
-        .attr('y', d => y(d.num))
-        .attr('height', d => y(0) - y(d.num))
-        .attr('width', x.bandwidth());
+        .attr('fill', 'steelblue')
+        .attr('d', d => roundedRectPath(d, x, y));
 
     svg.append('g')
         .attr('class', 'x-axis')
@@ -107,12 +100,29 @@ const render = (data) => {
         .join('text')
         .attr('class', 'bar-text')
         .style("pointer-events", "none")
-        .attr('x', d => x(d.tag) + x.bandwidth() / 2) // 定位到条形的中心
+        .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
         .style("font-size", "12px") // 设置字体大小为10px
         .attr('y', d => y(d.num) - 5) // 在条形顶部稍微上方位置显示数值
         .attr('text-anchor', 'middle') // 确保文本居中对齐
         .text(d => d.num); // 设置文本内容为数值
+
     zoom(svg);
+};
+
+const roundedRectPath = (d, x, y) => {
+    const x0 = x(d.group);
+    const y0 = y(d.num);
+    const x1 = x0 + x.bandwidth();
+    const y1 = y(0);
+    const r = Math.min(x.bandwidth(), y(0) - y(d.num)) / 8; // Radius for the rounded corners
+
+    return `M${x0},${y0 + r}
+            Q${x0},${y0} ${x0 + r},${y0}
+            L${x1 - r},${y0}
+            Q${x1},${y0} ${x1},${y0 + r}
+            L${x1},${y1}
+            L${x0},${y1}
+            Z`;
 };
 </script>
   

@@ -33,6 +33,7 @@ class SVGDrawer:
                     facecolor="none",
                 )
                 ax.add_patch(rect)
+
             elif tag == "circle":
                 circle = patches.Circle(
                     (bbox[2][0], bbox[2][1]),
@@ -42,6 +43,7 @@ class SVGDrawer:
                     facecolor="none",
                 )
                 ax.add_patch(circle)
+
             elif tag == "ellipse":
                 ellipse = patches.Ellipse(
                     (bbox[2][0], bbox[2][1]),
@@ -52,6 +54,7 @@ class SVGDrawer:
                     facecolor="none",
                 )
                 ax.add_patch(ellipse)
+
             elif tag == "line":
                 line = plt.Line2D(
                     (bbox[0][0], bbox[0][1]),
@@ -61,6 +64,7 @@ class SVGDrawer:
                     axes=ax,
                 )
                 ax.add_line(line)
+
             elif tag in ["polygon", "polyline"]:
                 poly = patches.Polygon(
                     bbox, closed=(tag == "polygon"), fill=None, edgecolor="r"
@@ -73,7 +77,7 @@ class SVGDrawer:
         ax.set_aspect('equal')  # 确保x轴和y轴的单位比例相同
 
         # 保存图表为图像文件而不是显示
-        plt.savefig("./static/GMinfo.png", dpi=300)  # 指定保存路径和文件名
+        plt.savefig("./static/GMinfo.png", dpi=400)  # 指定保存路径和文件名
         plt.close(fig)  # 关闭图表，防止内存泄漏
 
     def run(self):

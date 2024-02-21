@@ -49,8 +49,8 @@
                     <span v-if="selectedCommunity"><el-tag effect="plain">
                         Selected community : {{ selectedCommunity }}</el-tag></span>
                   </div>
-                  <span v-if="selectedCommunity"><el-tag effect="plain">
-                      The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span>
+                  <!-- <span v-if="selectedCommunity"><el-tag effect="plain">
+                      The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span> -->
                 </el-scrollbar>
               </el-card>
             </div>
@@ -66,10 +66,11 @@
       <el-card class="box-card-result" shadow="hover" height="22.5vh">
 
         <el-empty description="No Data" :image-size="60" v-if="!gmInfoData" />
-        <div style="display: flex; justify-content: space-around; ">
+        <div style="display: flex; justify-content: space-around; " v-if="gmInfoData">
+
           <el-tooltip placement="top">
             <template #content>元素比例 <br /> 横轴（元素类别）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%;">
+            <el-card shadow="hover" style=" width: 24%;">
               <HisEleProportions />
             </el-card>
           </el-tooltip>
@@ -77,16 +78,19 @@
 
           <el-tooltip placement="top">
             <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 25%;">
+            <el-card shadow="hover" style=" width: 25%;">
               <HisAttrProportionsVue />
             </el-card>
           </el-tooltip>
 
 
           <el-tooltip placement="top">
-            <template #content> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 25%;">
-              <HisBbox />
+            <template #content v-if="!changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为网格视图</template>
+            <template #content v-if="changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为直方视图</template>
+            <el-card shadow="hover" style=" width: 25%; position: relative;" @click="changebbox = !changebbox">
+              <HisBbox v-if="!changebbox" />
+              <img :src="imageURLWithTimestamp" alt="GMinfo Image"
+                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%;" v-if="changebbox" />
             </el-card>
           </el-tooltip>
 
@@ -96,7 +100,7 @@
               <br />灰色/蓝色为不可视/可视元素</template>
             <template #content v-if="!changeSH"> 社区直方（当前） ⇄ 社区散点 <br /> 横轴（社区编号）<br /> 纵：(社区强度)
               <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card v-if="gmInfoData" shadow="hover" style=" width: 24%;" @click="changeSH = !changeSH">
+            <el-card shadow="hover" style=" width: 24%;" @click="changeSH = !changeSH">
               <ScatCommunity v-if="changeSH" />
               <HisCommunity v-if="!changeSH" />
             </el-card>
@@ -123,6 +127,7 @@ import ScatCommunity from './Scat-community.vue';
 import HisCommunity from './His-community.vue';
 
 const changeSH = ref(true)
+const changebbox = ref(true)
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
 const store = useStore();

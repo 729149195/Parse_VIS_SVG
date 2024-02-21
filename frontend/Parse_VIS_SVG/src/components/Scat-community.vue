@@ -8,7 +8,7 @@ import * as d3 from 'd3';
 import { useStore } from 'vuex';
 const store = useStore();
 
-const eleURL = "http://localhost:8000/ele_num_data"
+const eleURL = "http://localhost:8000/group_data"
 const chartContainer = ref(null);
 // const ele_num_array = computed(() => store.state.ele_num_data);  //从store中获取当前svg所有tag及其标签数量的接口
 
@@ -39,7 +39,7 @@ const render = (data) => {
 
   // 修改x轴的比例尺为scalePoint，适用于散点图
   const x = d3.scalePoint()
-    .domain(data.map(d => d.tag))
+    .domain(data.map(d => d.group))
     .range([marginLeft, width - marginRight])
     .padding(0.5); // 为散点图设置padding，确保分布均匀
 
@@ -67,9 +67,9 @@ const render = (data) => {
 
         // 更新散点的位置
         svg.selectAll('circle')
-          .attr('cx', d => x(d.tag)); // 更新点的cx属性以反映缩放/平移后的新位置
+          .attr('cx', d => x(d.group)); // 更新点的cx属性以反映缩放/平移后的新位置
         svg.selectAll('.circle-text')
-          .attr('x', d => x(d.tag) + x.bandwidth() / 2); // 更新文本位置
+          .attr('x', d => x(d.group) + x.bandwidth() / 2); // 更新文本位置
         // 更新x轴
         svg.selectAll('.x-axis').call(d3.axisBottom(x).tickSizeOuter(0));
       }));
@@ -80,10 +80,10 @@ const render = (data) => {
     .selectAll('circle')
     .data(data)
     .join('circle')
-    .attr('cx', d => x(d.tag)) // 使用cx属性定位点的x位置
+    .attr('cx', d => x(d.group)) // 使用cx属性定位点的x位置
     .attr('cy', d => y(d.num)) // 使用cy属性定位点的y位置
     .attr('r', 5) // 设置点的半径
-    .attr('fill', d => d.visible ? 'steelblue' : '#999'); // 根据数据的visible属性设置填充色
+    .attr('fill', 'steelblue'); // 根据数据的visible属性设置填充色
 
 
   svg.append('g')
@@ -110,7 +110,7 @@ const render = (data) => {
     .join('text')
     .attr('class', 'circle-text')
     .style("pointer-events", "none")
-    .attr('x', d => x(d.tag) + x.bandwidth() / 2) // 定位到条形的中心
+    .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
     .style("font-size", "12px") // 设置字体大小为10px
     .attr('y', d => y(d.num) - 8) // 在条形顶部稍微上方位置显示数值
     .attr('text-anchor', 'middle') // 确保文本居中对齐
