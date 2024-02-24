@@ -1,0 +1,102 @@
+{
+    "Gestalt_Edges": [
+        [
+            "svg/svg/path",
+            "svg/svg/path_1",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/path",
+            "svg/svg/line_1",
+            {
+                "weight": 1.0
+            }
+        ],
+        [
+            "svg/svg/path_1",
+            "svg/svg/path",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/line_1",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/line_1",
+            "svg/svg/path",
+            {
+                "weight": 1.0
+            }
+        ],
+        [
+            "svg/svg/line_1",
+            "svg/svg/line",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/circle",
+            "svg/svg/circle_1",
+            {
+                "weight": 1.005530599364934
+            }
+        ],
+        [
+            "svg/svg/circle",
+            "svg/svg/rect_1",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/circle_1",
+            "svg/svg/circle",
+            {
+                "weight": 1.005530599364934
+            }
+        ],
+        [
+            "svg/svg/circle_1",
+            "svg/svg/rect",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/rect",
+            "svg/svg/circle_1",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/rect",
+            "svg/svg/rect_1",
+            {
+                "weight": 1.005530599364934
+            }
+        ],
+        [
+            "svg/svg/rect_1",
+            "svg/svg/circle",
+            {
+                "weight": 1.002765299682467
+            }
+        ],
+        [
+            "svg/svg/rect_1",
+            "svg/svg/rect",
+            {
+                "weight": 1.005530599364934
+            }
+        ]
+    ]
+}

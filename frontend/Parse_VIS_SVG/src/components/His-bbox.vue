@@ -100,17 +100,17 @@ const render = (data) => {
         .attr('transform', `translate(${marginLeft},0)`)
         .call(d3.axisLeft(y));
 
-    svg.append('g')
-        .selectAll('text')
-        .data(data)
-        .join('text')
-        .attr('class', 'bar-text')
-        .style("pointer-events", "none")
-        .attr('x', d => x(d.point) + x.bandwidth() / 2) // 定位到条形的中心
-        .style("font-size", "12px")
-        .attr('y', d => y(d.count) - 5) // 在条形顶部稍微上方位置显示数值
-        .attr('text-anchor', 'middle')
-        .text(d => x.bandwidth() > textThreshold ? d.count : ''); // 根据条形的宽度决定是否显示文本
+    // svg.append('g')
+    //     .selectAll('text')
+    //     .data(data)
+    //     .join('text')
+    //     .attr('class', 'bar-text')
+    //     .style("pointer-events", "none")
+    //     .attr('x', d => x(d.point) + x.bandwidth() / 2) // 定位到条形的中心
+    //     .style("font-size", "12px")
+    //     .attr('y', d => y(d.count) - 5) // 在条形顶部稍微上方位置显示数值
+    //     .attr('text-anchor', 'middle')
+    //     .text(d => x.bandwidth() > textThreshold ? d.count : ''); // 根据条形的宽度决定是否显示文本
 
     zoom(svg);
 };

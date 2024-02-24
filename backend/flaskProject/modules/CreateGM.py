@@ -360,7 +360,6 @@ class SVGParser:
             )
             bbox = np.array([[x, x + width], [y, y + height], [x + width / 2, y + height / 2]])
 
-
         elif tag == "svg":
             width, height = map(self.convert_to_float, [element.get("width", 0), element.get("height", 0)])
             bbox = np.array([[width, height], [width / 2, height / 2]])

@@ -23,6 +23,8 @@ class TagCounter:
             tag_full = node['Attributes']['tag']
             visible = node['Attributes']['visible']
             tag = re.sub(r'_[0-9]+$', '', tag_full)
+            if tag == 'svg':  # 跳过 svg 标签
+                continue
             if tag not in tag_counts:
                 tag_counts[tag] = {"num": 1, "visible": visible}
             else:
@@ -37,6 +39,7 @@ class TagCounter:
     def _write_result_to_file(self, result_json):
         with open(self.output_file_path, 'w', encoding='utf-8') as file:
             json.dump(result_json, file, indent=4, ensure_ascii=False)
+
 
 # 使用示例
 # if __name__ == "__main__":

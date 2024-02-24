@@ -94,17 +94,17 @@ const render = (data) => {
         .attr('transform', `translate(${marginLeft},0)`)
         .call(d3.axisLeft(y));
 
-    svg.append('g')
-        .selectAll('text')
-        .data(data)
-        .join('text')
-        .attr('class', 'bar-text')
-        .style("pointer-events", "none")
-        .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
-        .style("font-size", "12px") // 设置字体大小为10px
-        .attr('y', d => y(d.num) - 5) // 在条形顶部稍微上方位置显示数值
-        .attr('text-anchor', 'middle') // 确保文本居中对齐
-        .text(d => d.num); // 设置文本内容为数值
+    // svg.append('g')
+    //     .selectAll('text')
+    //     .data(data)
+    //     .join('text')
+    //     .attr('class', 'bar-text')
+    //     .style("pointer-events", "none")
+    //     .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
+    //     .style("font-size", "12px") // 设置字体大小为10px
+    //     .attr('y', d => y(d.num) - 5) // 在条形顶部稍微上方位置显示数值
+    //     .attr('text-anchor', 'middle') // 确保文本居中对齐
+    //     .text(d => d.num); // 设置文本内容为数值
 
     zoom(svg);
 };

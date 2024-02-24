@@ -3,12 +3,12 @@
         "tag": "svg",
         "bbox": [
             [
-                500.0,
-                300.0
+                600.0,
+                400.0
             ],
             [
-                250.0,
-                150.0
+                300.0,
+                200.0
             ]
         ],
         "stroke": null,
@@ -16,529 +16,157 @@
         "level": 0,
         "layer": "0"
     },
-    "svg/svg/g": {
-        "tag": "g",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": "#808080",
-        "fill": null,
-        "level": 0,
-        "layer": "0_0"
-    },
-    "svg/svg/g/path": {
+    "svg/svg/path": {
         "tag": "path",
         "bbox": [
             [
-                150.0,
-                350.0
+                180.0,
+                220.0
             ]
         ],
-        "stroke": "#808080",
+        "stroke": "#ff00ff",
         "fill": "none",
         "level": 0,
-        "layer": "0_0_0"
+        "layer": "0_0",
+        "Pcode": [
+            "M",
+            "Q",
+            "T"
+        ],
+        "Pnums": [
+            [
+                "180",
+                "220"
+            ],
+            [
+                "220",
+                "180",
+                "260",
+                "220"
+            ],
+            [
+                "340",
+                "220"
+            ]
+        ]
     },
-    "svg/svg/g/path_1": {
+    "svg/svg/path_1": {
         "tag": "path_1",
         "bbox": [
             [
-                150.0,
-                300.0
-            ],
-            [
-                250.0,
-                350.0
+                10.0,
+                220.0
             ]
         ],
-        "stroke": "#808080",
+        "stroke": "#ffff00",
         "fill": "none",
-        "level": 0,
-        "layer": "0_0_1"
-    },
-    "svg/svg/g_1": {
-        "tag": "g_1",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": "#000000",
-        "fill": "#ffc0cb",
         "level": 0,
         "layer": "0_1"
     },
-    "svg/svg/g_1/polygon": {
-        "tag": "polygon",
-        "bbox": [
-            [
-                80.0,
-                300.0
-            ],
-            [
-                110.0,
-                330.0
-            ],
-            [
-                80.0,
-                360.0
-            ]
-        ],
-        "stroke": "#000000",
-        "fill": "#ffc0cb",
-        "level": 0,
-        "layer": "0_1_0"
-    },
-    "svg/svg/g_1/polyline": {
-        "tag": "polyline",
-        "bbox": [
-            [
-                10.0,
-                300.0
-            ],
-            [
-                40.0,
-                330.0
-            ],
-            [
-                10.0,
-                360.0
-            ]
-        ],
-        "stroke": "#000000",
-        "fill": "#ffc0cb",
-        "level": 0,
-        "layer": "0_1_1"
-    },
-    "svg/svg/g_2": {
-        "tag": "g_2",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": "#a52a2a",
-        "fill": "none",
-        "level": 0,
-        "layer": "0_2"
-    },
-    "svg/svg/g_2/line": {
+    "svg/svg/line": {
         "tag": "line",
         "bbox": [
             [
-                300.0,
-                400.0
+                120.0,
+                220.0
             ],
             [
-                220.0,
-                260.0
+                150.0,
+                200.0
             ],
             [
-                350.0,
-                240.0
+                170.0,
+                175.0
             ]
         ],
-        "stroke": "#a52a2a",
-        "fill": "none",
+        "stroke": "#00ffff",
+        "fill": null,
         "level": 0,
-        "layer": "0_2_0"
+        "layer": "0_2"
     },
-    "svg/svg/g_2/ellipse": {
-        "tag": "ellipse",
+    "svg/svg/line_1": {
+        "tag": "line_1",
         "bbox": [
             [
-                210.0,
-                290.0
+                10.0,
+                110.0
             ],
             [
-                220.0,
-                260.0
+                150.0,
+                200.0
             ],
             [
-                250.0,
-                240.0
+                60.0,
+                175.0
             ]
         ],
-        "stroke": "#a52a2a",
-        "fill": "none",
-        "level": 0,
-        "layer": "0_2_1"
-    },
-    "svg/svg/g_3": {
-        "tag": "g_3",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": "#ffa500",
+        "stroke": "#ff00ff",
         "fill": null,
         "level": 0,
         "layer": "0_3"
     },
-    "svg/svg/g_3/circle": {
+    "svg/svg/circle": {
         "tag": "circle",
         "bbox": [
             [
-                130.0,
-                170.0
-            ],
-            [
-                220.0,
-                260.0
-            ],
-            [
                 150.0,
-                240.0
-            ]
-        ],
-        "stroke": "#ffa500",
-        "fill": "#90ee90",
-        "level": 0,
-        "layer": "0_3_0"
-    },
-    "svg/svg/g_3/rect": {
-        "tag": "rect",
-        "bbox": [
-            [
-                10.0,
-                90.0
+                210.0
             ],
             [
-                220.0,
-                260.0
-            ],
-            [
-                50.0,
-                240.0
-            ]
-        ],
-        "stroke": "#ffa500",
-        "fill": "#ffff00",
-        "level": 0,
-        "layer": "0_3_1"
-    },
-    "svg/svg/g_4": {
-        "tag": "g_4",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4"
-    },
-    "svg/svg/g_4/g_5": {
-        "tag": "g_5",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4_0"
-    },
-    "svg/svg/g_4/g_5/path_2": {
-        "tag": "path_2",
-        "bbox": [
-            [
-                10.0,
-                200.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4_0_0"
-    },
-    "svg/svg/g_4/g_5/path_3": {
-        "tag": "path_3",
-        "bbox": [
-            [
-                10.0,
-                150.0
-            ],
-            [
-                110.0,
-                200.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4_0_1"
-    },
-    "svg/svg/g_4/path_4": {
-        "tag": "path_4",
-        "bbox": [
-            [
-                10.0,
-                200.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4_1"
-    },
-    "svg/svg/g_4/path_5": {
-        "tag": "path_5",
-        "bbox": [
-            [
-                10.0,
-                150.0
-            ],
-            [
-                110.0,
-                200.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#808080",
-        "level": 0,
-        "layer": "0_4_2"
-    },
-    "svg/svg/g_6": {
-        "tag": "g_6",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": null,
-        "fill": null,
-        "level": 0,
-        "layer": "0_5"
-    },
-    "svg/svg/g_6/text": {
-        "tag": "text",
-        "bbox": [
-            [
-                10.0,
-                120.0
-            ],
-            [
-                110.0,
-                120.0
-            ],
-            [
-                10.0,
-                136.0
-            ],
-            [
-                110.0,
-                136.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#0000ff",
-        "level": 0,
-        "layer": "0_5_0"
-    },
-    "svg/svg/g_6/text_1": {
-        "tag": "text_1",
-        "bbox": [
-            [
-                10.0,
-                100.0
-            ],
-            [
-                110.0,
-                100.0
-            ],
-            [
-                10.0,
-                116.0
-            ],
-            [
-                110.0,
-                116.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "#000000",
-        "level": 0,
-        "layer": "0_5_1"
-    },
-    "svg/svg/g_7": {
-        "tag": "g_7",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": null,
-        "fill": "none",
-        "level": 0,
-        "layer": "0_6"
-    },
-    "svg/svg/g_7/polygon_1": {
-        "tag": "polygon_1",
-        "bbox": [
-            [
-                420.0,
-                10.0
-            ],
-            [
-                450.0,
-                40.0
-            ],
-            [
-                420.0,
-                70.0
-            ]
-        ],
-        "stroke": "#800080",
-        "fill": "none",
-        "level": 0,
-        "layer": "0_6_0"
-    },
-    "svg/svg/g_7/polyline_1": {
-        "tag": "polyline_1",
-        "bbox": [
-            [
-                350.0,
-                10.0
-            ],
-            [
-                380.0,
-                40.0
-            ],
-            [
-                350.0,
-                70.0
-            ]
-        ],
-        "stroke": "#008000",
-        "fill": "none",
-        "level": 0,
-        "layer": "0_6_1"
-    },
-    "svg/svg/g_8": {
-        "tag": "g_8",
-        "bbox": [
-            [
-                500.0,
-                300.0
-            ],
-            [
-                250.0,
-                150.0
-            ]
-        ],
-        "stroke": "#0000ff",
-        "fill": "transparent",
-        "level": 0,
-        "layer": "0_7"
-    },
-    "svg/svg/g_8/line_1": {
-        "tag": "line_1",
-        "bbox": [
-            [
-                280.0,
-                380.0
-            ],
-            [
-                90.0,
-                140.0
-            ],
-            [
-                330.0,
-                115.0
-            ]
-        ],
-        "stroke": "#0000ff",
-        "fill": "transparent",
-        "level": 0,
-        "layer": "0_7_0"
-    },
-    "svg/svg/g_8/ellipse_1": {
-        "tag": "ellipse_1",
-        "bbox": [
-            [
-                270.0,
-                370.0
-            ],
-            [
-                80.0,
+                70.0,
                 130.0
             ],
             [
-                320.0,
-                105.0
+                180.0,
+                100.0
             ]
         ],
-        "stroke": "#0000ff",
-        "fill": "transparent",
+        "stroke": "#ff0000",
+        "fill": "#0000ff",
         "level": 0,
-        "layer": "0_7_1"
+        "layer": "0_4"
     },
     "svg/svg/circle_1": {
         "tag": "circle_1",
         "bbox": [
             [
-                125.0,
-                175.0
+                30.0,
+                90.0
+            ],
+            [
+                70.0,
+                130.0
+            ],
+            [
+                60.0,
+                100.0
+            ]
+        ],
+        "stroke": "#00ff00",
+        "fill": "#ff0000",
+        "level": 0,
+        "layer": "0_5"
+    },
+    "svg/svg/rect": {
+        "tag": "rect",
+        "bbox": [
+            [
+                120.0,
+                220.0
             ],
             [
                 10.0,
                 60.0
             ],
             [
-                150.0,
+                170.0,
                 35.0
             ]
         ],
-        "stroke": "#ff0000",
-        "fill": "transparent",
+        "stroke": "#0000ff",
+        "fill": "#ff0000",
         "level": 0,
-        "layer": "0_8"
+        "layer": "0_6"
     },
     "svg/svg/rect_1": {
         "tag": "rect_1",
@@ -556,51 +184,9 @@
                 35.0
             ]
         ],
-        "stroke": "#000000",
-        "fill": "transparent",
-        "level": 0,
-        "layer": "0_9"
-    },
-    "svg/svg/circle_2": {
-        "tag": "circle_2",
-        "bbox": [
-            [
-                125.0,
-                175.0
-            ],
-            [
-                10.0,
-                60.0
-            ],
-            [
-                150.0,
-                35.0
-            ]
-        ],
         "stroke": "#ff0000",
-        "fill": "transparent",
+        "fill": "#00ff00",
         "level": 0,
-        "layer": "0_10"
-    },
-    "svg/svg/rect_2": {
-        "tag": "rect_2",
-        "bbox": [
-            [
-                10.0,
-                110.0
-            ],
-            [
-                10.0,
-                60.0
-            ],
-            [
-                60.0,
-                35.0
-            ]
-        ],
-        "stroke": "#000000",
-        "fill": "transparent",
-        "level": 0,
-        "layer": "0_11"
+        "layer": "0_7"
     }
 }

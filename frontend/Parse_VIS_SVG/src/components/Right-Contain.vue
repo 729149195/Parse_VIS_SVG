@@ -20,9 +20,8 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="57.5vh">
-          <el-empty description="No Data" :image-size="100" v-if="!gmInfoData" />
-          <div style="justify-content: space-evenly;" v-if="gmInfoData">
+        <el-scrollbar height="54.1vh">
+          <div style="justify-content: space-evenly;">
             <!-- <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
                 style="width: 25%; margin-right: 10px;" v-if="gmInfoData" shadow="hover"
                 class="community_detection_card"><span class="card_title">basis_1</span><img :src="imageURLWithTimestamp"
@@ -31,16 +30,19 @@
             <div style="display: flex;">
               <el-card style="width: 50%; margin:3px;" shadow="hover" class="center">
                 <span class="card_title">Init SVG</span><br>
-                <div v-html="selectedSvg" class="svg-container"></div>
+                <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
+                <div v-html="selectedSvg" class="svg-container"  v-if="gmInfoData"></div>
               </el-card>
               <el-card style="width: 50%; margin:3px;" shadow="hover"><span
                   class="card_title">community_detection</span><br>
-                <CommunityDetection :key="updateKey" />
+                  <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
+                <CommunityDetection :key="updateKey"  v-if="gmInfoData"/>
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
               <el-card style="width: 100%; margin:3px;" shadow="hover" class="statistical">
                 <el-scrollbar>
+                  <el-empty description="No Data" :image-size="30" v-if="!gmInfoData" />
                   <div style="display: flex; margin-bottom: 3px;">
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         nodes number : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
@@ -63,28 +65,21 @@
       </el-icon>
       <span style="font-size:1.1em; font-weight: 700;;"> Perceived results and recommendations :</span>
       <!-- 结果卡片 -->
-      <el-card class="box-card-result" shadow="hover" height="22.5vh">
+      <el-card class="box-card-result" shadow="hover">
+        <!-- <template #content>元素比例 <br /> 横轴（元素类别）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template> -->
+        <el-card shadow="hover" style=" width: 18%;">
+          <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
+          <HisEleProportions v-if="gmInfoData" />
+        </el-card>
 
-        <el-empty description="No Data" :image-size="60" v-if="!gmInfoData" />
-        <div style="display: flex; justify-content: space-around; " v-if="gmInfoData">
+        <!-- <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template> -->
+        <el-card shadow="hover" style=" width: 52%;">
+          <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
+          <HisAttrProportionsVue v-if="gmInfoData" />
 
-          <el-tooltip placement="top">
-            <template #content>元素比例 <br /> 横轴（元素类别）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card shadow="hover" style=" width: 24%;">
-              <HisEleProportions />
-            </el-card>
-          </el-tooltip>
+        </el-card>
 
-
-          <el-tooltip placement="top">
-            <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card shadow="hover" style=" width: 25%;">
-              <HisAttrProportionsVue />
-            </el-card>
-          </el-tooltip>
-
-
-          <el-tooltip placement="top">
+        <!-- <el-tooltip placement="top">
             <template #content v-if="!changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为网格视图</template>
             <template #content v-if="changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为直方视图</template>
             <el-card shadow="hover" style=" width: 25%; position: relative;" @click="changebbox = !changebbox">
@@ -92,23 +87,16 @@
               <img :src="imageURLWithTimestamp" alt="GMinfo Image"
                 style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%;" v-if="changebbox" />
             </el-card>
-          </el-tooltip>
+          </el-tooltip> -->
 
-
-          <el-tooltip placement="top">
-            <template #content v-if="changeSH"> 社区散点（当前） ⇄ 社区直方<br /> 横轴（社区编号）<br /> 纵：(社区大小)
-              <br />灰色/蓝色为不可视/可视元素</template>
-            <template #content v-if="!changeSH"> 社区直方（当前） ⇄ 社区散点 <br /> 横轴（社区编号）<br /> 纵：(社区强度)
-              <br />灰色/蓝色为不可视/可视元素</template>
-            <el-card shadow="hover" style=" width: 24%;" @click="changeSH = !changeSH">
-              <ScatCommunity v-if="changeSH" />
-              <HisCommunity v-if="!changeSH" />
-            </el-card>
-          </el-tooltip>
-
-
-        </div>
-
+        <!-- <template #content> 社区散点（当前） ⇄ 社区直方<br /> 横轴（社区编号）<br /> 纵：(社区大小) <br />灰色/蓝色为不可视/可视元素</template>-->
+        <!-- <template #content v-if="!changeSH"> 社区直方（当前） ⇄ 社区散点 <br /> 横轴（社区编号）<br /> 纵：(社区强度)
+              <br />灰色/蓝色为不可视/可视元素</template> -->
+        <el-card shadow="hover" style=" width: 28%;">
+          <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
+          <ScatCommunity v-if="gmInfoData" />
+          <!-- <HisCommunity v-if="!changeSH" /> -->
+        </el-card>
       </el-card>
 
     </div>
@@ -262,7 +250,7 @@ const svg = `
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45vh;
+  height: 44vh;
   width: 100%;
 
   svg {
@@ -314,6 +302,9 @@ const svg = `
 .box-card-result {
   .el-card__body {
     padding: 8px !important;
+    height: 100%;
+    display: flex; 
+    justify-content: space-around;
   }
 }
 </style>

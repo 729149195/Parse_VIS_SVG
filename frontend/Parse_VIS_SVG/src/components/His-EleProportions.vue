@@ -29,12 +29,12 @@ onMounted(async () => {
 const render = (data) => {
     if (!chartContainer.value) return;
 
-    const width = 245;
-    const height = 190;
+    const width = 180;
+    const height = 225;
     const marginTop = 20;
     const marginRight = 10;
-    const marginBottom = 40;
-    const marginLeft = 30;
+    const marginBottom = 55;
+    const marginLeft = 45;
 
     const x = d3.scaleBand()
         .domain(data.map(d => d.tag))
@@ -69,14 +69,6 @@ const render = (data) => {
     };
 
     svg.append('g')
-        .selectAll('path')
-        .data(data)
-        .join('path')
-        .attr('class', 'bars')
-        .attr('fill', d => d.visible ? 'steelblue' : '#999')
-        .attr('d', d => roundedRectPath(d, x, y));
-
-    svg.append('g')
         .attr('class', 'x-axis')
         .attr('transform', `translate(0,${height - marginBottom})`)
         .call(d3.axisBottom(x))
@@ -88,23 +80,44 @@ const render = (data) => {
         .attr("dy", ".15em")
         .attr("transform", "rotate(-45)");
 
-    svg.append('g')
+    const yAxis = svg.append('g')
         .attr('class', 'y-axis')
         .style("pointer-events", "none")
         .attr('transform', `translate(${marginLeft},0)`)
         .call(d3.axisLeft(y));
 
+    // 添加 y 轴上的灰色横线
+    yAxis.selectAll('line')
+        .attr('x2', width - marginLeft - marginRight)
+        .attr('stroke', '#ddd');
+
     svg.append('g')
-        .selectAll('text')
+        .selectAll('path')
         .data(data)
-        .join('text')
-        .attr('class', 'bar-text')
-        .style("pointer-events", "none")
-        .attr('x', d => x(d.tag) + x.bandwidth() / 2) // 定位到条形的中心
-        .style("font-size", "12px") // 设置字体大小为10px
-        .attr('y', d => y(d.num) - 5) // 在条形顶部稍微上方位置显示数值
-        .attr('text-anchor', 'middle') // 确保文本居中对齐
-        .text(d => d.num); // 设置文本内容为数值
+        .join('path')
+        .attr('class', 'bars')
+        .attr('fill', d => d.visible ? 'steelblue' : '#999')
+        .attr('d', d => roundedRectPath(d, x, y));
+
+    // 添加 x 轴图例
+    svg.append("text")
+        .attr("transform", `translate(${width / 2},${height - 5})`)
+        .style("text-anchor", "middle")
+        .style("font-size", "10px")
+        .attr("dx", "6.5em")
+        .attr("dy", ".25em")
+        .text("Ele Tag ➡");
+
+    // 添加 y 轴图例
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 15)
+        .attr("x", 0 - (height / 2))
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .attr("dx", "5.15em")
+        .attr("dy", "-.2em")
+        .text("Ele Number ➡");
 
     zoom(svg);
 };
@@ -125,6 +138,5 @@ const roundedRectPath = (d, x, y) => {
             Z`;
 };
 </script>
-  
+
 <style scoped></style>
-  

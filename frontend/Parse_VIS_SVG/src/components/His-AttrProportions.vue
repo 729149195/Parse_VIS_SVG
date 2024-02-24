@@ -29,11 +29,11 @@ onMounted(async () => {
 const render = (data) => {
     if (!chartContainer.value) return;
 
-    const width = 245;
-    const height = 190;
+    const width = 550;
+    const height = 225;
     const marginTop = 20;
     const marginRight = 10;
-    const marginBottom = 40;
+    const marginBottom = 80;
     const marginLeft = 30;
 
     const x = d3.scaleBand()
@@ -84,7 +84,7 @@ const render = (data) => {
         .style("text-anchor", "end")
         .style("pointer-events", "none")
         .style("font-size", "10px") // 设置字体大小为10px
-        .attr("dx", "-.8em")
+        .attr("dx", "-.4em")
         .attr("dy", ".15em")
         .attr("transform", "rotate(-45)");
 
@@ -94,18 +94,6 @@ const render = (data) => {
         .attr('transform', `translate(${marginLeft},0)`)
         .call(d3.axisLeft(y));
 
-    svg.append('g')
-        .selectAll('text')
-        .data(data)
-        .join('text')
-        .attr('class', 'bar-text')
-        .style("pointer-events", "none")
-        .attr('x', d => x(d.attribute) + x.bandwidth() / 2) // 定位到条形的中心
-        .style("font-size", "12px") // 设置字体大小为10px
-        .attr('y', d => y(d.num) - 5) // 在条形顶部稍微上方位置显示数值
-        .attr('text-anchor', 'middle') // 确保文本居中对齐
-        .text(d => d.num); // 设置文本内容为数值
-
     zoom(svg);
 };
 
@@ -114,7 +102,7 @@ const roundedRectPath = (d, x, y) => {
     const y0 = y(d.num);
     const x1 = x0 + x.bandwidth();
     const y1 = y(0);
-    const r = Math.min(x.bandwidth(), y(0) - y(d.num)) / 5; // Radius for the rounded corners
+    const r = Math.min(x.bandwidth(), y(0) - y(d.num)) / 8; // Radius for the rounded corners
 
     return `M${x0},${y0 + r}
             Q${x0},${y0} ${x0 + r},${y0}

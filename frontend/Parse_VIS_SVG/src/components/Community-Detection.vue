@@ -1,5 +1,5 @@
 <template>
-    <svg ref="svgRef" :key="updateKey" width="900" height="710"></svg>
+    <svg ref="svgRef" :key="updateKey" width="900" height="700"></svg>
 </template>
 
 <script setup>
@@ -7,6 +7,20 @@ import * as d3 from 'd3';
 import { onMounted, ref, watch, nextTick } from 'vue';
 import { useStore } from 'vuex';
 const store = useStore();
+
+const customColorMap = {
+    "rect": "#7d3c98", 
+    "path": "#16a085",
+    "circle": "#c0392b", 
+    "line": "#2980b9", 
+    "polygon": "#d68910", 
+    "polyline": "#8e44ad", 
+    "text": "#f7ae60", 
+    "ellipse": "#d35400", 
+    "image": "#e74c3c", 
+    "clipPath": "#34495e"
+};
+
 
 const svgRef = ref(null);
 const updateKey = ref(0); // 定义 updateKey
@@ -51,21 +65,21 @@ const renderGraph = () => {
 
     g = svg.append("g"); // 创建g元素并赋值给变量g
 
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    const color = d3.scaleOrdinal(d3.schemePastel2);
     const links = graphData.value.links.map(d => ({ ...d }));
     const nodes = graphData.value.nodes.map(d => ({ ...d }));
     const groupByGroup = d3.groups(nodes, d => d.group);
     let groupPaths = {}; // 用于存储每个组的凸包路径
     // console.log()
-   
+
 
 
     const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id))
-        .force("charge", d3.forceManyBody())
+        .force("link", d3.forceLink(links).id(d => d.id).distance(70))
+        .force("charge", d3.forceManyBody().strength(-200))
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX(width / 2).strength(0.006)) // 添加X轴力
-        .force("y", d3.forceY(height / 2).strength(0.006)) // 添加Y轴力
+        .force("x", d3.forceX(width / 2).strength(0.0006)) // 添加X轴力
+        .force("y", d3.forceY(height / 2).strength(0.0006)) // 添加Y轴力
         .on("tick", ticked); // 使用 tick 事件实时更新凸包
 
     svg.attr("viewBox", [0, 0, width, height])
@@ -109,7 +123,7 @@ const renderGraph = () => {
                 .attr("class", "hull")
                 .attr("fill", d => d3.color(color(d[0])).copy({ opacity: 1 }).toString())
                 .attr("stroke", d => color(d[0]))
-                .attr("stroke-width", 40)
+                .attr("stroke-width", 75)
                 .attr("stroke-linejoin", "round")
                 .attr("d", d => d[1])
                 .on('click', (event, d) => {
@@ -156,7 +170,7 @@ const renderGraph = () => {
                     .attr("class", "hull")
                     .attr("fill", d => d3.color(color(d[0])).copy({ opacity: 1 }).toString())
                     .attr("stroke", d => color(d[0]))
-                    .attr("stroke-width", 40)
+                    .attr("stroke-width", 60)
                     .attr("stroke-linejoin", "round")
                     .attr("d", d => d[1])
                     .on('click', (event, d) => {
@@ -181,7 +195,7 @@ const renderGraph = () => {
 
     const node = nodeGroup.append("g")
         .attr("stroke", "#fff")
-        .attr("stroke-width", 2)
+        .attr("stroke-width", 3)
         .selectAll("circle")
         .data(nodes)
         .join("circle")
@@ -192,7 +206,12 @@ const renderGraph = () => {
         })
         .attr("community-group", d => d.group)
         .attr("style", "cursor: pointer;")
-        .attr("fill", d => color(d.group))
+        .attr("fill", d => {
+            const svgTag = d.id.split('/'); // 获取 SVG 标签
+            const parts = svgTag[svgTag.length - 1]
+            const index = parts.split('_')[0]
+            return customColorMap[index] || color(d.group); // 使用自定义颜色或默认颜色
+        })
         .on("click", (event, d) => {
             handleNodeClick(d);
         })
@@ -206,27 +225,27 @@ const renderGraph = () => {
                 .style("display", "block")
                 .attr("x", x + xOffset)
                 .attr("y", y + yOffset);
-        })
-        .on("mouseout", (event, d) => {
-            svg.selectAll(".labels text")
-                .filter(node => node.id === d.id)
-                .style("display", "none");
         });
+        // .on("mouseout", (event, d) => {
+        //     svg.selectAll(".labels text")
+        //         .filter(node => node.id === d.id)
+        //         .style("display", "none");
+        // });
 
-    const labels = svg.append("g")
-        .attr("class", "labels")
-        .selectAll("text")
-        .data(nodes)
-        .join("text")
-        .text(d => {
-            const parts = d.id.split("/");
-            return parts[parts.length - 1];
-        })
-        .attr("font-size", "2.5em")
-        .attr("font-weight", 800)
-        .attr("opacity", 0.8)
-        .style("pointer-events", "none")
-        .style("display", "none"); // 默认情况下隐藏文本标签
+    // const labels = svg.append("g")
+    //     .attr("class", "labels")
+    //     .selectAll("text")
+    //     .data(nodes)
+    //     .join("text")
+    //     .text(d => {
+    //         const parts = d.id.split("/");
+    //         return parts[parts.length - 1];
+    //     })
+    //     .attr("font-size", "2.5em")
+    //     .attr("font-weight", 800)
+    //     .attr("opacity", 0.8)
+    //     .style("pointer-events", "none")
+    //     .style("display", "none"); // 默认情况下隐藏文本标签
 
     node.call(d3.drag()
         .on("start", dragstarted)
@@ -245,9 +264,9 @@ const renderGraph = () => {
             .attr("cx", d => d.x)
             .attr("cy", d => d.y);
 
-        labels
-            .attr("x", d => d.x)
-            .attr("y", d => d.y);
+        // labels
+        //     .attr("x", d => d.x)
+        //     .attr("y", d => d.y);
     }
 
     function dragstarted(event) {
@@ -288,6 +307,29 @@ const renderGraph = () => {
     }
 
     simulation.on("tick", ticked);
+
+    const legendGroup = svg.append("g")
+        .attr("class", "legend-group")
+        .attr("transform", `translate(${width - 150}, 20)`); // 将图例放在 SVG 的右上角
+
+    // 为每个标签添加图例项
+    Object.entries(customColorMap).forEach(([tag, color], index) => {
+        const legendItem = legendGroup.append("g")
+            .attr("class", "legend-item")
+            .attr("transform", `translate(0, ${index * 100})`); // 每个图例项向下偏移
+
+        legendItem.append("circle")
+            .attr("r", 15)
+            .attr("cx", -45) // 向左移动 5 个单位
+            .attr("fill", color);
+
+        legendItem.append("text")
+            .attr("x", -15)
+            .attr("y", 9)
+            .text(tag)
+            .attr("font-size", "35px")
+            .attr("fill", "#000");
+    });
 };
 
 onMounted(async () => {

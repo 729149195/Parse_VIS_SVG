@@ -30,11 +30,11 @@ onMounted(async () => {
 const render = (data) => {
   if (!chartContainer.value) return;
 
-  const width = 245;
-  const height = 190;
+  const width = 290;
+  const height = 225;
   const marginTop = 20;
   const marginRight = 10;
-  const marginBottom = 40;
+  const marginBottom = 25;
   const marginLeft = 30;
 
   // 修改x轴的比例尺为scalePoint，适用于散点图
@@ -94,9 +94,9 @@ const render = (data) => {
     .style("text-anchor", "end")
     .style("pointer-events", "none")
     .style("font-size", "10px") // 设置字体大小为10px
-    .attr("dx", "-.4em")
-    .attr("dy", ".15em")
-    .attr("transform", "rotate(-45)");
+    // .attr("dx", "-.2em")
+    .attr("dy", "1.15em");
+    // .attr("transform", "rotate(-45)");
 
   svg.append('g')
     .attr('class', 'y-axis')
@@ -104,17 +104,17 @@ const render = (data) => {
     .attr('transform', `translate(${marginLeft},0)`)
     .call(d3.axisLeft(y));
 
-  svg.append('g')
-    .selectAll('text')
-    .data(data)
-    .join('text')
-    .attr('class', 'circle-text')
-    .style("pointer-events", "none")
-    .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
-    .style("font-size", "12px") // 设置字体大小为10px
-    .attr('y', d => y(d.num) - 8) // 在条形顶部稍微上方位置显示数值
-    .attr('text-anchor', 'middle') // 确保文本居中对齐
-    .text(d => d.num); // 设置文本内容为数值
+  // svg.append('g')
+  //   .selectAll('text')
+  //   .data(data)
+  //   .join('text')
+  //   .attr('class', 'circle-text')
+  //   .style("pointer-events", "none")
+  //   .attr('x', d => x(d.group) + x.bandwidth() / 2) // 定位到条形的中心
+  //   .style("font-size", "12px") // 设置字体大小为10px
+  //   .attr('y', d => y(d.num) - 8) // 在条形顶部稍微上方位置显示数值
+  //   .attr('text-anchor', 'middle') // 确保文本居中对齐
+  //   .text(d => d.num); // 设置文本内容为数值
 
 
   zoom(svg);
