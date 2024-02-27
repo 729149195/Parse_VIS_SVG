@@ -48,8 +48,8 @@
                         nodes number : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         edges number : {{ gmInfoData.DiGraph.edges }}</el-tag></span>
-                    <span v-if="selectedCommunity"><el-tag effect="plain">
-                        Selected community : {{ selectedCommunity }}</el-tag></span>
+                    <!-- <span v-if="selectedCommunity"><el-tag effect="plain">
+                        Selected community : {{ selectedCommunity }}</el-tag></span> -->
                   </div>
                   <!-- <span v-if="selectedCommunity"><el-tag effect="plain">
                       The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span> -->
@@ -75,7 +75,7 @@
         <!-- <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template> -->
         <el-card shadow="hover" style=" width: 52%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
-          <HisAttrProportionsVue v-if="gmInfoData" />
+          <!-- <HisAttrProportionsVue v-if="gmInfoData" /> -->
 
         </el-card>
 
@@ -94,7 +94,7 @@
               <br />灰色/蓝色为不可视/可视元素</template> -->
         <el-card shadow="hover" style=" width: 28%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
-          <ScatCommunity v-if="gmInfoData" />
+          <!-- <ScatCommunity v-if="gmInfoData" /> -->
           <!-- <HisCommunity v-if="!changeSH" /> -->
         </el-card>
       </el-card>

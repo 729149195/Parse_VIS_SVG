@@ -1,10 +1,42 @@
 [
     {
+        "group": 6,
+        "num": 3
+    },
+    {
+        "group": 8,
+        "num": 2
+    },
+    {
+        "group": 9,
+        "num": 2
+    },
+    {
         "group": 0,
-        "num": 4
+        "num": 173
+    },
+    {
+        "group": 7,
+        "num": 3
+    },
+    {
+        "group": 2,
+        "num": 9
     },
     {
         "group": 1,
+        "num": 9
+    },
+    {
+        "group": 3,
+        "num": 4
+    },
+    {
+        "group": 4,
+        "num": 4
+    },
+    {
+        "group": 5,
         "num": 4
     }
 ]

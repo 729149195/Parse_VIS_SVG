@@ -36,6 +36,52 @@ class NodeExtractor:
             json.dump(extracted_nodes, file, indent=4)
 
 
+class BBoxFormatter:
+    def __init__(self, json_file):
+        self.json_file = json_file
+        with open(json_file, 'r', encoding='utf-8') as file:
+            self.data = json.load(file)
+
+    def format_and_update_bbox(self):
+        for element_id, element_info in self.data.items():
+            tag = element_info.get('tag')
+            if tag in ['rect', 'svg', 'circle', 'ellipse', 'line', 'polygon', 'polyline', 'text', 'image']:
+                bbox = self.calculate_bbox(element_info)
+                if bbox is not None:
+                    element_info['bbox'] = bbox
+            elif tag == 'path':
+                d_attribute = element_info.get('d', '')
+                bbox = self.get_path_bbox(d_attribute)
+                if bbox is not None:
+                    element_info['bbox'] = bbox
+        self.save_to_json()
+
+    def calculate_bbox(self, element_info):
+        # Implement the bbox calculation for each SVG element type based on the provided algorithms.
+        pass
+
+    def get_path_bbox(self, d_attribute):
+        # Calculate bbox for path elements using the provided get_path_points function.
+        path_points = get_path_points(d_attribute)
+        if path_points.size == 0:
+            return None
+        x_coords, y_coords = path_points[:,0], path_points[:,1]
+        min_x, max_x = np.min(x_coords), np.max(x_coords)
+        min_y, max_y = np.min(y_coords), np.max(y_coords)
+        center_x, center_y = (min_x + max_x) / 2, (min_y + max_y) / 2
+        return [[min_x, min_y], [max_x, max_y], [center_x, center_y]]
+
+    def save_to_json(self):
+        with open(self.json_file, 'w', encoding='utf-8') as file:
+            json.dump(self.data, file, indent=4)
+
+# Helper function to parse and approximate path d attribute
+def get_path_points(d_attribute):
+    # This function should return an array of path points based on the d attribute.
+    # Use the provided algorithms to parse and approximate path points.
+    return np.array([])  # Placeholder for the actual implementation
+
+
 class SimilarityGraphBuilder:
     def __init__(self, input_file, threshold):
         self.input_file = input_file
@@ -73,11 +119,14 @@ class SimilarityGraphBuilder:
         fill_similarity = self.color_similarity(node1.get('fill'), node2.get('fill'))
 
         # 计算平均相似性得分
-        return (stroke_similarity + fill_similarity) / 2
+        return (stroke_similarity + fill_similarity)
 
     def bbox_similarity(self, bbox1, bbox2):
-        # 此处简化处理，您可能需要根据bbox的具体结构实现几何相似性的计算
-        return 1  # 默认返回最高相似性
+        # # 计算中心点之间的距离
+        # # 计算上下左右边界的接近性
+        # # 计算相对于共同参考线（这里假设为X=0和Y=0的轴）的距离差异
+        # # 综合考虑中心点接近性、边界接近性和距离差异
+        return 1
 
     def calculate_similarity(self, node1, node2):
         # 提取'_'之前的字符串用于比较tag
@@ -92,7 +141,7 @@ class SimilarityGraphBuilder:
         # 假设已经有一个方法来计算bbox的接近性
         bbox_sim = self.bbox_similarity(node1.get('bbox'), node2.get('bbox'))
 
-        weight = tag_similarity + bbox_sim + fill_sim + stroke_sim - 1
+        weight = tag_similarity + bbox_sim + fill_sim + stroke_sim - 2
 
         # 返回包含所有相似性度量的字典
         # return {
@@ -189,6 +238,9 @@ def update_graph_with_similarity_edges():
     extractor = NodeExtractor()
     extractor.extract_nodes_info(input_file, output_nodes_file)
     print(f"Extracted nodes information saved to {output_nodes_file}")
+
+    # normalizer = BBoxFormatter(output_nodes_file)
+    # normalizer.format_and_update_bbox()
 
     # 构建相似性图并保存到JSON文件
     graph_builder = SimilarityGraphBuilder(output_nodes_file, similarity_threshold)

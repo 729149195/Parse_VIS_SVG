@@ -1,22 +1,47 @@
 [
     {
+        "tag": "g",
+        "num": 14,
+        "visible": false
+    },
+    {
+        "tag": "a",
+        "num": 1,
+        "visible": true
+    },
+    {
+        "tag": "text",
+        "num": 19,
+        "visible": true
+    },
+    {
         "tag": "path",
-        "num": 2,
+        "num": 17,
         "visible": true
     },
     {
         "tag": "line",
-        "num": 2,
+        "num": 6,
         "visible": true
     },
     {
         "tag": "circle",
+        "num": 173,
+        "visible": true
+    },
+    {
+        "tag": "tspan",
         "num": 2,
         "visible": true
     },
     {
-        "tag": "rect",
+        "tag": "marker",
         "num": 2,
-        "visible": true
+        "visible": false
+    },
+    {
+        "tag": "style",
+        "num": 1,
+        "visible": false
     }
 ]
