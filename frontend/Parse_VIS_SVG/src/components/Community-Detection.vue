@@ -186,7 +186,7 @@ const renderGraph = () => {
     }
 
     const link = linkGroup.append("g")
-        .attr("stroke", "#fff")
+        .attr("stroke", "#000")
         .attr("stroke-opacity", 0.8)
         .selectAll("line")
         .data(links)
@@ -194,7 +194,7 @@ const renderGraph = () => {
         .attr("stroke-width", d => Math.sqrt(d.value * 2));
 
     const node = nodeGroup.append("g")
-        .attr("stroke", "#fff")
+        .attr("stroke", "#000")
         .attr("stroke-width", 3)
         .selectAll("circle")
         .data(nodes)

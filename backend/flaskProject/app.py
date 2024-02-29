@@ -9,7 +9,7 @@ from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
 from modules.Statisticians import TagCounter, AttributeCounter, BBoxCounter, GroupCounter
-from modules.Gestalt_Edges_Weight import update_graph_with_similarity_edges
+# from modules.Gestalt_Edges_Weight import update_graph_with_similarity_edges
 
 app = Flask(__name__)
 CORS(app)

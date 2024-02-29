@@ -1,6 +1,5 @@
 import json
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_diff import delta_e_cie2000
 from colormath.color_conversions import convert_color
@@ -67,6 +66,9 @@ class NodeExtractor:
                 pnums = attrs.get('Pnums', [])
                 path_to_lines = PathToLines(pcode, pnums)
                 bboxs = path_to_lines.get_bboxs()
+                if len(bboxs) == 0:
+                    bboxs = [[0, 0], [0, 0], [0, 0]]
+                # print(bboxs)
                 extracted_attrs['bbox'] = bboxs
                 extracted_nodes[node] = extracted_attrs
 
@@ -313,29 +315,29 @@ class GestaltSimilarityCalculator:
     @staticmethod
     def rolling_hash(s, length):
         """计算字符串s中所有长度为length的子串的哈希值。"""
-        if length == 0:
-            return []
+        if length == 0 or len(s) < length:
+            return []  # 如果子串长度为0或大于字符串长度，返回空列表
         base, mod = 256, 10 ** 9 + 7
         hash_values = []
         current_hash = 0
+        base_l = pow(base, length - 1, mod)
+
         for i in range(len(s)):
             current_hash = (current_hash * base + ord(s[i])) % mod
             if i >= length - 1:
                 if i >= length:
-                    # 减去最左边字符的影响
-                    left_exp = pow(base, length, mod)
-                    current_hash = (current_hash - ord(s[i - length]) * left_exp) % mod
+                    current_hash = (current_hash - ord(s[i - length]) * base_l) % mod
                 hash_values.append(current_hash)
         return hash_values
 
     def find_lcs_with_binary_search(self, s1, s2):
-        """使用二分搜索和哈希来寻找最长公共子串的长度。"""
         left, right = 0, min(len(s1), len(s2))
         result = 0
         while left <= right:
             mid = (left + right) // 2
-            hash_set1 = set(GestaltSimilarityCalculator.rolling_hash(s1, mid))
-            if any(GestaltSimilarityCalculator.rolling_hash(s2, mid)[i] in hash_set1 for i in range(len(s2) - mid + 1)):
+            hash_set1 = set(self.rolling_hash(s1, mid))
+            hash_list2 = self.rolling_hash(s2, mid)
+            if any(hash_list2[i] in hash_set1 for i in range(len(hash_list2))):
                 result = mid
                 left = mid + 1
             else:
@@ -344,6 +346,8 @@ class GestaltSimilarityCalculator:
 
     # 使用二分搜索优化后的文本内容相似度计算方法
     def calculate_text_content_similarity(self, text1, text2):
+        if text1 is None and text2 is None:
+            return 1.000
         # 如果text1或text2为None，直接返回0.000
         if text1 is None or text2 is None:
             return 0.000
@@ -372,6 +376,7 @@ class GestaltSimilarityCalculator:
         color_similarity = self.calculate_color_similarity(node_attrs, other_node_attrs)
         tag_similarity = self.calculate_tag_similarity(node_attrs, other_node_attrs)
         position_similarity = self.calculate_position_similarity(node_attrs, other_node_attrs)
+
         gestalt_features_values = []
 
         if isinstance(color_similarity, dict):
@@ -398,7 +403,7 @@ class GestaltSimilarityCalculator:
         node_type2 = check_node_type(other_node_attrs)
 
         # 完全相同的tag
-        if node_attrs.get('tag') == other_node_attrs.get('tag'):
+        if node_attrs.get('tag').split('_')[0] == other_node_attrs.get('tag').split('_')[0]:
             tag_match = 1.0
         elif node_type1 == node_type2:
             tag_match = 0.5  # 同类型（面型与面型，或线型与线型）
@@ -441,7 +446,7 @@ class GestaltSimilarityCalculator:
 
         def calculate_similarity(value1, value2, max_difference):
             diff = abs(value1 - value2)
-            similarity = max(0, min(1, 1 - diff / max_difference))
+            similarity = max(0.0, min(1.0, 1.0 - diff / max_difference))
             return round(similarity, 3)
 
         def calculate_area_similarity(area1, area2):
@@ -561,7 +566,7 @@ class GestaltSimilarityCalculator:
             opacity_similarity = 1 - opacity_diff
 
             # 保证相似度在0到1之间
-            opacity_similarity = max(0, min(opacity_similarity, 1))
+            opacity_similarity = max(0.0, min(opacity_similarity, 1.0))
 
             # 返回保留3位小数的相似度值
             return round(opacity_similarity, 3)
@@ -652,7 +657,7 @@ class GestaltSimilarityCalculator:
 
             # 规范化差异并转换为相似度
             # 注意：这里使用的max_difference是一个预定义的最大差异值，可根据实际需要调整
-            similarity = max(0, 1 - (diff / max_difference))
+            similarity = max(0.0, 1.0 - (diff / max_difference))
 
             # 保留3位小数并返回
             return round(similarity, 3)
@@ -700,35 +705,11 @@ class GestaltSimilarityCalculator:
         self.calculate_similarity()
         self.save_to_file()
 
-
-def draw_lines_from_json(json_file):
-    with open(json_file, 'r') as file:
-        data = json.load(file)
-
-    fig, ax = plt.subplots()
-
-    for node, attrs in data.items():
-        # 只处理path类型的节点
-        if attrs['tag'].split('_')[0] == 'path':
-            bboxs = attrs.get('bbox', [])
-    #         for bbox in bboxs:
-    #             if bbox:
-    #                 start_point = bbox[0]  # 起点
-    #                 end_point = bbox[1]    # 终点
-    #                 # 绘制直线段，使用起点和终点坐标
-    #                 ax.plot([start_point[0], end_point[0]], [start_point[1], end_point[1]], marker = 'o')
-    #
-    # ax.set_aspect('equal', adjustable='datalim')
-    # plt.show()
-
-
 def update_graph_with_similarity_edges():
     extractor = NodeExtractor()
     extractor.extract_nodes_info(input_nodes_file, output_nodes_file)
-    print(f"Extracted nodes information saved to {output_nodes_file}")
     calculator = GestaltSimilarityCalculator(input_SimGraph_file, output_SimGraph_file)
     calculator.run()
 
 
 update_graph_with_similarity_edges()
-# draw_lines_from_json(output_nodes_file)

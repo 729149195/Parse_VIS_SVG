@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500px" height="500px">
+    
+    <rect x="50" y="50" width="100" height="50" stroke="black" fill="none" id="rect" />
+    
+    
+    <circle cx="200" cy="50" r="40" stroke="green" fill="none" id="circle" />
+    
+    
+    <ellipse cx="350" cy="50" rx="50" ry="25" stroke="blue" fill="none" id="ellipse" />
+    
+    
+    <line x1="50" y1="150" x2="150" y2="200" stroke="red" id="line" />
+    
+    
+    <polyline points="200,150 250,180 200,210" stroke="orange" fill="none" id="polyline" />
+    
+    
+    <polygon points="350,150 400,180 350,210" stroke="purple" fill="none" id="polygon" />
+    
+    
+    <path d="M 50 250 Q 150 300 50 350 L 150 350" stroke="brown" fill="none" id="path" />
+</svg>

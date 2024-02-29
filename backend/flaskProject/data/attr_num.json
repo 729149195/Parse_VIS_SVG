@@ -1,78 +1,62 @@
 [
     {
         "attribute": "stroke",
-        "num": 21
-    },
-    {
-        "attribute": "stroke-width",
-        "num": 21
+        "num": 7
     },
     {
         "attribute": "fill",
-        "num": 24
+        "num": 6
     },
     {
         "attribute": "points",
-        "num": 4
+        "num": 2
     },
     {
         "attribute": "x1",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "y1",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "x2",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "y2",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "dy",
-        "num": 4
+        "num": 1
     },
     {
         "attribute": "cx",
-        "num": 5
+        "num": 2
     },
     {
         "attribute": "cy",
-        "num": 5
+        "num": 2
     },
     {
         "attribute": "rx",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "ry",
-        "num": 2
+        "num": 1
     },
     {
         "attribute": "r",
-        "num": 3
+        "num": 1
     },
     {
         "attribute": "x",
-        "num": 5
+        "num": 1
     },
     {
         "attribute": "y",
-        "num": 5
-    },
-    {
-        "attribute": "font-family",
-        "num": 3
-    },
-    {
-        "attribute": "font-size",
-        "num": 3
-    },
-    {
-        "attribute": "transform",
-        "num": 3
+        "num": 1
     }
 ]

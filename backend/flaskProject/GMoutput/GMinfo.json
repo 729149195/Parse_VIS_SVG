@@ -1,7 +1,7 @@
 {
     "DiGraph": {
-        "nodes": 28,
-        "edges": 45,
+        "nodes": 8,
+        "edges": 13,
         "Nodes": {
             "svg/svg": {
                 "Attributes": {
@@ -10,11 +10,11 @@
                         "bbox": [
                             [
                                 500.0,
-                                400.0
+                                500.0
                             ],
                             [
                                 250.0,
-                                200.0
+                                250.0
                             ]
                         ]
                     },
@@ -24,803 +24,225 @@
                     "visible": false
                 }
             },
-            "svg/svg/g": {
-                "Attributes": {
-                    "tag": "g",
-                    "attributes": {
-                        "stroke": "#ff0000",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_0",
-                    "visible": false
-                }
-            },
-            "svg/svg/g/path": {
+            "svg/svg/path": {
                 "Attributes": {
                     "tag": "path",
                     "attributes": {
-                        "d": "M150,350 Q200,300 250,350 T350,350",
-                        "stroke-width": "4",
+                        "d": "M 50 250 Q 150 300 50 350 L 150 350",
+                        "stroke": "#a52a2a",
                         "fill": "none",
                         "Pcode": [
                             "M",
                             "Q",
-                            "T"
-                        ],
-                        "Pnums": [
-                            [
-                                "150",
-                                "350"
-                            ],
-                            [
-                                "200",
-                                "300",
-                                "250",
-                                "350"
-                            ],
-                            [
-                                "350",
-                                "350"
-                            ]
-                        ],
-                        "stroke": "#ff0000",
-                        "bbox": [
-                            [
-                                150.0,
-                                350.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_0_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g/path_1": {
-                "Attributes": {
-                    "tag": "path_1",
-                    "attributes": {
-                        "d": "M150,300 L250,350",
-                        "stroke-width": "2",
-                        "fill": "none",
-                        "Pcode": [
-                            "M",
                             "L"
                         ],
                         "Pnums": [
                             [
-                                "150",
-                                "300"
+                                "50",
+                                "250"
                             ],
                             [
-                                "250",
+                                "150",
+                                "300",
+                                "50",
+                                "350"
+                            ],
+                            [
+                                "150",
                                 "350"
                             ]
                         ],
-                        "stroke": "#ff0000",
                         "bbox": [
                             [
-                                150.0,
-                                300.0
+                                50.0,
+                                250.0
                             ],
                             [
-                                250.0,
+                                150.0,
                                 350.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
-                    "layer": "0_0_1",
+                    "layer": "0_0",
                     "visible": true
                 }
             },
-            "svg/svg/g_1": {
-                "Attributes": {
-                    "tag": "g_1",
-                    "attributes": {
-                        "stroke": "#000000",
-                        "fill": "#ffc0cb",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_1",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_1/polygon": {
+            "svg/svg/polygon": {
                 "Attributes": {
                     "tag": "polygon",
                     "attributes": {
-                        "points": "80,300 110,330 80,360",
-                        "stroke": "#000000",
-                        "fill": "#ffc0cb",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                80.0,
-                                300.0
-                            ],
-                            [
-                                110.0,
-                                330.0
-                            ],
-                            [
-                                80.0,
-                                360.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_1_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_1/polyline": {
-                "Attributes": {
-                    "tag": "polyline",
-                    "attributes": {
-                        "points": "10,300 40,330 10,360",
-                        "stroke": "#000000",
-                        "fill": "#ffc0cb",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                10.0,
-                                300.0
-                            ],
-                            [
-                                40.0,
-                                330.0
-                            ],
-                            [
-                                10.0,
-                                360.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_1_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_2": {
-                "Attributes": {
-                    "tag": "g_2",
-                    "attributes": {
+                        "points": "350,150 400,180 350,210",
+                        "stroke": "#800080",
                         "fill": "none",
-                        "stroke": "#a52a2a",
-                        "stroke-width": "2",
                         "bbox": [
                             [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_2",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_2/line": {
-                "Attributes": {
-                    "tag": "line",
-                    "attributes": {
-                        "x1": "300",
-                        "y1": "220",
-                        "x2": "400",
-                        "y2": "260",
-                        "dy": "0",
-                        "fill": "none",
-                        "stroke": "#a52a2a",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                300.0,
-                                220.0
+                                350.0,
+                                150.0
                             ],
                             [
                                 400.0,
-                                260.0
-                            ],
-                            [
-                                350.0,
-                                240.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_2_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_2/ellipse": {
-                "Attributes": {
-                    "tag": "ellipse",
-                    "attributes": {
-                        "cx": "250",
-                        "cy": "240",
-                        "rx": "40",
-                        "ry": "20",
-                        "fill": "none",
-                        "stroke": "#a52a2a",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                210.0,
-                                220.0
-                            ],
-                            [
-                                290.0,
-                                260.0
-                            ],
-                            [
-                                250.0,
-                                240.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_2_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_3": {
-                "Attributes": {
-                    "tag": "g_3",
-                    "attributes": {
-                        "stroke": "#ffa500",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_3",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_3/circle": {
-                "Attributes": {
-                    "tag": "circle",
-                    "attributes": {
-                        "cx": "150",
-                        "cy": "240",
-                        "r": "20",
-                        "fill": "#90ee90",
-                        "stroke": "#ffa500",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                130.0,
-                                220.0
-                            ],
-                            [
-                                170.0,
-                                260.0
-                            ],
-                            [
-                                150.0,
-                                240.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_3_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_3/rect": {
-                "Attributes": {
-                    "tag": "rect",
-                    "attributes": {
-                        "x": "10",
-                        "y": "220",
-                        "fill": "#ffff00",
-                        "stroke": "#ffa500",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                10.0,
-                                220.0
-                            ],
-                            [
-                                90.0,
-                                260.0
-                            ],
-                            [
-                                50.0,
-                                240.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_3_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_4": {
-                "Attributes": {
-                    "tag": "g_4",
-                    "attributes": {
-                        "fill": "#808080",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_4",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_4/path_2": {
-                "Attributes": {
-                    "tag": "path_2",
-                    "attributes": {
-                        "d": "M10,200 Q60,150 110,200 T210,200",
-                        "fill": "#808080",
-                        "Pcode": [
-                            "M",
-                            "Q",
-                            "T"
-                        ],
-                        "Pnums": [
-                            [
-                                "10",
-                                "200"
-                            ],
-                            [
-                                "60",
-                                "150",
-                                "110",
-                                "200"
-                            ],
-                            [
-                                "210",
-                                "200"
-                            ]
-                        ],
-                        "bbox": [
-                            [
-                                10.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_4_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_5": {
-                "Attributes": {
-                    "tag": "g_5",
-                    "attributes": {
-                        "font-family": "Verdana",
-                        "font-size": "12",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_5",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_5/text": {
-                "Attributes": {
-                    "tag": "text",
-                    "attributes": {
-                        "x": "10",
-                        "y": "120",
-                        "fill": "#0000ff",
-                        "dy": "0",
-                        "font-family": "Verdana",
-                        "font-size": "12",
-                        "bbox": [
-                            [
-                                10.0,
-                                120.0
-                            ],
-                            [
-                                50.0,
-                                132.0
-                            ],
-                            [
-                                30.0,
-                                126.0
-                            ]
-                        ]
-                    },
-                    "text_content": "test2",
-                    "level": 0,
-                    "layer": "0_5_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_5/text_1": {
-                "Attributes": {
-                    "tag": "text_1",
-                    "attributes": {
-                        "x": "10",
-                        "y": "100",
-                        "fill": "#000000",
-                        "dy": "0",
-                        "font-family": "Verdana",
-                        "font-size": "12",
-                        "bbox": [
-                            [
-                                10.0,
-                                100.0
-                            ],
-                            [
-                                50.0,
-                                112.0
-                            ],
-                            [
-                                30.0,
-                                106.0
-                            ]
-                        ]
-                    },
-                    "text_content": "test1",
-                    "level": 0,
-                    "layer": "0_5_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_6": {
-                "Attributes": {
-                    "tag": "g_6",
-                    "attributes": {
-                        "fill": "none",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_6",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_6/polygon_1": {
-                "Attributes": {
-                    "tag": "polygon_1",
-                    "attributes": {
-                        "points": "420,10 450,40 420,70",
-                        "stroke": "#800080",
-                        "fill": "none",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                420.0,
-                                10.0
-                            ],
-                            [
-                                450.0,
-                                40.0
-                            ],
-                            [
-                                420.0,
-                                70.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_6_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_6/polyline_1": {
-                "Attributes": {
-                    "tag": "polyline_1",
-                    "attributes": {
-                        "points": "350,10 380,40 350,70",
-                        "stroke": "#008000",
-                        "fill": "none",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                350.0,
-                                10.0
-                            ],
-                            [
-                                380.0,
-                                40.0
-                            ],
-                            [
-                                350.0,
-                                70.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_6_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_7": {
-                "Attributes": {
-                    "tag": "g_7",
-                    "attributes": {
-                        "stroke": "#0000ff",
-                        "stroke-width": "2",
-                        "fill": "transparent",
-                        "transform": "translate(50.0, 50.0) rotate(0.0) scale(1.0, 1.0)",
-                        "bbox": [
-                            [
-                                500.0,
-                                400.0
-                            ],
-                            [
-                                250.0,
-                                200.0
-                            ]
-                        ]
-                    },
-                    "text_content": "",
-                    "level": 0,
-                    "layer": "0_7",
-                    "visible": false
-                }
-            },
-            "svg/svg/g_7/line_1": {
-                "Attributes": {
-                    "tag": "line_1",
-                    "attributes": {
-                        "x1": "200",
-                        "y1": "10",
-                        "x2": "300",
-                        "y2": "60.0",
-                        "transform": "translate(80.0, 80.0) rotate(0.0) scale(1.0, 1.0)",
-                        "dy": "0",
-                        "stroke": "#0000ff",
-                        "stroke-width": "2",
-                        "fill": "transparent",
-                        "bbox": [
-                            [
-                                280.0,
-                                90.0
-                            ],
-                            [
-                                380.0,
-                                140.0
-                            ],
-                            [
-                                330.0,
-                                115.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_7_0",
-                    "visible": true
-                }
-            },
-            "svg/svg/g_7/ellipse_1": {
-                "Attributes": {
-                    "tag": "ellipse_1",
-                    "attributes": {
-                        "cx": "250",
-                        "cy": "35",
-                        "rx": "50",
-                        "ry": "25",
-                        "transform": "translate(70.0, 70.0) rotate(0.0) scale(1.0, 1.0)",
-                        "stroke": "#0000ff",
-                        "stroke-width": "2",
-                        "fill": "transparent",
-                        "bbox": [
-                            [
-                                270.0,
-                                80.0
-                            ],
-                            [
-                                370.0,
-                                130.0
-                            ],
-                            [
-                                320.0,
-                                105.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_7_1",
-                    "visible": true
-                }
-            },
-            "svg/svg/circle_1": {
-                "Attributes": {
-                    "tag": "circle_1",
-                    "attributes": {
-                        "cx": "150",
-                        "cy": "35",
-                        "r": "25",
-                        "stroke": "#ff0000",
-                        "fill": "transparent",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                125.0,
-                                10.0
-                            ],
-                            [
-                                175.0,
-                                60.0
-                            ],
-                            [
-                                150.0,
-                                35.0
-                            ]
-                        ]
-                    },
-                    "text_content": null,
-                    "level": 0,
-                    "layer": "0_8",
-                    "visible": true
-                }
-            },
-            "svg/svg/rect_1": {
-                "Attributes": {
-                    "tag": "rect_1",
-                    "attributes": {
-                        "x": "50",
-                        "y": "30",
-                        "stroke": "#000000",
-                        "fill": "transparent",
-                        "stroke-width": "2",
-                        "bbox": [
-                            [
-                                50.0,
-                                30.0
-                            ],
-                            [
-                                130.0,
                                 180.0
                             ],
                             [
-                                90.0,
-                                105.0
+                                350.0,
+                                210.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
-                    "layer": "0_9",
+                    "layer": "0_1",
                     "visible": true
                 }
             },
-            "svg/svg/circle_2": {
+            "svg/svg/polyline": {
                 "Attributes": {
-                    "tag": "circle_2",
+                    "tag": "polyline",
                     "attributes": {
-                        "cx": "150",
-                        "cy": "35",
-                        "r": "25",
-                        "stroke": "#ff0000",
-                        "fill": "transparent",
-                        "stroke-width": "2",
+                        "points": "200,150 250,180 200,210",
+                        "stroke": "#ffa500",
+                        "fill": "none",
                         "bbox": [
                             [
-                                125.0,
-                                10.0
+                                200.0,
+                                150.0
                             ],
                             [
-                                175.0,
-                                60.0
+                                250.0,
+                                180.0
+                            ],
+                            [
+                                200.0,
+                                210.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_2",
+                    "visible": true
+                }
+            },
+            "svg/svg/line": {
+                "Attributes": {
+                    "tag": "line",
+                    "attributes": {
+                        "x1": "50",
+                        "y1": "150",
+                        "x2": "150",
+                        "y2": "200",
+                        "stroke": "#ff0000",
+                        "dy": "0",
+                        "bbox": [
+                            [
+                                50.0,
+                                150.0
                             ],
                             [
                                 150.0,
-                                35.0
+                                200.0
+                            ],
+                            [
+                                100.0,
+                                175.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
-                    "layer": "0_10",
+                    "layer": "0_3",
                     "visible": true
                 }
             },
-            "svg/svg/rect_2": {
+            "svg/svg/ellipse": {
                 "Attributes": {
-                    "tag": "rect_2",
+                    "tag": "ellipse",
                     "attributes": {
-                        "x": "10",
-                        "y": "10",
-                        "stroke": "#000000",
-                        "fill": "transparent",
-                        "stroke-width": "2",
+                        "cx": "350",
+                        "cy": "50",
+                        "rx": "50",
+                        "ry": "25",
+                        "stroke": "#0000ff",
+                        "fill": "none",
                         "bbox": [
                             [
-                                10.0,
-                                10.0
+                                300.0,
+                                25.0
                             ],
                             [
-                                110.0,
-                                60.0
+                                400.0,
+                                75.0
                             ],
                             [
-                                60.0,
-                                35.0
+                                350.0,
+                                50.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
-                    "layer": "0_11",
+                    "layer": "0_4",
+                    "visible": true
+                }
+            },
+            "svg/svg/circle": {
+                "Attributes": {
+                    "tag": "circle",
+                    "attributes": {
+                        "cx": "200",
+                        "cy": "50",
+                        "r": "40",
+                        "stroke": "#008000",
+                        "fill": "none",
+                        "bbox": [
+                            [
+                                160.0,
+                                10.0
+                            ],
+                            [
+                                240.0,
+                                90.0
+                            ],
+                            [
+                                200.0,
+                                50.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_5",
+                    "visible": true
+                }
+            },
+            "svg/svg/rect": {
+                "Attributes": {
+                    "tag": "rect",
+                    "attributes": {
+                        "x": "50",
+                        "y": "50",
+                        "stroke": "#000000",
+                        "fill": "none",
+                        "bbox": [
+                            [
+                                50.0,
+                                50.0
+                            ],
+                            [
+                                150.0,
+                                100.0
+                            ],
+                            [
+                                100.0,
+                                75.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_6",
                     "visible": true
                 }
             }
@@ -828,278 +250,82 @@
         "Edges": [
             [
                 "svg/svg",
-                "svg/svg/g",
+                "svg/svg/path",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_1",
+                "svg/svg/polygon",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_2",
+                "svg/svg/polyline",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_3",
+                "svg/svg/line",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_4",
+                "svg/svg/ellipse",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_5",
+                "svg/svg/circle",
                 {}
             ],
             [
                 "svg/svg",
-                "svg/svg/g_6",
+                "svg/svg/rect",
                 {}
             ],
             [
-                "svg/svg",
-                "svg/svg/g_7",
-                {}
-            ],
-            [
-                "svg/svg",
-                "svg/svg/circle_1",
-                {}
-            ],
-            [
-                "svg/svg",
-                "svg/svg/rect_1",
-                {}
-            ],
-            [
-                "svg/svg",
-                "svg/svg/circle_2",
-                {}
-            ],
-            [
-                "svg/svg",
-                "svg/svg/rect_2",
-                {}
-            ],
-            [
-                "svg/svg/g",
-                "svg/svg/g/path",
-                {}
-            ],
-            [
-                "svg/svg/g",
-                "svg/svg/g/path_1",
-                {}
-            ],
-            [
-                "svg/svg/g",
-                "svg/svg/g_1",
+                "svg/svg/path",
+                "svg/svg/polygon",
                 {
                     "color": "blue",
                     "style": "solid"
                 }
             ],
             [
-                "svg/svg/g/path",
-                "svg/svg/g/path_1",
+                "svg/svg/polygon",
+                "svg/svg/polyline",
                 {
                     "color": "blue",
                     "style": "solid"
                 }
             ],
             [
-                "svg/svg/g_1",
-                "svg/svg/g_1/polygon",
-                {}
-            ],
-            [
-                "svg/svg/g_1",
-                "svg/svg/g_1/polyline",
-                {}
-            ],
-            [
-                "svg/svg/g_1",
-                "svg/svg/g_2",
+                "svg/svg/polyline",
+                "svg/svg/line",
                 {
                     "color": "blue",
                     "style": "solid"
                 }
             ],
             [
-                "svg/svg/g_1/polygon",
-                "svg/svg/g_1/polyline",
+                "svg/svg/line",
+                "svg/svg/ellipse",
                 {
                     "color": "blue",
                     "style": "solid"
                 }
             ],
             [
-                "svg/svg/g_2",
-                "svg/svg/g_2/line",
-                {}
-            ],
-            [
-                "svg/svg/g_2",
-                "svg/svg/g_2/ellipse",
-                {}
-            ],
-            [
-                "svg/svg/g_2",
-                "svg/svg/g_3",
+                "svg/svg/ellipse",
+                "svg/svg/circle",
                 {
                     "color": "blue",
                     "style": "solid"
                 }
             ],
             [
-                "svg/svg/g_2/line",
-                "svg/svg/g_2/ellipse",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_3",
-                "svg/svg/g_3/circle",
-                {}
-            ],
-            [
-                "svg/svg/g_3",
-                "svg/svg/g_3/rect",
-                {}
-            ],
-            [
-                "svg/svg/g_3",
-                "svg/svg/g_4",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_3/circle",
-                "svg/svg/g_3/rect",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_4",
-                "svg/svg/g_4/path_2",
-                {}
-            ],
-            [
-                "svg/svg/g_4",
-                "svg/svg/g_5",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_5",
-                "svg/svg/g_5/text",
-                {}
-            ],
-            [
-                "svg/svg/g_5",
-                "svg/svg/g_5/text_1",
-                {}
-            ],
-            [
-                "svg/svg/g_5",
-                "svg/svg/g_6",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_5/text",
-                "svg/svg/g_5/text_1",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_6",
-                "svg/svg/g_6/polygon_1",
-                {}
-            ],
-            [
-                "svg/svg/g_6",
-                "svg/svg/g_6/polyline_1",
-                {}
-            ],
-            [
-                "svg/svg/g_6",
-                "svg/svg/g_7",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_6/polygon_1",
-                "svg/svg/g_6/polyline_1",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_7",
-                "svg/svg/g_7/line_1",
-                {}
-            ],
-            [
-                "svg/svg/g_7",
-                "svg/svg/g_7/ellipse_1",
-                {}
-            ],
-            [
-                "svg/svg/g_7",
-                "svg/svg/circle_1",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/g_7/line_1",
-                "svg/svg/g_7/ellipse_1",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/circle_1",
-                "svg/svg/rect_1",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/rect_1",
-                "svg/svg/circle_2",
-                {
-                    "color": "blue",
-                    "style": "solid"
-                }
-            ],
-            [
-                "svg/svg/circle_2",
-                "svg/svg/rect_2",
+                "svg/svg/circle",
+                "svg/svg/rect",
                 {
                     "color": "blue",
                     "style": "solid"
