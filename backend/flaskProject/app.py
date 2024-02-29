@@ -9,7 +9,7 @@ from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
 from modules.Statisticians import TagCounter, AttributeCounter, BBoxCounter, GroupCounter
-from modules.Gestalt_Edges import update_graph_with_similarity_edges
+from modules.Gestalt_Edges_Weight import update_graph_with_similarity_edges
 
 app = Flask(__name__)
 CORS(app)
@@ -53,7 +53,7 @@ def evaluate_svg():
         svg_parser.run()  #解析生成初始MGinfo.json文件
         converter = ColorFormatConverter("./GMoutput/GMinfo.json")
         converter.process_file()    # 统一色值为hex
-        update_graph_with_similarity_edges()  #创建并添加格式塔边
+        # update_graph_with_similarity_edges()  #创建并添加格式塔边
         tag_counter = TagCounter()  #统计不同种类元素数量
         tag_counter.process()
         countergroup = GroupCounter()  # 统计group节点数量信息

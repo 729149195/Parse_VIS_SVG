@@ -343,7 +343,6 @@ class SVGParser:
     def get_element_bbox(self, element, parent_transform=np.identity(3)):  # 用于计算SVG元素的定界框（Bounding Box）
         # for child in element:
         #     print(child.tag, child.attrib)  # 输出子元素的标签和属性
-        # print(parent_transform)
         tag = element.tag.split('}')[-1]
         bbox = None
 
@@ -358,7 +357,7 @@ class SVGParser:
                     element.get("height", 0),
                 ],
             )
-            bbox = np.array([[x, x + width], [y, y + height], [x + width / 2, y + height / 2]])
+            bbox = np.array([[x, y], [x + width, y + height], [x + width / 2, y + height / 2]])
 
         elif tag == "svg":
             width, height = map(self.convert_to_float, [element.get("width", 0), element.get("height", 0)])
@@ -367,7 +366,7 @@ class SVGParser:
         elif tag == "circle":
             cx, cy, r = map(self.convert_to_float, [parent_transform.get("cx", 0), parent_transform.get("cy", 0),
                                                     parent_transform.get("r", 0)])
-            bbox = np.array([[cx - r, cx + r], [cy - r, cy + r], [cx, cy]])
+            bbox = np.array([[cx - r, cy - r], [cx + r, cy + r], [cx, cy]])
 
         elif tag == "path":
             d_attribute = element.get("d", "")
@@ -377,13 +376,13 @@ class SVGParser:
         elif tag == "line":
             x1, y1, x2, y2 = map(self.convert_to_float, [parent_transform.get("x1", 0), parent_transform.get("y1", 0),
                                                          parent_transform.get("x2", 0), parent_transform.get("y2", 0)])
-            bbox = np.array([[x1, x2], [y1, y2], [(x1 + x2) / 2, (y1 + y2) / 2]])
+            bbox = np.array([[x1, y1], [x2, y2], [(x1 + x2) / 2, (y1 + y2) / 2]])
 
         # 处理椭圆
         elif tag == "ellipse":
             cx, cy, rx, ry = map(self.convert_to_float, [parent_transform.get("cx", 0), parent_transform.get("cy", 0),
                                                          parent_transform.get("rx", 0), parent_transform.get("ry", 0)])
-            bbox = np.array([[cx - rx, cx + rx], [cy - ry, cy + ry], [cx, cy]])
+            bbox = np.array([[cx - rx, cy - ry], [cx + rx, cy + ry], [cx, cy]])
 
         # 处理多边形和折线元素
         elif tag in ["polygon", "polyline"]:
@@ -399,16 +398,20 @@ class SVGParser:
                 bbox = np.array(points_array)
 
         elif tag == "text":
-            x, y = map(self.convert_to_float, [parent_transform.get("x", 0), parent_transform.get("y", 0)])
+            x, y, font_size= map(self.convert_to_float, [parent_transform.get("x", 0), parent_transform.get("y", 0), parent_transform.get("font-size", 12)])
+            # text_content = parent_transform.get("text_content", "")
+            print(parent_transform)
             # 这里假设一个默认的宽度和高度，因为无法精确计算
-            width, height = 100, 16  # 默认值，可根据需要调整
-            bbox = np.array([[x, y], [x + width, y], [x, y + height], [x + width, y + height]])
+            # print(text_content)
+            height = float(font_size)
+            width = 40
+            bbox = np.array([[x, y], [x + width, y + height], [x + width/2, y + height/2]])
 
         elif tag == "image":
             x, y, width, height = map(self.convert_to_float,
                                       [parent_transform.get("x", 0), parent_transform.get("y", 0),
                                        element.get("width", 0), element.get("height", 0)])
-            bbox = np.array([[x, y], [x + width, y], [x, y + height], [x + width, y + height]])
+            bbox = np.array([[x, y], [x + width, y + height], [x + width/2, y + height/2]])
 
         # 应用解析后的 transform 到定界框
         if bbox is not None and parent_transform.get("transform"):

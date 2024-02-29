@@ -1,146 +1,78 @@
 [
     {
-        "attribute": "class",
-        "num": 236
-    },
-    {
-        "attribute": "fill",
-        "num": 236
-    },
-    {
-        "attribute": "font-family",
-        "num": 236
-    },
-    {
-        "attribute": "font-size",
-        "num": 236
-    },
-    {
-        "attribute": "text-anchor",
-        "num": 236
-    },
-    {
-        "attribute": "viewBox",
-        "num": 236
-    },
-    {
-        "attribute": "style",
-        "num": 236
-    },
-    {
-        "attribute": "id",
-        "num": 235
-    },
-    {
-        "attribute": "transform",
-        "num": 46
-    },
-    {
-        "attribute": "{http://www.w3.org/1999/xlink}href",
-        "num": 2
-    },
-    {
-        "attribute": "x",
-        "num": 21
-    },
-    {
-        "attribute": "y",
-        "num": 21
-    },
-    {
-        "attribute": "dy",
-        "num": 27
-    },
-    {
-        "attribute": "aria-label",
-        "num": 230
-    },
-    {
         "attribute": "stroke",
-        "num": 209
-    },
-    {
-        "attribute": "pointer-events",
-        "num": 1
+        "num": 21
     },
     {
         "attribute": "stroke-width",
-        "num": 9
+        "num": 21
     },
     {
-        "attribute": "stroke-linejoin",
-        "num": 11
+        "attribute": "fill",
+        "num": 24
     },
     {
-        "attribute": "stroke-linecap",
-        "num": 8
-    },
-    {
-        "attribute": "paint-order",
-        "num": 3
-    },
-    {
-        "attribute": "stroke-dasharray",
-        "num": 3
+        "attribute": "points",
+        "num": 4
     },
     {
         "attribute": "x1",
-        "num": 6
-    },
-    {
-        "attribute": "x2",
-        "num": 6
+        "num": 2
     },
     {
         "attribute": "y1",
-        "num": 6
+        "num": 2
+    },
+    {
+        "attribute": "x2",
+        "num": 2
     },
     {
         "attribute": "y2",
-        "num": 6
+        "num": 2
+    },
+    {
+        "attribute": "dy",
+        "num": 4
     },
     {
         "attribute": "cx",
-        "num": 173
+        "num": 5
     },
     {
         "attribute": "cy",
-        "num": 173
+        "num": 5
+    },
+    {
+        "attribute": "rx",
+        "num": 2
+    },
+    {
+        "attribute": "ry",
+        "num": 2
     },
     {
         "attribute": "r",
-        "num": 173
+        "num": 3
     },
     {
-        "attribute": "font-weight",
-        "num": 4
-    },
-    {
-        "attribute": "marker-start",
-        "num": 1
-    },
-    {
-        "attribute": "marker-end",
-        "num": 1
-    },
-    {
-        "attribute": "markerWidth",
-        "num": 4
-    },
-    {
-        "attribute": "markerHeight",
-        "num": 4
-    },
-    {
-        "attribute": "orient",
-        "num": 4
-    },
-    {
-        "attribute": "font-variant",
-        "num": 15
-    },
-    {
-        "attribute": "stroke-opacity",
+        "attribute": "x",
         "num": 5
+    },
+    {
+        "attribute": "y",
+        "num": 5
+    },
+    {
+        "attribute": "font-family",
+        "num": 3
+    },
+    {
+        "attribute": "font-size",
+        "num": 3
+    },
+    {
+        "attribute": "transform",
+        "num": 3
     }
 ]
