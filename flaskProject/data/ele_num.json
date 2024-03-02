@@ -1,0 +1,22 @@
+[
+    {
+        "tag": "path",
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "line",
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "circle",
+        "num": 2,
+        "visible": true
+    },
+    {
+        "tag": "rect",
+        "num": 2,
+        "visible": true
+    }
+]

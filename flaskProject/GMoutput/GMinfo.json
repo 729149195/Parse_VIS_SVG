@@ -1,0 +1,323 @@
+{
+    "DiGraph": {
+        "nodes": 9,
+        "edges": 4,
+        "Nodes": {
+            "svg/svg": {
+                "Attributes": {
+                    "tag": "svg",
+                    "attributes": {
+                        "bbox": [
+                            [
+                                600.0,
+                                400.0
+                            ],
+                            [
+                                300.0,
+                                200.0
+                            ]
+                        ]
+                    },
+                    "text_content": "",
+                    "level": 0,
+                    "layer": "0",
+                    "visible": false
+                }
+            },
+            "svg/svg/path": {
+                "Attributes": {
+                    "tag": "path",
+                    "attributes": {
+                        "id": "path_2",
+                        "d": "M 180 220 Q 220 180 260 220 T 340 220",
+                        "stroke": "#ff00ff",
+                        "fill": "none",
+                        "Pcode": [
+                            "M",
+                            "Q",
+                            "T"
+                        ],
+                        "Pnums": [
+                            [
+                                "180",
+                                "220"
+                            ],
+                            [
+                                "220",
+                                "180",
+                                "260",
+                                "220"
+                            ],
+                            [
+                                "340",
+                                "220"
+                            ]
+                        ],
+                        "bbox": [
+                            [
+                                180.0,
+                                220.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_0",
+                    "visible": true
+                }
+            },
+            "svg/svg/path_1": {
+                "Attributes": {
+                    "tag": "path_1",
+                    "attributes": {
+                        "id": "path_1",
+                        "d": "M 10 220 Q 50 180 90 220 T 170 220",
+                        "stroke": "#ffff00",
+                        "fill": "none",
+                        "Pcode": [
+                            "M",
+                            "Q",
+                            "T"
+                        ],
+                        "Pnums": [
+                            [
+                                "10",
+                                "220"
+                            ],
+                            [
+                                "50",
+                                "180",
+                                "90",
+                                "220"
+                            ],
+                            [
+                                "170",
+                                "220"
+                            ]
+                        ],
+                        "bbox": [
+                            [
+                                10.0,
+                                220.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_1",
+                    "visible": true
+                }
+            },
+            "svg/svg/line": {
+                "Attributes": {
+                    "tag": "line",
+                    "attributes": {
+                        "id": "line_2",
+                        "x1": "120",
+                        "y1": "150",
+                        "x2": "220",
+                        "y2": "200",
+                        "stroke": "#00ffff",
+                        "stroke-width": "2",
+                        "dy": "0",
+                        "bbox": [
+                            [
+                                120.0,
+                                150.0
+                            ],
+                            [
+                                220.0,
+                                200.0
+                            ],
+                            [
+                                170.0,
+                                175.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_2",
+                    "visible": true
+                }
+            },
+            "svg/svg/line_1": {
+                "Attributes": {
+                    "tag": "line_1",
+                    "attributes": {
+                        "id": "line_1",
+                        "x1": "10",
+                        "y1": "150",
+                        "x2": "110",
+                        "y2": "200",
+                        "stroke": "#ff00ff",
+                        "stroke-width": "2",
+                        "dy": "0",
+                        "bbox": [
+                            [
+                                10.0,
+                                150.0
+                            ],
+                            [
+                                110.0,
+                                200.0
+                            ],
+                            [
+                                60.0,
+                                175.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_3",
+                    "visible": true
+                }
+            },
+            "svg/svg/circle": {
+                "Attributes": {
+                    "tag": "circle",
+                    "attributes": {
+                        "id": "circle_2",
+                        "cx": "180",
+                        "cy": "100",
+                        "r": "30",
+                        "stroke": "#ff0000",
+                        "fill": "#0000ff",
+                        "bbox": [
+                            [
+                                150.0,
+                                70.0
+                            ],
+                            [
+                                210.0,
+                                130.0
+                            ],
+                            [
+                                180.0,
+                                100.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_4",
+                    "visible": true
+                }
+            },
+            "svg/svg/circle_1": {
+                "Attributes": {
+                    "tag": "circle_1",
+                    "attributes": {
+                        "id": "circle_1",
+                        "cx": "60",
+                        "cy": "100",
+                        "r": "30",
+                        "stroke": "#00ff00",
+                        "fill": "#ff0000",
+                        "bbox": [
+                            [
+                                30.0,
+                                70.0
+                            ],
+                            [
+                                90.0,
+                                130.0
+                            ],
+                            [
+                                60.0,
+                                100.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_5",
+                    "visible": true
+                }
+            },
+            "svg/svg/rect": {
+                "Attributes": {
+                    "tag": "rect",
+                    "attributes": {
+                        "id": "rect_2",
+                        "x": "120",
+                        "y": "10",
+                        "stroke": "#0000ff",
+                        "fill": "#ff0000",
+                        "bbox": [
+                            [
+                                120.0,
+                                10.0
+                            ],
+                            [
+                                220.0,
+                                60.0
+                            ],
+                            [
+                                170.0,
+                                35.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_6",
+                    "visible": true
+                }
+            },
+            "svg/svg/rect_1": {
+                "Attributes": {
+                    "tag": "rect_1",
+                    "attributes": {
+                        "id": "rect_1",
+                        "x": "10",
+                        "y": "10",
+                        "stroke": "#ff0000",
+                        "fill": "#00ff00",
+                        "bbox": [
+                            [
+                                10.0,
+                                10.0
+                            ],
+                            [
+                                110.0,
+                                60.0
+                            ],
+                            [
+                                60.0,
+                                35.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_7",
+                    "visible": true
+                }
+            }
+        },
+        "Edges": [
+            [
+                "svg/svg/path",
+                "svg/svg/path_1",
+                0.514
+            ],
+            [
+                "svg/svg/line",
+                "svg/svg/line_1",
+                0.514
+            ],
+            [
+                "svg/svg/circle",
+                "svg/svg/circle_1",
+                0.605
+            ],
+            [
+                "svg/svg/rect",
+                "svg/svg/rect_1",
+                0.605
+            ]
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+<svg width="500px" height="500px" xmlns="http://www.w3.org/2000/svg">
+ <g aria-label="x-axis tick" fill="none" stroke="currentColor">
+    <path transform="translate(73.71685078475693,390)" d="M0,0L0,6" />
+    <path transform="translate(141.15978478876826,390)" d="M0,0L0,6" />
+    <path transform="translate(208.6027187927796,390)" d="M0,0L0,6" />
+    <path transform="translate(276.0364203622935,390)" d="M0,0L0,6" />
+    <path transform="translate(343.4793543663048,390)" d="M0,0L0,6" />
+    <path transform="translate(410.9222883703161,390)" d="M0,0L0,6" />
+    <path transform="translate(478.36522237432746,390)" d="M0,0L0,6" />
+    <path transform="translate(545.8081563783388,390)" d="M0,0L0,6" />
+    <path transform="translate(613.2510903823502,390)" d="M0,0L0,6" />
+  </g>
+</svg>

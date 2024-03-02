@@ -1,0 +1,58 @@
+[
+    {
+        "attribute": "id",
+        "num": 8
+    },
+    {
+        "attribute": "stroke",
+        "num": 8
+    },
+    {
+        "attribute": "fill",
+        "num": 6
+    },
+    {
+        "attribute": "x1",
+        "num": 2
+    },
+    {
+        "attribute": "y1",
+        "num": 2
+    },
+    {
+        "attribute": "x2",
+        "num": 2
+    },
+    {
+        "attribute": "y2",
+        "num": 2
+    },
+    {
+        "attribute": "stroke-width",
+        "num": 2
+    },
+    {
+        "attribute": "dy",
+        "num": 2
+    },
+    {
+        "attribute": "cx",
+        "num": 2
+    },
+    {
+        "attribute": "cy",
+        "num": 2
+    },
+    {
+        "attribute": "r",
+        "num": 2
+    },
+    {
+        "attribute": "x",
+        "num": 2
+    },
+    {
+        "attribute": "y",
+        "num": 2
+    }
+]

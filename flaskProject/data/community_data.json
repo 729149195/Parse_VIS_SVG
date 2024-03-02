@@ -1,0 +1,58 @@
+{
+    "nodes": [
+        {
+            "id": "svg/svg/path",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/path_1",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/line",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/line_1",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/circle",
+            "group": 2
+        },
+        {
+            "id": "svg/svg/circle_1",
+            "group": 2
+        },
+        {
+            "id": "svg/svg/rect",
+            "group": 3
+        },
+        {
+            "id": "svg/svg/rect_1",
+            "group": 3
+        }
+    ],
+    "links": [
+        {
+            "source": "svg/svg/path",
+            "target": "svg/svg/path_1",
+            "value": 0.514
+        },
+        {
+            "source": "svg/svg/line",
+            "target": "svg/svg/line_1",
+            "value": 0.514
+        },
+        {
+            "source": "svg/svg/circle",
+            "target": "svg/svg/circle_1",
+            "value": 0.605
+        },
+        {
+            "source": "svg/svg/rect",
+            "target": "svg/svg/rect_1",
+            "value": 0.605
+        }
+    ]
+}
