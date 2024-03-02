@@ -76,7 +76,7 @@
         <el-card shadow="hover" style=" width: 52%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <div>
-          <el-dropdown :hide-on-click="false">
+          <el-dropdown :hide-on-click="false" v-if="gmInfoData">
             <span class="el-dropdown-link">
               Other<el-icon class="el-icon--right"><arrow-down /></el-icon>
             </span>
