@@ -1,144 +1,394 @@
 {
     "Gestalt_Edges": [
         [
-            "svg/svg/path",
-            "svg/svg/path_1",
-            0.514
+            "svg/svg/text",
+            "svg/svg/text_1",
+            0.808
         ],
         [
-            "svg/svg/path",
+            "svg/svg/text",
             "svg/svg/line",
-            0.235
+            0.246
         ],
         [
-            "svg/svg/path",
-            "svg/svg/line_1",
-            0.298
+            "svg/svg/text",
+            "svg/svg/polyline",
+            0.2
         ],
         [
-            "svg/svg/path",
-            "svg/svg/circle",
-            0.255
+            "svg/svg/text",
+            "svg/svg/polygon",
+            0.301
         ],
         [
-            "svg/svg/path",
-            "svg/svg/circle_1",
-            0.222
+            "svg/svg/text",
+            "svg/svg/ellipse",
+            0.246
         ],
         [
-            "svg/svg/path",
-            "svg/svg/rect",
-            0.236
+            "svg/svg/text",
+            "svg/svg/g/path",
+            0.225
         ],
         [
-            "svg/svg/path",
-            "svg/svg/rect_1",
-            0.236
+            "svg/svg/text",
+            "svg/svg/g/path_1",
+            0.321
         ],
         [
-            "svg/svg/path_1",
+            "svg/svg/text",
+            "svg/svg/g/path_2",
+            0.225
+        ],
+        [
+            "svg/svg/text",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.218
+        ],
+        [
+            "svg/svg/text",
+            "svg/svg/g_1/g_2/circle",
+            0.212
+        ],
+        [
+            "svg/svg/text",
+            "svg/svg/g_1/rect",
+            0.231
+        ],
+        [
+            "svg/svg/text",
+            "svg/svg/g_1/rect_1",
+            0.233
+        ],
+        [
+            "svg/svg/text_1",
             "svg/svg/line",
-            0.235
+            0.246
         ],
         [
-            "svg/svg/path_1",
-            "svg/svg/line_1",
-            0.312
+            "svg/svg/text_1",
+            "svg/svg/polyline",
+            0.2
         ],
         [
-            "svg/svg/path_1",
-            "svg/svg/circle",
-            0.255
+            "svg/svg/text_1",
+            "svg/svg/polygon",
+            0.301
         ],
         [
-            "svg/svg/path_1",
-            "svg/svg/circle_1",
-            0.28
+            "svg/svg/text_1",
+            "svg/svg/ellipse",
+            0.246
         ],
         [
-            "svg/svg/path_1",
-            "svg/svg/rect",
-            0.203
+            "svg/svg/text_1",
+            "svg/svg/g/path",
+            0.225
         ],
         [
-            "svg/svg/path_1",
-            "svg/svg/rect_1",
-            0.313
+            "svg/svg/text_1",
+            "svg/svg/g/path_1",
+            0.321
+        ],
+        [
+            "svg/svg/text_1",
+            "svg/svg/g/path_2",
+            0.225
+        ],
+        [
+            "svg/svg/text_1",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.218
+        ],
+        [
+            "svg/svg/text_1",
+            "svg/svg/g_1/g_2/circle",
+            0.212
+        ],
+        [
+            "svg/svg/text_1",
+            "svg/svg/g_1/rect",
+            0.231
+        ],
+        [
+            "svg/svg/text_1",
+            "svg/svg/g_1/rect_1",
+            0.233
         ],
         [
             "svg/svg/line",
-            "svg/svg/line_1",
-            0.514
+            "svg/svg/polyline",
+            0.248
         ],
         [
             "svg/svg/line",
-            "svg/svg/circle",
+            "svg/svg/polygon",
+            0.215
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/ellipse",
             0.253
         ],
         [
             "svg/svg/line",
-            "svg/svg/circle_1",
-            0.234
+            "svg/svg/g/path",
+            0.179
         ],
         [
             "svg/svg/line",
-            "svg/svg/rect",
-            0.409
+            "svg/svg/g/path_1",
+            0.144
         ],
         [
             "svg/svg/line",
-            "svg/svg/rect_1",
+            "svg/svg/g/path_2",
+            0.179
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.133
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/g_1/g_2/circle",
+            0.135
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/g_1/rect",
+            0.209
+        ],
+        [
+            "svg/svg/line",
+            "svg/svg/g_1/rect_1",
+            0.218
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/polygon",
             0.223
         ],
         [
-            "svg/svg/line_1",
-            "svg/svg/circle",
-            0.234
+            "svg/svg/polyline",
+            "svg/svg/ellipse",
+            0.212
         ],
         [
-            "svg/svg/line_1",
-            "svg/svg/circle_1",
-            0.253
+            "svg/svg/polyline",
+            "svg/svg/g/path",
+            0.169
         ],
         [
-            "svg/svg/line_1",
-            "svg/svg/rect",
+            "svg/svg/polyline",
+            "svg/svg/g/path_1",
+            0.168
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/g/path_2",
+            0.246
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.141
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/g_1/g_2/circle",
+            0.147
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/g_1/rect",
+            0.19
+        ],
+        [
+            "svg/svg/polyline",
+            "svg/svg/g_1/rect_1",
+            0.196
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/ellipse",
+            0.452
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g/path",
+            0.479
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g/path_1",
+            0.528
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g/path_2",
+            0.249
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.425
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g_1/g_2/circle",
+            0.374
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g_1/rect",
+            0.459
+        ],
+        [
+            "svg/svg/polygon",
+            "svg/svg/g_1/rect_1",
+            0.466
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g/path",
+            0.412
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g/path_1",
+            0.378
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g/path_2",
+            0.255
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.417
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g_1/g_2/circle",
+            0.404
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g_1/rect",
+            0.464
+        ],
+        [
+            "svg/svg/ellipse",
+            "svg/svg/g_1/rect_1",
+            0.472
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g/path_1",
+            0.521
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g/path_2",
+            0.744
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.424
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g_1/g_2/circle",
+            0.393
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g_1/rect",
+            0.616
+        ],
+        [
+            "svg/svg/g/path",
+            "svg/svg/g_1/rect_1",
+            0.443
+        ],
+        [
+            "svg/svg/g/path_1",
+            "svg/svg/g/path_2",
+            0.29
+        ],
+        [
+            "svg/svg/g/path_1",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.423
+        ],
+        [
+            "svg/svg/g/path_1",
+            "svg/svg/g_1/g_2/circle",
+            0.41
+        ],
+        [
+            "svg/svg/g/path_1",
+            "svg/svg/g_1/rect",
+            0.408
+        ],
+        [
+            "svg/svg/g/path_1",
+            "svg/svg/g_1/rect_1",
+            0.41
+        ],
+        [
+            "svg/svg/g/path_2",
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            0.209
+        ],
+        [
+            "svg/svg/g/path_2",
+            "svg/svg/g_1/g_2/circle",
+            0.231
+        ],
+        [
+            "svg/svg/g/path_2",
+            "svg/svg/g_1/rect",
+            0.43
+        ],
+        [
+            "svg/svg/g/path_2",
+            "svg/svg/g_1/rect_1",
             0.256
         ],
         [
-            "svg/svg/line_1",
-            "svg/svg/rect_1",
-            0.409
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "svg/svg/g_1/g_2/circle",
+            0.604
         ],
         [
-            "svg/svg/circle",
-            "svg/svg/circle_1",
-            0.605
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "svg/svg/g_1/rect",
+            0.427
         ],
         [
-            "svg/svg/circle",
-            "svg/svg/rect",
-            0.443
+            "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "svg/svg/g_1/rect_1",
+            0.47
         ],
         [
-            "svg/svg/circle",
-            "svg/svg/rect_1",
-            0.454
+            "svg/svg/g_1/g_2/circle",
+            "svg/svg/g_1/rect",
+            0.393
         ],
         [
-            "svg/svg/circle_1",
-            "svg/svg/rect",
-            0.454
+            "svg/svg/g_1/g_2/circle",
+            "svg/svg/g_1/rect_1",
+            0.418
         ],
         [
-            "svg/svg/circle_1",
-            "svg/svg/rect_1",
-            0.443
-        ],
-        [
-            "svg/svg/rect",
-            "svg/svg/rect_1",
-            0.605
+            "svg/svg/g_1/rect",
+            "svg/svg/g_1/rect_1",
+            0.581
         ]
     ]
 }

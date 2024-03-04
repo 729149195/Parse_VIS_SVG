@@ -1,58 +1,288 @@
 {
     "nodes": [
         {
-            "id": "svg/svg/path",
-            "group": 0
+            "id": "svg/svg/text",
+            "group": 1
         },
         {
-            "id": "svg/svg/path_1",
-            "group": 0
+            "id": "svg/svg/text_1",
+            "group": 1
         },
         {
             "id": "svg/svg/line",
             "group": 1
         },
         {
-            "id": "svg/svg/line_1",
+            "id": "svg/svg/polyline",
             "group": 1
         },
         {
-            "id": "svg/svg/circle",
+            "id": "svg/svg/polygon",
+            "group": 1
+        },
+        {
+            "id": "svg/svg/ellipse",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g/path",
             "group": 2
         },
         {
-            "id": "svg/svg/circle_1",
+            "id": "svg/svg/g/path_1",
             "group": 2
         },
         {
-            "id": "svg/svg/rect",
-            "group": 3
+            "id": "svg/svg/g/path_2",
+            "group": 2
         },
         {
-            "id": "svg/svg/rect_1",
-            "group": 3
+            "id": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g_1/g_2/circle",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g_1/rect",
+            "group": 0
+        },
+        {
+            "id": "svg/svg/g_1/rect_1",
+            "group": 0
         }
     ],
     "links": [
         {
-            "source": "svg/svg/path",
-            "target": "svg/svg/path_1",
-            "value": 0.514
+            "source": "svg/svg/text",
+            "target": "svg/svg/text_1",
+            "value": 0.808
+        },
+        {
+            "source": "svg/svg/text",
+            "target": "svg/svg/line",
+            "value": 0.246
+        },
+        {
+            "source": "svg/svg/text",
+            "target": "svg/svg/polyline",
+            "value": 0.301
+        },
+        {
+            "source": "svg/svg/text",
+            "target": "svg/svg/polygon",
+            "value": 0.246
+        },
+        {
+            "source": "svg/svg/text",
+            "target": "svg/svg/ellipse",
+            "value": 0.321
+        },
+        {
+            "source": "svg/svg/text_1",
+            "target": "svg/svg/line",
+            "value": 0.246
+        },
+        {
+            "source": "svg/svg/text_1",
+            "target": "svg/svg/polyline",
+            "value": 0.301
+        },
+        {
+            "source": "svg/svg/text_1",
+            "target": "svg/svg/polygon",
+            "value": 0.246
+        },
+        {
+            "source": "svg/svg/text_1",
+            "target": "svg/svg/ellipse",
+            "value": 0.321
         },
         {
             "source": "svg/svg/line",
-            "target": "svg/svg/line_1",
-            "value": 0.514
+            "target": "svg/svg/g/path",
+            "value": 0.248
         },
         {
-            "source": "svg/svg/circle",
-            "target": "svg/svg/circle_1",
-            "value": 0.605
+            "source": "svg/svg/line",
+            "target": "svg/svg/polygon",
+            "value": 0.253
         },
         {
-            "source": "svg/svg/rect",
-            "target": "svg/svg/rect_1",
-            "value": 0.605
+            "source": "svg/svg/g/path",
+            "target": "svg/svg/g/path_1",
+            "value": 0.246
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/polygon",
+            "value": 0.452
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g/path_2",
+            "value": 0.479
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/ellipse",
+            "value": 0.528
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g/path_1",
+            "value": 0.249
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "value": 0.425
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g_1/g_2/circle",
+            "value": 0.374
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.459
+        },
+        {
+            "source": "svg/svg/polyline",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.466
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g/path_2",
+            "value": 0.412
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/ellipse",
+            "value": 0.378
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g/path_1",
+            "value": 0.255
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "value": 0.417
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g_1/g_2/circle",
+            "value": 0.404
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.464
+        },
+        {
+            "source": "svg/svg/polygon",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.472
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/ellipse",
+            "value": 0.521
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/g/path_1",
+            "value": 0.744
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "value": 0.424
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/g_1/g_2/circle",
+            "value": 0.393
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.616
+        },
+        {
+            "source": "svg/svg/g/path_2",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.443
+        },
+        {
+            "source": "svg/svg/ellipse",
+            "target": "svg/svg/g/path_1",
+            "value": 0.29
+        },
+        {
+            "source": "svg/svg/ellipse",
+            "target": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "value": 0.423
+        },
+        {
+            "source": "svg/svg/ellipse",
+            "target": "svg/svg/g_1/g_2/circle",
+            "value": 0.41
+        },
+        {
+            "source": "svg/svg/ellipse",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.408
+        },
+        {
+            "source": "svg/svg/ellipse",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.41
+        },
+        {
+            "source": "svg/svg/g/path_1",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.43
+        },
+        {
+            "source": "svg/svg/g/path_1",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.256
+        },
+        {
+            "source": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "target": "svg/svg/g_1/g_2/circle",
+            "value": 0.604
+        },
+        {
+            "source": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.427
+        },
+        {
+            "source": "svg/svg/g_1/g_2/g_3/ellipse_1",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.47
+        },
+        {
+            "source": "svg/svg/g_1/g_2/circle",
+            "target": "svg/svg/g_1/rect",
+            "value": 0.393
+        },
+        {
+            "source": "svg/svg/g_1/g_2/circle",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.418
+        },
+        {
+            "source": "svg/svg/g_1/rect",
+            "target": "svg/svg/g_1/rect_1",
+            "value": 0.581
         }
     ]
 }

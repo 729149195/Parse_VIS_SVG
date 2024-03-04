@@ -1,7 +1,7 @@
 {
     "DiGraph": {
-        "nodes": 9,
-        "edges": 4,
+        "nodes": 18,
+        "edges": 46,
         "Nodes": {
             "svg/svg": {
                 "Attributes": {
@@ -9,12 +9,12 @@
                     "attributes": {
                         "bbox": [
                             [
-                                600.0,
-                                400.0
+                                500.0,
+                                500.0
                             ],
                             [
-                                300.0,
-                                200.0
+                                250.0,
+                                250.0
                             ]
                         ]
                     },
@@ -24,85 +24,57 @@
                     "visible": false
                 }
             },
-            "svg/svg/path": {
+            "svg/svg/text": {
                 "Attributes": {
-                    "tag": "path",
+                    "tag": "text",
                     "attributes": {
-                        "id": "path_2",
-                        "d": "M 180 220 Q 220 180 260 220 T 340 220",
-                        "stroke": "#ff00ff",
-                        "fill": "none",
-                        "Pcode": [
-                            "M",
-                            "Q",
-                            "T"
-                        ],
-                        "Pnums": [
-                            [
-                                "180",
-                                "220"
-                            ],
-                            [
-                                "220",
-                                "180",
-                                "260",
-                                "220"
-                            ],
-                            [
-                                "340",
-                                "220"
-                            ]
-                        ],
+                        "x": "0",
+                        "y": "0",
+                        "dy": "0",
                         "bbox": [
                             [
-                                180.0,
-                                220.0
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                40.0,
+                                12.0
+                            ],
+                            [
+                                20.0,
+                                6.0
                             ]
                         ]
                     },
-                    "text_content": null,
+                    "text_content": "hello2",
                     "level": 0,
                     "layer": "0_0",
                     "visible": true
                 }
             },
-            "svg/svg/path_1": {
+            "svg/svg/text_1": {
                 "Attributes": {
-                    "tag": "path_1",
+                    "tag": "text_1",
                     "attributes": {
-                        "id": "path_1",
-                        "d": "M 10 220 Q 50 180 90 220 T 170 220",
-                        "stroke": "#ffff00",
-                        "fill": "none",
-                        "Pcode": [
-                            "M",
-                            "Q",
-                            "T"
-                        ],
-                        "Pnums": [
-                            [
-                                "10",
-                                "220"
-                            ],
-                            [
-                                "50",
-                                "180",
-                                "90",
-                                "220"
-                            ],
-                            [
-                                "170",
-                                "220"
-                            ]
-                        ],
+                        "x": "0",
+                        "y": "0",
+                        "dy": "0",
                         "bbox": [
                             [
-                                10.0,
-                                220.0
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                40.0,
+                                12.0
+                            ],
+                            [
+                                20.0,
+                                6.0
                             ]
                         ]
                     },
-                    "text_content": null,
+                    "text_content": "hello",
                     "level": 0,
                     "layer": "0_1",
                     "visible": true
@@ -112,26 +84,24 @@
                 "Attributes": {
                     "tag": "line",
                     "attributes": {
-                        "id": "line_2",
-                        "x1": "120",
-                        "y1": "150",
-                        "x2": "220",
-                        "y2": "200",
-                        "stroke": "#00ffff",
-                        "stroke-width": "2",
+                        "x1": "300",
+                        "y1": "400",
+                        "x2": "350",
+                        "y2": "450",
+                        "stroke": "#808080",
                         "dy": "0",
                         "bbox": [
                             [
-                                120.0,
-                                150.0
+                                300.0,
+                                400.0
                             ],
                             [
-                                220.0,
-                                200.0
+                                350.0,
+                                450.0
                             ],
                             [
-                                170.0,
-                                175.0
+                                325.0,
+                                425.0
                             ]
                         ]
                     },
@@ -141,30 +111,25 @@
                     "visible": true
                 }
             },
-            "svg/svg/line_1": {
+            "svg/svg/polyline": {
                 "Attributes": {
-                    "tag": "line_1",
+                    "tag": "polyline",
                     "attributes": {
-                        "id": "line_1",
-                        "x1": "10",
-                        "y1": "150",
-                        "x2": "110",
-                        "y2": "200",
-                        "stroke": "#ff00ff",
-                        "stroke-width": "2",
-                        "dy": "0",
+                        "points": "30,450 60,480 30,510",
+                        "stroke": "#000000",
+                        "fill": "none",
                         "bbox": [
                             [
-                                10.0,
-                                150.0
-                            ],
-                            [
-                                110.0,
-                                200.0
+                                30.0,
+                                450.0
                             ],
                             [
                                 60.0,
-                                175.0
+                                480.0
+                            ],
+                            [
+                                30.0,
+                                510.0
                             ]
                         ]
                     },
@@ -174,28 +139,24 @@
                     "visible": true
                 }
             },
-            "svg/svg/circle": {
+            "svg/svg/polygon": {
                 "Attributes": {
-                    "tag": "circle",
+                    "tag": "polygon",
                     "attributes": {
-                        "id": "circle_2",
-                        "cx": "180",
-                        "cy": "100",
-                        "r": "30",
-                        "stroke": "#ff0000",
-                        "fill": "#0000ff",
+                        "points": "400,10 450,30 400,50",
+                        "fill": "#ffff00",
                         "bbox": [
                             [
-                                150.0,
-                                70.0
+                                400.0,
+                                10.0
                             ],
                             [
-                                210.0,
-                                130.0
+                                450.0,
+                                30.0
                             ],
                             [
-                                180.0,
-                                100.0
+                                400.0,
+                                50.0
                             ]
                         ]
                     },
@@ -205,28 +166,27 @@
                     "visible": true
                 }
             },
-            "svg/svg/circle_1": {
+            "svg/svg/ellipse": {
                 "Attributes": {
-                    "tag": "circle_1",
+                    "tag": "ellipse",
                     "attributes": {
-                        "id": "circle_1",
-                        "cx": "60",
-                        "cy": "100",
-                        "r": "30",
-                        "stroke": "#00ff00",
-                        "fill": "#ff0000",
+                        "cx": "300",
+                        "cy": "300",
+                        "rx": "30",
+                        "ry": "20",
+                        "fill": "#800080",
                         "bbox": [
                             [
-                                30.0,
-                                70.0
+                                270.0,
+                                280.0
                             ],
                             [
-                                90.0,
-                                130.0
+                                330.0,
+                                320.0
                             ],
                             [
-                                60.0,
-                                100.0
+                                300.0,
+                                300.0
                             ]
                         ]
                     },
@@ -236,87 +196,686 @@
                     "visible": true
                 }
             },
-            "svg/svg/rect": {
+            "svg/svg/g": {
                 "Attributes": {
-                    "tag": "rect",
+                    "tag": "g",
                     "attributes": {
-                        "id": "rect_2",
-                        "x": "120",
-                        "y": "10",
-                        "stroke": "#0000ff",
-                        "fill": "#ff0000",
                         "bbox": [
                             [
-                                120.0,
-                                10.0
+                                500.0,
+                                500.0
                             ],
                             [
-                                220.0,
-                                60.0
+                                250.0,
+                                250.0
+                            ]
+                        ]
+                    },
+                    "text_content": "",
+                    "level": 0,
+                    "layer": "0_6",
+                    "visible": false
+                }
+            },
+            "svg/svg/g/path": {
+                "Attributes": {
+                    "tag": "path",
+                    "attributes": {
+                        "d": "M150,150 L200,200 L150,250 Z",
+                        "fill": "#ffff00",
+                        "Pcode": [
+                            "M",
+                            "L",
+                            "L",
+                            "Z"
+                        ],
+                        "Pnums": [
+                            [
+                                "150",
+                                "150"
                             ],
                             [
-                                170.0,
-                                35.0
+                                "200",
+                                "200"
+                            ],
+                            [
+                                "150",
+                                "250"
+                            ],
+                            []
+                        ],
+                        "bbox": [
+                            [
+                                150.0,
+                                150.0
+                            ],
+                            [
+                                200.0,
+                                200.0
+                            ],
+                            [
+                                150.0,
+                                250.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
-                    "layer": "0_6",
+                    "layer": "0_6_0",
                     "visible": true
                 }
             },
-            "svg/svg/rect_1": {
+            "svg/svg/g/path_1": {
                 "Attributes": {
-                    "tag": "rect_1",
+                    "tag": "path_1",
                     "attributes": {
-                        "id": "rect_1",
-                        "x": "10",
-                        "y": "10",
-                        "stroke": "#ff0000",
-                        "fill": "#00ff00",
+                        "d": "M10,10 L50,50 Q100,15 150,50 T200,100 C250,150 300,100 350,150 L400,200",
+                        "fill": "#ffff00",
+                        "Pcode": [
+                            "M",
+                            "L",
+                            "Q",
+                            "T",
+                            "C",
+                            "L"
+                        ],
+                        "Pnums": [
+                            [
+                                "10",
+                                "10"
+                            ],
+                            [
+                                "50",
+                                "50"
+                            ],
+                            [
+                                "100",
+                                "15",
+                                "150",
+                                "50"
+                            ],
+                            [
+                                "200",
+                                "100"
+                            ],
+                            [
+                                "250",
+                                "150",
+                                "300",
+                                "100",
+                                "350",
+                                "150"
+                            ],
+                            [
+                                "400",
+                                "200"
+                            ]
+                        ],
                         "bbox": [
                             [
                                 10.0,
                                 10.0
                             ],
                             [
-                                110.0,
-                                60.0
+                                50.0,
+                                50.0
                             ],
                             [
-                                60.0,
-                                35.0
+                                250.0,
+                                150.0
+                            ],
+                            [
+                                255.26315789473688,
+                                145.01385041551248
+                            ],
+                            [
+                                260.5263157894737,
+                                140.58171745152353
+                            ],
+                            [
+                                265.78947368421046,
+                                136.7036011080332
+                            ],
+                            [
+                                271.0526315789474,
+                                133.37950138504155
+                            ],
+                            [
+                                276.3157894736842,
+                                130.6094182825485
+                            ],
+                            [
+                                281.57894736842104,
+                                128.393351800554
+                            ],
+                            [
+                                286.84210526315786,
+                                126.73130193905817
+                            ],
+                            [
+                                292.10526315789474,
+                                125.62326869806094
+                            ],
+                            [
+                                297.3684210526316,
+                                125.06925207756234
+                            ],
+                            [
+                                302.63157894736844,
+                                125.06925207756234
+                            ],
+                            [
+                                307.8947368421053,
+                                125.62326869806094
+                            ],
+                            [
+                                313.1578947368421,
+                                126.73130193905817
+                            ],
+                            [
+                                318.42105263157896,
+                                128.393351800554
+                            ],
+                            [
+                                323.6842105263158,
+                                130.60941828254846
+                            ],
+                            [
+                                328.94736842105266,
+                                133.37950138504158
+                            ],
+                            [
+                                334.2105263157895,
+                                136.70360110803324
+                            ],
+                            [
+                                339.4736842105263,
+                                140.58171745152353
+                            ],
+                            [
+                                344.7368421052632,
+                                145.01385041551245
+                            ],
+                            [
+                                350.0,
+                                150.0
+                            ],
+                            [
+                                400.0,
+                                200.0
                             ]
                         ]
                     },
                     "text_content": null,
                     "level": 0,
+                    "layer": "0_6_1",
+                    "visible": true
+                }
+            },
+            "svg/svg/g/path_2": {
+                "Attributes": {
+                    "tag": "path_2",
+                    "attributes": {
+                        "d": "M150,150 L200,200 L150,250 Z",
+                        "fill": "none",
+                        "Pcode": [
+                            "M",
+                            "L",
+                            "L",
+                            "Z"
+                        ],
+                        "Pnums": [
+                            [
+                                "150",
+                                "150"
+                            ],
+                            [
+                                "200",
+                                "200"
+                            ],
+                            [
+                                "150",
+                                "250"
+                            ],
+                            []
+                        ],
+                        "bbox": [
+                            [
+                                150.0,
+                                150.0
+                            ],
+                            [
+                                200.0,
+                                200.0
+                            ],
+                            [
+                                150.0,
+                                250.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_6_2",
+                    "visible": true
+                }
+            },
+            "svg/svg/g_1": {
+                "Attributes": {
+                    "tag": "g_1",
+                    "attributes": {
+                        "transform": "translate(50.0, 50.0) rotate(0.0) scale(1.0, 1.0)",
+                        "bbox": [
+                            [
+                                500.0,
+                                500.0
+                            ],
+                            [
+                                250.0,
+                                250.0
+                            ]
+                        ]
+                    },
+                    "text_content": "",
+                    "level": 0,
                     "layer": "0_7",
+                    "visible": false
+                }
+            },
+            "svg/svg/g_1/g_2": {
+                "Attributes": {
+                    "tag": "g_2",
+                    "attributes": {
+                        "transform": "translate(50.0, 50.0) rotate(45.0) scale(1.0, 1.0)",
+                        "bbox": [
+                            [
+                                500.0,
+                                500.0
+                            ],
+                            [
+                                250.0,
+                                250.0
+                            ]
+                        ]
+                    },
+                    "text_content": "",
+                    "level": 0,
+                    "layer": "0_7_0",
+                    "visible": false
+                }
+            },
+            "svg/svg/g_1/g_2/g_3": {
+                "Attributes": {
+                    "tag": "g_3",
+                    "attributes": {
+                        "transform": "translate(50.0, 50.0) rotate(45.0) scale(0.5, 0.5)",
+                        "bbox": [
+                            [
+                                500.0,
+                                500.0
+                            ],
+                            [
+                                250.0,
+                                250.0
+                            ]
+                        ]
+                    },
+                    "text_content": "",
+                    "level": 0,
+                    "layer": "0_7_0_0",
+                    "visible": false
+                }
+            },
+            "svg/svg/g_1/g_2/g_3/ellipse_1": {
+                "Attributes": {
+                    "tag": "ellipse_1",
+                    "attributes": {
+                        "cx": "160",
+                        "cy": "60",
+                        "rx": "15",
+                        "ry": "10",
+                        "fill": "#ffa500",
+                        "transform": "translate(50.0, 50.0) rotate(45.0) scale(0.5, 0.5)",
+                        "bbox": [
+                            [
+                                83.58757210636101,
+                                118.94291116568839
+                            ],
+                            [
+                                87.12310601229375,
+                                136.6205806953521
+                            ],
+                            [
+                                85.35533905932738,
+                                127.78174593052023
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_7_0_0_0",
+                    "visible": true
+                }
+            },
+            "svg/svg/g_1/g_2/circle": {
+                "Attributes": {
+                    "tag": "circle",
+                    "attributes": {
+                        "cx": "100",
+                        "cy": "50",
+                        "r": "20",
+                        "fill": "#008000",
+                        "transform": "translate(50.0, 50.0) rotate(45.0) scale(1.0, 1.0)",
+                        "bbox": [
+                            [
+                                85.35533905932738,
+                                127.78174593052023
+                            ],
+                            [
+                                85.35533905932738,
+                                184.35028842544403
+                            ],
+                            [
+                                85.35533905932738,
+                                156.06601717798213
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_7_0_1",
+                    "visible": true
+                }
+            },
+            "svg/svg/g_1/rect": {
+                "Attributes": {
+                    "tag": "rect",
+                    "attributes": {
+                        "x": "10",
+                        "y": "10",
+                        "fill": "#ff0000",
+                        "transform": "translate(150.0, 150.0) rotate(30.0) scale(1.5, 1.5)",
+                        "bbox": [
+                            [
+                                155.49038105676658,
+                                170.49038105676658
+                            ],
+                            [
+                                182.94228634059948,
+                                272.9422863405995
+                            ],
+                            [
+                                169.21633369868303,
+                                221.71633369868303
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_7_1",
+                    "visible": true
+                }
+            },
+            "svg/svg/g_1/rect_1": {
+                "Attributes": {
+                    "tag": "rect_1",
+                    "attributes": {
+                        "x": "10",
+                        "y": "10",
+                        "fill": "#ff0000",
+                        "transform": "translate(50.0, 50.0) rotate(0.0) scale(1.0, 1.0)",
+                        "bbox": [
+                            [
+                                60.0,
+                                60.0
+                            ],
+                            [
+                                110.0,
+                                110.0
+                            ],
+                            [
+                                85.0,
+                                85.0
+                            ]
+                        ]
+                    },
+                    "text_content": null,
+                    "level": 0,
+                    "layer": "0_7_2",
                     "visible": true
                 }
             }
         },
         "Edges": [
             [
-                "svg/svg/path",
-                "svg/svg/path_1",
-                0.514
+                "svg/svg/text",
+                "svg/svg/text_1",
+                0.808
+            ],
+            [
+                "svg/svg/text",
+                "svg/svg/line",
+                0.246
+            ],
+            [
+                "svg/svg/text",
+                "svg/svg/polygon",
+                0.301
+            ],
+            [
+                "svg/svg/text",
+                "svg/svg/ellipse",
+                0.246
+            ],
+            [
+                "svg/svg/text",
+                "svg/svg/g/path_1",
+                0.321
+            ],
+            [
+                "svg/svg/text_1",
+                "svg/svg/line",
+                0.246
+            ],
+            [
+                "svg/svg/text_1",
+                "svg/svg/polygon",
+                0.301
+            ],
+            [
+                "svg/svg/text_1",
+                "svg/svg/ellipse",
+                0.246
+            ],
+            [
+                "svg/svg/text_1",
+                "svg/svg/g/path_1",
+                0.321
             ],
             [
                 "svg/svg/line",
-                "svg/svg/line_1",
-                0.514
+                "svg/svg/polyline",
+                0.248
             ],
             [
-                "svg/svg/circle",
-                "svg/svg/circle_1",
-                0.605
+                "svg/svg/line",
+                "svg/svg/ellipse",
+                0.253
             ],
             [
-                "svg/svg/rect",
-                "svg/svg/rect_1",
-                0.605
+                "svg/svg/polyline",
+                "svg/svg/g/path_2",
+                0.246
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/ellipse",
+                0.452
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g/path",
+                0.479
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g/path_1",
+                0.528
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g/path_2",
+                0.249
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                0.425
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g_1/g_2/circle",
+                0.374
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g_1/rect",
+                0.459
+            ],
+            [
+                "svg/svg/polygon",
+                "svg/svg/g_1/rect_1",
+                0.466
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g/path",
+                0.412
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g/path_1",
+                0.378
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g/path_2",
+                0.255
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                0.417
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g_1/g_2/circle",
+                0.404
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g_1/rect",
+                0.464
+            ],
+            [
+                "svg/svg/ellipse",
+                "svg/svg/g_1/rect_1",
+                0.472
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g/path_1",
+                0.521
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g/path_2",
+                0.744
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                0.424
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g_1/g_2/circle",
+                0.393
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g_1/rect",
+                0.616
+            ],
+            [
+                "svg/svg/g/path",
+                "svg/svg/g_1/rect_1",
+                0.443
+            ],
+            [
+                "svg/svg/g/path_1",
+                "svg/svg/g/path_2",
+                0.29
+            ],
+            [
+                "svg/svg/g/path_1",
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                0.423
+            ],
+            [
+                "svg/svg/g/path_1",
+                "svg/svg/g_1/g_2/circle",
+                0.41
+            ],
+            [
+                "svg/svg/g/path_1",
+                "svg/svg/g_1/rect",
+                0.408
+            ],
+            [
+                "svg/svg/g/path_1",
+                "svg/svg/g_1/rect_1",
+                0.41
+            ],
+            [
+                "svg/svg/g/path_2",
+                "svg/svg/g_1/rect",
+                0.43
+            ],
+            [
+                "svg/svg/g/path_2",
+                "svg/svg/g_1/rect_1",
+                0.256
+            ],
+            [
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                "svg/svg/g_1/g_2/circle",
+                0.604
+            ],
+            [
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                "svg/svg/g_1/rect",
+                0.427
+            ],
+            [
+                "svg/svg/g_1/g_2/g_3/ellipse_1",
+                "svg/svg/g_1/rect_1",
+                0.47
+            ],
+            [
+                "svg/svg/g_1/g_2/circle",
+                "svg/svg/g_1/rect",
+                0.393
+            ],
+            [
+                "svg/svg/g_1/g_2/circle",
+                "svg/svg/g_1/rect_1",
+                0.418
+            ],
+            [
+                "svg/svg/g_1/rect",
+                "svg/svg/g_1/rect_1",
+                0.581
             ]
         ]
     }

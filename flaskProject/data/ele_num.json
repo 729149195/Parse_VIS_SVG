@@ -1,17 +1,42 @@
 [
     {
-        "tag": "path",
+        "tag": "text",
         "num": 2,
         "visible": true
     },
     {
         "tag": "line",
+        "num": 1,
+        "visible": true
+    },
+    {
+        "tag": "polyline",
+        "num": 1,
+        "visible": true
+    },
+    {
+        "tag": "polygon",
+        "num": 1,
+        "visible": true
+    },
+    {
+        "tag": "ellipse",
         "num": 2,
         "visible": true
     },
     {
+        "tag": "g",
+        "num": 4,
+        "visible": false
+    },
+    {
+        "tag": "path",
+        "num": 3,
+        "visible": true
+    },
+    {
         "tag": "circle",
-        "num": 2,
+        "num": 1,
         "visible": true
     },
     {

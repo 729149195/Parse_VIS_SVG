@@ -34,7 +34,7 @@ BBOX的格式：
 {
   "color_similarity": {
     "fill_color_difference": 0.0, // 范围[0, 1]，使用CIEDE2000或其他色差算法计算    //色调！ hue
-    "opacity_difference": 0.0, // 范围[0, 1]，直接计算Alpha值差异的相对值
+    "opacity_difference": 0.0, // 范围[0, 1]，直接计算Alpha值差异的相对值// 去掉
     "brightness_difference": 0.0, // 范围[0, 1]，计算HSL/HSV的L或V值差异
     "saturation_difference": 0.0 // 范围[0, 1]，计算HSL/HSV的S值差异
     "stroke_color_similarity": 0.0 // 边框色相似度，范围[0, 1],使用CIEDE2000或其他色差算法计算, 使用CIEDE2000或其他色差算法计算  //理由
@@ -86,6 +86,42 @@ BBOX的格式：
     0.333
 ]
 
+特征向量：
+[
+tag_encode,
+fill_hsl(h),
+fill_hsl(s),
+fill_hsl(l),
+stroke_hsl(h),
+stroke_hsl(s),
+stroke_hsl(l),
+layer_1,  //lyaer的桶处理结果（分桶（Bucketing）用于将连续数据转换为离散的类别或者将数据范围内的值转换为标准格式,对于基于距离的模型特别有用）
+layer_2,
+layer_3,
+layer_4,
+layer_5,
+layer_6,
+layer_7,
+layer_8,
+layer_9,
+layer_10,
+layer_11,
+layer_12,
+layer_13,
+layer_14,
+layer_15,
+text_content,
+top,
+bottom,
+left,
+right,
+center_X
+center_y
+width,
+height,
+area
+]
+
 
 再计算weight之前，先进行权重的预处理
 为避免过多相近节点重复渲染，当两个节点的特征矩阵十分接近的时候，则另一个节点不再参与后续的相似矩阵计算，并被加入到待删集，从community_data.json删去（类似取平均）
@@ -94,6 +130,7 @@ BBOX的格式：
 根据不同的weight进行不同的社区检查
 打算先设定为三组，一组社区将color_similarity、tag_similarity、position_similarity都考虑进去，第二组分别考虑其中的两组，第三组分别考虑三种similarity中的单独一种
 最后生成
+
 
 对于社区检测中一个节点处于不同group的考虑：
 ①所有节点都有一个初始的尽量细致的分组，然后后续的分组都是初始分组的排列组合，即每个节点都只有一个group编号(如果初始分组不细致，后序的排列组合也不准确，好处是处理起来比较方便):
