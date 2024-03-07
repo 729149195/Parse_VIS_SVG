@@ -1,47 +1,47 @@
 [
     {
+        "tag": "g",
+        "num": 14,
+        "visible": false
+    },
+    {
+        "tag": "a",
+        "num": 1,
+        "visible": true
+    },
+    {
         "tag": "text",
-        "num": 2,
+        "num": 19,
+        "visible": true
+    },
+    {
+        "tag": "path",
+        "num": 17,
         "visible": true
     },
     {
         "tag": "line",
-        "num": 1,
-        "visible": true
-    },
-    {
-        "tag": "polyline",
-        "num": 1,
-        "visible": true
-    },
-    {
-        "tag": "polygon",
-        "num": 1,
-        "visible": true
-    },
-    {
-        "tag": "ellipse",
-        "num": 2,
-        "visible": true
-    },
-    {
-        "tag": "g",
-        "num": 4,
-        "visible": false
-    },
-    {
-        "tag": "path",
-        "num": 3,
+        "num": 6,
         "visible": true
     },
     {
         "tag": "circle",
-        "num": 1,
+        "num": 173,
         "visible": true
     },
     {
-        "tag": "rect",
+        "tag": "tspan",
         "num": 2,
         "visible": true
+    },
+    {
+        "tag": "marker",
+        "num": 2,
+        "visible": false
+    },
+    {
+        "tag": "style",
+        "num": 1,
+        "visible": false
     }
 ]

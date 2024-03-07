@@ -1,8 +1,9 @@
 import json
 import colorsys
+import os
 
-init_json_file_path = '../GMoutput/extracted_nodes.json'
-output_json_file_path = '../GMoutput/feature_vectors.json'
+init_json_file_path = 'extracted_json/1.svg.json'
+output_json_file_path = 'feature_vectors.json'
 features = []
 # 定义桶的数量
 NUM_BUCKETS = 15
@@ -19,7 +20,6 @@ for node_id, node_data in data.items():
     if layer_values:
         current_max_layer = max(map(int, layer_values))
         max_layer = max(max_layer, current_max_layer)
-
 
 def tag_mapping(svg_tag):
     tag_map = {tag_name: key for key, tag_name in enumerate([
@@ -79,10 +79,15 @@ def extract_bbox_features(bbox_data):
     else:
         is_complex_shape = False
     if is_complex_shape:
-        min_left = min(subitem[0] for item in bbox_data for subitem in item)
-        min_top = min(subitem[1] for item in bbox_data for subitem in item)
-        max_right = max(subitem[0] for item in bbox_data for subitem in item)
-        max_bottom = max(subitem[1] for item in bbox_data for subitem in item)
+        valid_subitems = [subitem for item in bbox_data if isinstance(item, list) for subitem in item if
+                          isinstance(subitem, (list, tuple)) and len(subitem) == 2]
+        if valid_subitems:
+            min_left = min(subitem[0] for item in bbox_data for subitem in item)
+            min_top = min(subitem[1] for item in bbox_data for subitem in item)
+            max_right = max(subitem[0] for item in bbox_data for subitem in item)
+            max_bottom = max(subitem[1] for item in bbox_data for subitem in item)
+        else:
+            min_left = min_top = max_right = max_bottom  = 0.0
     else:
         min_left = min(item[0] for item in bbox_data)
         min_top = min(item[1] for item in bbox_data)
@@ -98,41 +103,58 @@ def extract_bbox_features(bbox_data):
     return round(min_top, 3), round(max_bottom, 3), round(min_left, 3), round(max_right, 3), center_x, center_y, width, height, area
 
 
-for node_id, node_data in data.items():
-    feature_vector = []
-    # 处理标签并添加到特征向量
-    tag = node_data.get("tag").split('_')[0]
-    tag_encoded = tag_mapping(tag)  # 使用One-Hot编码映射
-    feature_vector.append(tag_encoded)
+def putout_features(feature_vector):
+    output_dir = 'feature_txt'
+    os.makedirs(output_dir, exist_ok=True)
+    json_files = [file for file in os.listdir('extracted_json') if file.endswith('.json')]
+    for json_file in json_files:
+        output_txt_file = os.path.join(output_dir, json_file.replace('.json', '.txt'))
+        output_content = ""
+        output_line = f"{node_id:<30} {feature_vector}\n"
+        output_content += output_line
+        with open(output_txt_file, 'w', encoding='utf-8') as f:
+            f.write(output_content)
 
-    # 处理并分别填充fill颜色的hsl并添加到特征向量
-    fill = node_data.get("fill")
-    fill_encoded = fill_mapping(fill)
-    for value in fill_encoded:
-        feature_vector.append(value)
-
-    # 处理并处理填充stroke颜色并添加到特征向量
-    stroke = node_data.get("stroke")
-    stroke_encoded = fill_mapping(stroke)
-    for value in stroke_encoded:
-        feature_vector.append(value)
-
-    # 使用分桶（bucketing）策略加上标准化处理处理并处理填充layer颜色并添加到特征向量
-    layer = node_data.get("layer", [])
-    layer_encoded = fill_layer(layer)
-    feature_vector.extend(layer_encoded)
-
-    # 处理并处理填充text_content并添加到特征向量
-    text_content = node_data.get("text_content", "")
-    feature_vector.append(1 if text_content else 0)
-
-    # 处理并处理填充上下左右边界中点长宽高面积并添加到特征向量
-    bbox = node_data.get("bbox")
-    bbox_encoded = extract_bbox_features(bbox)
-    for value in bbox_encoded:
-        feature_vector.append(value)
+        print(f"{json_file} 的特征已成功写入到文件 {output_txt_file}")
 
 
-    # print(len(feature_vector))
-    print(f"{node_id.split('/')[len(node_id.split('/'))-1]:<15} {feature_vector}")
+def extract_features():
+    for node, datas in data.items():
+        feature_vector = []
+        # 处理标签并添加到特征向量
+        tag = datas.get("tag").split('_')[0]
+        tag_encoded = tag_mapping(tag)  # 使用One-Hot编码映射
+        feature_vector.append(tag_encoded)
 
+        # 处理并分别填充fill颜色的hsl并添加到特征向量
+        fill = datas.get("fill")
+        fill_encoded = fill_mapping(fill)
+        for value in fill_encoded:
+            feature_vector.append(value)
+
+        # 处理并处理填充stroke颜色并添加到特征向量
+        stroke = datas.get("stroke")
+        stroke_encoded = fill_mapping(stroke)
+        for value in stroke_encoded:
+            feature_vector.append(value)
+
+        # 使用分桶（bucketing）策略加上标准化处理处理并处理填充layer颜色并添加到特征向量
+        layer = datas.get("layer", [])
+        layer_encoded = fill_layer(layer)
+        feature_vector.extend(layer_encoded)
+
+        # 处理并处理填充text_content并添加到特征向量
+        text_content = datas.get("text_content", "")
+        feature_vector.append(1 if text_content else 0)
+
+        # 处理并处理填充上下左右边界中点长宽高面积并添加到特征向量
+        bbox = datas.get("bbox")
+        bbox_encoded = extract_bbox_features(bbox)
+        for value in bbox_encoded:
+            feature_vector.append(value)
+
+        # print(len(feature_vector))
+        print(f"{node.split('/')[len(node.split('/')) - 1]:<15} {feature_vector}")
+
+
+extract_features()
