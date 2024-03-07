@@ -1,10 +1,16 @@
+import json
 import os
 import torch
 from torch.utils.data import Dataset, DataLoader
-from All import ModifiedNetwork  # 确保这个路径正确指向了您定义ModifiedNetwork的模块
+# from All import ModifiedNetwork  # 确保这个路径正确指向了您定义ModifiedNetwork的模块
+from modules.Contrastive_Clustering.All import ModifiedNetwork  # 确保这个路径正确指向了您定义ModifiedNetwork的模块
 
-model_save_path = "./save/model_checkpoint.tar"  # 设置模型保存路径
-dataset_path = "./test"
+# model_save_path = "./save/model_checkpoint.tar"  # 设置模型保存路径
+# dataset_path = "./test"
+# output_file_path = '../../data/community_data.json'
+model_save_path = "./modules/Contrastive_Clustering/save/model_checkpoint.tar"  # 设置模型保存路径
+dataset_path = "./modules/Contrastive_Clustering/test"
+output_file_path = './data/community_data.json'
 
 
 class FeatureVectorDataset(Dataset):
@@ -55,28 +61,70 @@ def predict(model, dataset):
     return all_identifiers, all_predictions
 
 
-if __name__ == "__main__":
-    input_dim = 20
-    feature_dim = 20
-    class_num = 50
-    model = ModifiedNetwork(input_dim, feature_dim, class_num)
+class ClusterPredictor:
+    def __init__(self, model_save_path = model_save_path, dataset_path = dataset_path, output_file_path = output_file_path, input_dim=20, feature_dim=20, class_num=50):
+        self.model_save_path = model_save_path
+        self.dataset_path = dataset_path
+        self.output_file_path = output_file_path
+        self.input_dim = input_dim
+        self.feature_dim = feature_dim
+        self.class_num = class_num
 
-    model_save_path = model_save_path # 确保这是您模型保存的正确路径
-    dataset_path = dataset_path  # 指向您想要进行聚类预测的数据集的路径
+        # 初始化模型
+        self.model = ModifiedNetwork(self.input_dim, self.feature_dim, self.class_num)
+        self.load_model()
 
-    loaded_model = load_model(model_save_path, model)
-    dataset = FeatureVectorDataset(dataset_path)
+    def load_model(self):
+        checkpoint = torch.load(self.model_save_path, map_location=torch.device('cpu'))
+        self.model.load_state_dict(checkpoint['model_state_dict'])
 
-    identifiers, predicted_clusters = predict(loaded_model, dataset)
+    def predict(self):
+        dataset = FeatureVectorDataset(self.dataset_path)
+        loader = DataLoader(dataset, batch_size=128, shuffle=False)
+        all_identifiers = []
+        all_predictions = []
+        self.model.eval()
+        with torch.no_grad():
+            for identifiers, features in loader:
+                features = features.to(torch.device('cpu'))
+                _, c = self.model(features)
+                predicted_clusters = torch.argmax(c, dim=1)
+                all_identifiers.extend(identifiers)
+                all_predictions.extend(predicted_clusters.tolist())
+        return all_identifiers, all_predictions
 
-    unique_clusters = sorted(set(predicted_clusters))
+    def save_to_json(self, identifiers, predicted_clusters):
+        unique_clusters = sorted(set(predicted_clusters))
+        cluster_mapping = {cluster: i + 1 for i, cluster in enumerate(unique_clusters)}
+        mapped_clusters = [cluster_mapping[cluster] for cluster in predicted_clusters]
 
-    # 创建映射
-    cluster_mapping = {cluster: i+1 for i, cluster in enumerate(unique_clusters)}
+        # 构建 nodes
+        nodes = [{"id": identifier, "group": mapped_cluster} for identifier, mapped_cluster in
+                 zip(identifiers, mapped_clusters)]
 
-    # 映射聚类编号
-    mapped_clusters = [cluster_mapping[cluster] for cluster in predicted_clusters]
+        # 构建 links
+        links = []
+        cluster_to_identifiers = {}
+        for identifier, mapped_cluster in zip(identifiers, mapped_clusters):
+            if mapped_cluster not in cluster_to_identifiers:
+                cluster_to_identifiers[mapped_cluster] = []
+            cluster_to_identifiers[mapped_cluster].append(identifier)
 
-    for identifier, mapped_cluster in zip(identifiers, mapped_clusters):
-        print(f"{identifier}, Mapped Cluster: {mapped_cluster}")
+        for cluster, ids in cluster_to_identifiers.items():
+            for i in range(len(ids)):
+                for j in range(i + 1, len(ids)):
+                    links.append({"source": ids[i], "target": ids[j], "value": 1})
 
+        output_data = {"nodes": nodes, "links": links}
+
+        with open(self.output_file_path, 'w') as f:
+            json.dump(output_data, f, indent=4)
+        print(f"Output saved to {self.output_file_path}")
+
+    def run(self):
+        identifiers, predicted_clusters = self.predict()
+        self.save_to_json(identifiers, predicted_clusters)
+
+
+# predictor = ClusterPredictor()
+# predictor.run()

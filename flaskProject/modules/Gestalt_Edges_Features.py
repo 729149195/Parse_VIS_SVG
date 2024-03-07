@@ -724,26 +724,6 @@ class GestaltSimilarityCalculator:
             weight += position_similarity[key] / 13
         return round(weight, 3)
 
-    # def calculate_gestalt_matrix(self, node_attrs, other_node_attrs):
-    #     color_similarity = self.calculate_color_similarity(node_attrs, other_node_attrs)
-    #     tag_similarity = self.calculate_tag_similarity(node_attrs, other_node_attrs)
-    #     position_similarity = self.calculate_position_similarity(node_attrs, other_node_attrs)
-    #     gestalt_features_values = []
-    #     for key in color_similarity:
-    #         print(type(key))
-    #         color_similarity[key] *= 1
-    #     for key in tag_similarity:
-    #         tag_similarity[key] *= 1
-    #     for key in position_similarity:
-    #         position_similarity[key] *= 1
-    #     color_similarity = list(color_similarity.values())
-    #     tag_similarity = list(tag_similarity.values())
-    #     position_similarity = list(position_similarity.values())
-    #     gestalt_features_values.extend(color_similarity)
-    #     gestalt_features_values.extend(tag_similarity)
-    #     gestalt_features_values.extend(position_similarity)
-    #     return gestalt_features_values
-
 
     def save_to_file(self):
         output_data = {"Gestalt_Edges": self.edges}
