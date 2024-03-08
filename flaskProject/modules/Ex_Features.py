@@ -1,10 +1,14 @@
 import json
 import colorsys
 import os
+import numpy as np
 from tqdm import tqdm
+
 
 json_file_path = './GMoutput/extracted_nodes.json'
 output_dir = './modules/Contrastive_Clustering/test'  # 指定输出目录
+# json_file_path = '../GMoutput/extracted_nodes.json'
+# output_dir = './modules/Contrastive_Clustering/test'  # 指定输出目录
 
 class SVGFeatureExtractor:
     def __init__(self, json_file_path = json_file_path, output_dir=output_dir, num_buckets=15):
@@ -84,11 +88,15 @@ class SVGFeatureExtractor:
         output_txt_file = os.path.join(self.output_dir, os.path.basename(json_file_path).replace('.json', '.txt'))
         with open(json_file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        output_content = ""
-        for node_id, node_data in tqdm(data.items(), desc=f"Processing {os.path.basename(json_file_path)}", colour='green'):
+
+        identifiers = []
+        features = []
+
+        for node_id, node_data in tqdm(data.items(), desc=f"Processing {os.path.basename(json_file_path)}",
+                                       colour='green'):
             feature_vector = []
-            tag = node_data.get("tag", "").split('_')[0]
-            feature_vector.append(self.tag_mapping(tag))
+            tag = self.tag_mapping(node_data.get("tag", "").split('_')[0])
+            feature_vector.append(tag)
 
             opacity_encoded = node_data.get("opacity", 1)
             feature_vector.append(float(opacity_encoded))
@@ -111,14 +119,29 @@ class SVGFeatureExtractor:
             bbox_encoded = self.extract_bbox_features(node_data.get("bbox", []))
             feature_vector.extend(bbox_encoded)
 
-            # print(len(feature_vector))
+            identifiers.append(node_id)
+            features.append(feature_vector)
 
-            feature_vector_str = ' '.join(map(str, feature_vector))
-            output_line = f"{node_id:<40} {feature_vector_str}\n"
-            output_content += output_line
+        # 转换为numpy数组以便于处理
+        features = np.array(features, dtype=float)
+
+        # 归一化处理，除了第一列和第二列外的所有列
+        for col in range(2, features.shape[1]):  # 从第二列开始
+            col_data = features[:, col]
+            min_val = np.min(col_data)
+            max_val = np.max(col_data)
+            # 防止除以0的情况
+            if max_val > min_val:
+                features[:, col] = (col_data - min_val) / (max_val - min_val)
+
+        # 写入文件
         with open(output_txt_file, 'w', encoding='utf-8') as f:
-            f.write(output_content)
+            for identifier, feature_vector in zip(identifiers, features):
+                feature_vector_str = ' '.join(map(str, feature_vector))
+                f.write(f"{identifier} {feature_vector_str}\n")
         # print(f"Features for {os.path.basename(json_file_path)} written to {output_txt_file}")
+
+
 
     def process_all_json_files(self):
         json_files = [os.path.join(self.input_file, f) for f in os.listdir(self.input_file) if f.endswith('.json')]
@@ -127,8 +150,8 @@ class SVGFeatureExtractor:
 
 
 # Example usage
-# extractor = SVGFeatureExtractor()
-# extractor.process_specific_json_file()  # 调用处理特定json文件的方法
+extractor = SVGFeatureExtractor()
+extractor.process_specific_json_file()  # 调用处理特定json文件的方法
 
 
 

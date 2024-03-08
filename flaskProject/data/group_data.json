@@ -1,7 +1,23 @@
 [
     {
+        "group": 4,
+        "num": 1
+    },
+    {
+        "group": 3,
+        "num": 2
+    },
+    {
         "group": 2,
-        "num": 244
+        "num": 146
+    },
+    {
+        "group": 6,
+        "num": 61
+    },
+    {
+        "group": 5,
+        "num": 2
     },
     {
         "group": 1,

@@ -5,12 +5,12 @@ import os
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.functional import normalize
 
-epochs = 800
+epochs = 300
 temperature = 0.5
 batch_size = 30
 learning_rate = 0.0003
 dataset_path = "./feature_txt"
-model_save_path = "./save/model_checkpoint.tar"  # 设置模型保存路径
+model_save_path = "save/model_checkpoint.tar"  # 设置模型保存路径
 
 class InstanceLoss(nn.Module):
     def __init__(self, temperature, device):
@@ -31,8 +31,6 @@ class InstanceLoss(nn.Module):
         # Create labels for matching pairs
         labels = torch.arange(N).to(self.device)
         labels = torch.cat([labels, labels], dim=0)  # Labels for both z_i and z_j
-
-        # Positive samples: Matching pairs (diagonal of each half of the similarity matrix)
         positives = torch.cat([torch.diag(sim[:N, N:]), torch.diag(sim[N:, :N])], dim=0)
 
         # Mask to select negative samples
