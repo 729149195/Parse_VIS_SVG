@@ -5,10 +5,10 @@ import os
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.functional import normalize
 
-epochs = 300
+epochs = 1800
 temperature = 0.5
-batch_size = 30
-learning_rate = 0.0003
+batch_size = 32
+learning_rate = 0.0001
 dataset_path = "./feature_txt"
 model_save_path = "save/model_checkpoint.tar"  # 设置模型保存路径
 

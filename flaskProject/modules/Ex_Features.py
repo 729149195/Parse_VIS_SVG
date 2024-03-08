@@ -149,9 +149,9 @@ class SVGFeatureExtractor:
             self.process_file(json_file)
 
 
-# Example usage
-extractor = SVGFeatureExtractor()
-extractor.process_specific_json_file()  # 调用处理特定json文件的方法
+# # Example usage
+# extractor = SVGFeatureExtractor()
+# extractor.process_specific_json_file()  # 调用处理特定json文件的方法
 
 
 

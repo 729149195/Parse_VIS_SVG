@@ -34,7 +34,7 @@
                 <div v-html="selectedSvg" class="svg-container" v-if="gmInfoData"></div>
               </el-card>
               <el-card style="width: 50%; margin:3px;" shadow="hover"><span
-                  class="card_title">community_detection</span><br>
+                  class="card_title">community_detection <el-icon style="position: relative; top:0.2em; cursor: pointer;"  @click="refresh"><Refresh /></el-icon></span><br>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
                 <CommunityDetection :key="updateKey" v-if="gmInfoData" />
               </el-card>
@@ -66,19 +66,17 @@
       <span style="font-size:1.1em; font-weight: 700;;"> Perceived results and recommendations :</span>
       <!-- 结果卡片 -->
       <el-card class="box-card-result" shadow="hover">
-        <!-- <template #content>元素比例 <br /> 横轴（元素类别）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template> -->
         <el-card shadow="hover" style=" width: 18%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <HisEleProportions v-if="gmInfoData" />
         </el-card>
 
-        <!-- <template #content> 属性比例 <br /> 横轴（元素属性）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素</template> -->
         <el-card shadow="hover" style=" width: 52%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <div>
-          <el-dropdown :hide-on-click="false" v-if="gmInfoData">
-            <span class="el-dropdown-link">
-              Other<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          <el-dropdown  trigger="click" v-if="gmInfoData">
+            <span class="el-dropdown-link" style="cursor: pointer;">
+              <el-icon><Filter /></el-icon>Other Vis
             </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -113,13 +111,10 @@
             </el-card>
           </el-tooltip> -->
 
-        <!-- <template #content> 社区散点（当前） ⇄ 社区直方<br /> 横轴（社区编号）<br /> 纵：(社区大小) <br />灰色/蓝色为不可视/可视元素</template>-->
-        <!-- <template #content v-if="!changeSH"> 社区直方（当前） ⇄ 社区散点 <br /> 横轴（社区编号）<br /> 纵：(社区强度)
-              <br />灰色/蓝色为不可视/可视元素</template> -->
+        
         <el-card shadow="hover" style=" width: 28%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <ScatCommunity v-if="gmInfoData" />
-          <!-- <HisCommunity v-if="!changeSH" /> -->
         </el-card>
       </el-card>
 
@@ -134,9 +129,7 @@ import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
 import HisEleProportions from './His-EleProportions.vue';
 import HisAttrProportionsVue from './His-AttrProportions.vue';
-import HisBbox from './His-bbox.vue';
 import ScatCommunity from './Scat-community.vue';
-import HisCommunity from './His-community.vue';
 import { ArrowDown } from '@element-plus/icons-vue'
 
 const changeSH = ref(true)
@@ -172,6 +165,14 @@ watch(selectedNodeIds, () => {
     }
   });
 });
+
+const refresh = () =>{
+  const svgContainer = document.querySelector('.svg-container');
+  const svg = svgContainer.querySelector('svg');
+  svg.querySelectorAll('*').forEach(node => {
+    node.style.opacity = '1';
+  })
+}
 
 const refreshComponent = () => {
   updateKey.value++;

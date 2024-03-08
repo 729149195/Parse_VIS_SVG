@@ -1,146 +1,110 @@
 [
     {
+        "attribute": "version",
+        "num": 142
+    },
+    {
         "attribute": "class",
-        "num": 236
-    },
-    {
-        "attribute": "fill",
-        "num": 236
-    },
-    {
-        "attribute": "font-family",
-        "num": 236
-    },
-    {
-        "attribute": "font-size",
-        "num": 236
-    },
-    {
-        "attribute": "text-anchor",
-        "num": 236
+        "num": 142
     },
     {
         "attribute": "viewBox",
-        "num": 236
+        "num": 142
     },
     {
         "attribute": "style",
-        "num": 236
+        "num": 142
     },
     {
-        "attribute": "id",
-        "num": 8
+        "attribute": "fill",
+        "num": 141
+    },
+    {
+        "attribute": "stroke-miterlimit",
+        "num": 141
     },
     {
         "attribute": "transform",
-        "num": 46
+        "num": 141
     },
     {
-        "attribute": "{http://www.w3.org/1999/xlink}href",
-        "num": 2
+        "attribute": "role",
+        "num": 140
     },
     {
-        "attribute": "x",
-        "num": 21
+        "attribute": "aria-roledescription",
+        "num": 140
     },
     {
-        "attribute": "y",
-        "num": 21
+        "attribute": "aria-hidden",
+        "num": 28
     },
     {
-        "attribute": "dy",
-        "num": 27
-    },
-    {
-        "attribute": "aria-label",
-        "num": 230
-    },
-    {
-        "attribute": "stroke",
-        "num": 209
-    },
-    {
-        "attribute": "pointer-events",
-        "num": 1
-    },
-    {
-        "attribute": "stroke-width",
-        "num": 9
-    },
-    {
-        "attribute": "stroke-linejoin",
-        "num": 11
-    },
-    {
-        "attribute": "stroke-linecap",
+        "attribute": "display",
         "num": 8
     },
     {
-        "attribute": "paint-order",
-        "num": 3
+        "attribute": "aria-label",
+        "num": 119
     },
     {
-        "attribute": "stroke-dasharray",
-        "num": 3
+        "attribute": "pointer-events",
+        "num": 87
     },
     {
-        "attribute": "x1",
-        "num": 6
+        "attribute": "text-anchor",
+        "num": 26
     },
     {
-        "attribute": "x2",
-        "num": 6
+        "attribute": "font-family",
+        "num": 26
     },
     {
-        "attribute": "y1",
-        "num": 6
-    },
-    {
-        "attribute": "y2",
-        "num": 6
-    },
-    {
-        "attribute": "cx",
-        "num": 173
-    },
-    {
-        "attribute": "cy",
-        "num": 173
-    },
-    {
-        "attribute": "r",
-        "num": 173
+        "attribute": "font-size",
+        "num": 26
     },
     {
         "attribute": "font-weight",
-        "num": 4
+        "num": 3
     },
     {
-        "attribute": "marker-start",
-        "num": 1
+        "attribute": "opacity",
+        "num": 61
     },
     {
-        "attribute": "marker-end",
-        "num": 1
+        "attribute": "x",
+        "num": 26
     },
     {
-        "attribute": "markerWidth",
-        "num": 4
+        "attribute": "y",
+        "num": 26
     },
     {
-        "attribute": "markerHeight",
-        "num": 4
+        "attribute": "dy",
+        "num": 57
     },
     {
-        "attribute": "orient",
-        "num": 4
+        "attribute": "stroke-width",
+        "num": 33
     },
     {
-        "attribute": "font-variant",
-        "num": 15
+        "attribute": "x2",
+        "num": 31
     },
     {
-        "attribute": "stroke-opacity",
-        "num": 5
+        "attribute": "y2",
+        "num": 31
+    },
+    {
+        "attribute": "stroke",
+        "num": 32
+    },
+    {
+        "attribute": "x1",
+        "num": 31
+    },
+    {
+        "attribute": "y1",
+        "num": 31
     }
 ]

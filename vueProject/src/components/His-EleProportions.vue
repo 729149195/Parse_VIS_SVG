@@ -104,9 +104,9 @@ const render = (data) => {
         .attr("transform", `translate(${width / 2},${height - 5})`)
         .style("text-anchor", "middle")
         .style("font-size", "10px")
-        .attr("dx", "6.5em")
+        .attr("dx", "5.5em")
         .attr("dy", ".25em")
-        .text("Ele Tag ➡");
+        .text("Element Tag");
 
     // 添加 y 轴图例
     svg.append("text")
@@ -115,9 +115,9 @@ const render = (data) => {
         .attr("x", 0 - (height / 2))
         .style("text-anchor", "middle")
         .style("font-size", "12px")
-        .attr("dx", "5.15em")
+        .attr("dx", "4.50em")
         .attr("dy", "-.2em")
-        .text("Ele Number ➡");
+        .text("Element Number");
 
     zoom(svg);
 };
