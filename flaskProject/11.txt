@@ -1,8 +1,3 @@
-//只对矩形，看单独标签
-//归一化
-//看相似度
-
-
 谁远谁近
 区分颜色
 
@@ -11,19 +6,9 @@
 二级表
 
 
-自转：mirror_features_horizontally
-
-
-cluter里加入自传
-
-
 1、颜色维度拆开
 2、位置
 3、tag
-
-
-①位置单独
-②tag+大小+颜色
 
 
 元素属性的多样性
@@ -32,3 +17,27 @@ cluter里加入自传
 !!!!!path数量
 ！！！！hsl颜色数值对不上
 再看颠倒
+
+
+
+
+
+
+
+不可见过滤
+显示自转节点
+
+is_visible = tag.split("_")[0] not in [
+                "svg",
+                "g",
+                "defs",
+                "clipPath",
+                "mask",
+                "pattern",
+                "marker",
+                "style",
+]
+
+书
+框图
+

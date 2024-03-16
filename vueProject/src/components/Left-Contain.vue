@@ -19,10 +19,10 @@
                 <img :src="svgPreview" alt="SVG Preview" class="svg-preview" />
             </el-card>
             <el-button type="primary" @click="evaluateSVG" class="evaluate-button">Process</el-button>
-            <!-- <el-card style="margin-top: 5px;">
+            <el-card style="margin-top: 5px;">
              <span v-if="selectedCommunity" style="color: steelblue; font-size: 13px;">
                       The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</span>
-            </el-card> -->
+            </el-card>
         </div>
     </el-scrollbar>
 </template>

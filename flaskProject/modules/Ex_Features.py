@@ -4,14 +4,15 @@ import os
 import numpy as np
 from tqdm import tqdm
 
-
 json_file_path = './GMoutput/extracted_nodes.json'
 output_dir = './modules/Contrastive_Clustering/test'  # 指定输出目录
+
+
 # json_file_path = '../GMoutput/extracted_nodes.json'
 # output_dir = './modules/Contrastive_Clustering/test'  # 指定输出目录
 
 class SVGFeatureExtractor:
-    def __init__(self, json_file_path = json_file_path, output_dir=output_dir, num_buckets=15):
+    def __init__(self, json_file_path=json_file_path, output_dir=output_dir, num_buckets=15):
         self.json_file_path = json_file_path  # 直接使用特定的json文件路径
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
@@ -27,8 +28,9 @@ class SVGFeatureExtractor:
             "svg", "g", "path", "rect", "circle", "ellipse", "line", "polyline",
             "polygon", "text", "image", "use", "defs", "symbol", "marker", "pattern",
             "mask", "filter", "linearGradient", "radialGradient", "stop", "clipPath",
-            "textPath", "tspan", "a", "foreignObject", "solidColor", "linearGradient", "radialGradient", "pattern", "hatch",
-            "mesh","title"
+            "textPath", "tspan", "a", "foreignObject", "solidColor", "linearGradient", "radialGradient", "pattern",
+            "hatch",
+            "mesh", "title"
         ])}
         return tag_map.get(svg_tag, -1)
 
@@ -67,7 +69,8 @@ class SVGFeatureExtractor:
             return [0.0] * 9
         is_complex_shape = any(isinstance(subitem, (list, tuple)) for item in bbox_data for subitem in item)
         if is_complex_shape:
-            valid_subitems = [subitem for item in bbox_data for subitem in item if isinstance(subitem, (list, tuple)) and len(subitem) == 2]
+            valid_subitems = [subitem for item in bbox_data for subitem in item if
+                              isinstance(subitem, (list, tuple)) and len(subitem) == 2]
             min_left = min(subitem[0] for subitem in valid_subitems) if valid_subitems else 0
             min_top = min(subitem[1] for subitem in valid_subitems) if valid_subitems else 0
             max_right = max(subitem[0] for subitem in valid_subitems) if valid_subitems else 0
@@ -82,7 +85,8 @@ class SVGFeatureExtractor:
         width = round(max_right - min_left, 3)
         height = round(max_bottom - min_top, 3)
         area = round(width * height, 3)
-        return [round(min_top, 3), round(max_bottom, 3), round(min_left, 3), round(max_right, 3), center_x, center_y, width, height, area]
+        return [round(min_top, 3), round(max_bottom, 3), round(min_left, 3), round(max_right, 3), center_x, center_y,
+                width, height, area]
 
     def process_file(self, json_file_path):
         output_txt_file = os.path.join(self.output_dir, os.path.basename(json_file_path).replace('.json', '.txt'))
@@ -119,7 +123,20 @@ class SVGFeatureExtractor:
             bbox_encoded = self.extract_bbox_features(node_data.get("bbox", []))
             feature_vector.extend(bbox_encoded)
 
+            # # 假设bbox占用末尾的8个位置
+            # bbox_length = 8
+            # # 现在我们将特征向量中除了bbox之外的所有值设置为0
+            # non_bbox_length = len(feature_vector) - bbox_length
+            # modified_feature_vector = [0] * non_bbox_length + feature_vector[-bbox_length:]
+
+            # 创建一个新的特征向量，除了fill和stroke相关特征外，其他都设置为0
+            # modified_feature_vector = [0] * len(feature_vector)
+            # # 保留fill和stroke相关的特征，这里是索引2到7的位置
+            # modified_feature_vector[0] = feature_vector[0]
+            # modified_feature_vector[2:8] = feature_vector[2:8]
+
             identifiers.append(node_id)
+            # features.append(modified_feature_vector)
             features.append(feature_vector)
 
         # 转换为numpy数组以便于处理
@@ -141,17 +158,11 @@ class SVGFeatureExtractor:
                 f.write(f"{identifier} {feature_vector_str}\n")
         # print(f"Features for {os.path.basename(json_file_path)} written to {output_txt_file}")
 
-
-
     def process_all_json_files(self):
         json_files = [os.path.join(self.input_file, f) for f in os.listdir(self.input_file) if f.endswith('.json')]
         for json_file in tqdm(json_files, desc="Overall Progress", colour='blue'):
             self.process_file(json_file)
 
-
 # # Example usage
 # extractor = SVGFeatureExtractor()
 # extractor.process_specific_json_file()  # 调用处理特定json文件的方法
-
-
-

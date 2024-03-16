@@ -5,12 +5,13 @@ import os
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.functional import normalize
 
-epochs = 300
+epochs = 100
 temperature = 0.5
 batch_size = 128
 learning_rate = 0.003
 dataset_path = "./feature_txt"
-model_save_path = "save/model_checkpoint_6_300.tar"  # 设置模型保存路径
+model_save_path = "save/model_checkpoint_self.tar"  # 设置模型保存路径
+
 
 class InstanceLoss(nn.Module):
     def __init__(self, temperature, device):
@@ -134,25 +135,47 @@ class FeatureVectorDataset(Dataset):
         return torch.tensor(self.features[idx], dtype=torch.float32)
 
 
-def mirror_features_horizontally(features, canvas_width):
+# def mirror_features_horizontally(features, canvas_width):
+#     # 假设 features 的顺序是 [tag_encode, opacity, ..., left, right, ..., center_x, ...]
+#     left_index = 13  # 示例索引，实际应根据特征向量的结构调整
+#     right_index = 14
+#     center_x_index = 15
+#     # 水平镜像操作
+#     mirrored_features = features.clone()
+#     mirrored_features[:, left_index] = canvas_width - features[:, right_index]
+#     mirrored_features[:, right_index] = canvas_width - features[:, left_index]
+#     mirrored_features[:, center_x_index] = canvas_width - features[:, center_x_index]
+#
+#     return mirrored_features
+
+# def apply_feature_transformation(features):
+#     # 假设画布宽度是一个固定值，这里需要根据您的实际情况来设置
+#     canvas_width = 500  # 例如，如果您的坐标系统的宽度范围是从0到1000
+#     # 对特征进行镜像变换
+#     mirrored_features = mirror_features_horizontally(features, canvas_width)
+#     return mirrored_features
+
+def mirror_features_horizontally(features):
     # 假设 features 的顺序是 [tag_encode, opacity, ..., left, right, ..., center_x, ...]
     left_index = 13  # 示例索引，实际应根据特征向量的结构调整
     right_index = 14
     center_x_index = 15
-    # 水平镜像操作
+    # 单个元素的水平镜像操作
     mirrored_features = features.clone()
-    mirrored_features[:, left_index] = canvas_width - features[:, right_index]
-    mirrored_features[:, right_index] = canvas_width - features[:, left_index]
-    mirrored_features[:, center_x_index] = canvas_width - features[:, center_x_index]
+
+    # 计算每个元素的宽度
+    width = features[:, right_index] - features[:, left_index]
+
+    # 调整 left 和 right 使其相对于 center_x 进行镜像
+    mirrored_features[:, left_index] = features[:, center_x_index] - (width / 2)
+    mirrored_features[:, right_index] = features[:, center_x_index] + (width / 2)
 
     return mirrored_features
 
 
 def apply_feature_transformation(features):
-    # 假设画布宽度是一个固定值，这里需要根据您的实际情况来设置
-    canvas_width = 500  # 例如，如果您的坐标系统的宽度范围是从0到1000
     # 对特征进行镜像变换
-    mirrored_features = mirror_features_horizontally(features, canvas_width)
+    mirrored_features = mirror_features_horizontally(features)
     return mirrored_features
 
 
@@ -211,7 +234,7 @@ if __name__ == "__main__":
                                  device=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     cluster_loss = DynamicClusterLoss(temperature=temperature,
                                       device=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
-    optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     dataset_path = dataset_path
     dataset = FeatureVectorDataset(dataset_path)
     model_save_path = model_save_path

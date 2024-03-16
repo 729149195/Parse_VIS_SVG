@@ -4,7 +4,6 @@ from colormath.color_diff import delta_e_cie2000
 from colormath.color_conversions import convert_color
 from collections import Counter
 
-
 # 假定的文件路径，这里作为示例，实际路径可能需要调整
 input_nodes_file = './GMoutput/GMinfo.json'
 output_nodes_file = './GMoutput/extracted_nodes.json'
@@ -45,6 +44,15 @@ class NodeExtractor:
             tag = attributes['Attributes']['tag']
             attrs = attributes['Attributes']['attributes']
             visible = attributes['Attributes']['visible']
+
+            fill = attrs.get('fill', 'empty')
+            stroke = attrs.get('stroke', 'empty')
+
+            if not visible or (fill == stroke) or (fill in ['None', 'empty'] and stroke in ['None', 'empty']):
+                continue
+
+            print(tag, fill, stroke)
+
             level = attributes['Attributes']['level']
             layer = attributes['Attributes']['layer'].split('_')
             text_content = attributes['Attributes']['text_content']
@@ -59,7 +67,7 @@ class NodeExtractor:
                 'opacity': attrs.get('opacity', 1),
                 'level': level,
                 'layer': layer,
-                'text_content': text_content
+                'text_content': text_content,
             }
 
             if tag.split('_')[0] == "path":
@@ -69,7 +77,6 @@ class NodeExtractor:
                 bboxs = path_to_lines.get_bboxs()
                 if len(bboxs) == 0:
                     bboxs = [[0, 0], [0, 0], [0, 0]]
-                # print(bboxs)
                 extracted_attrs['bbox'] = bboxs
                 extracted_nodes[node] = extracted_attrs
 
@@ -198,8 +205,10 @@ class PathToLines:
         for step in range(1, steps + 1):
             t = step / steps
             # 三次贝塞尔曲线方程
-            bx = (1 - t)**3 * start[0] + 3 * (1 - t)**2 * t * control1[0] + 3 * (1 - t) * t**2 * control2[0] + t**3 * end[0]
-            by = (1 - t)**3 * start[1] + 3 * (1 - t)**2 * t * control1[1] + 3 * (1 - t) * t**2 * control2[1] + t**3 * end[1]
+            bx = (1 - t) ** 3 * start[0] + 3 * (1 - t) ** 2 * t * control1[0] + 3 * (1 - t) * t ** 2 * control2[
+                0] + t ** 3 * end[0]
+            by = (1 - t) ** 3 * start[1] + 3 * (1 - t) ** 2 * t * control1[1] + 3 * (1 - t) * t ** 2 * control2[
+                1] + t ** 3 * end[1]
             points.append((round(bx, 2), round(by, 2)))
 
         # 使用计算出的点更新线段和边界框列表
@@ -265,7 +274,7 @@ class GestaltSimilarityCalculator:
         if len(hex_color) == 3:
             hex_color = ''.join([c * 2 for c in hex_color])
         try:
-            return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+            return tuple(int(hex_color[i:i + 2], 16) for i in (0, 2, 4))
         except ValueError:
             return None
 
@@ -289,7 +298,7 @@ class GestaltSimilarityCalculator:
         n = len(node_ids)  # 节点总数
         for i in range(n):  # 对于每个节点
             node_id = node_ids[i]
-            for j in range(i+1, n):  # 仅与其后的节点比较
+            for j in range(i + 1, n):  # 仅与其后的节点比较
                 other_node_id = node_ids[j]
                 # 无需检查 node_id != other_node_id，因为 j 始终大于 i
                 gestalt_matrix = self.calculate_gestalt_matrix(self.nodes[node_id], self.nodes[other_node_id])
@@ -468,7 +477,7 @@ class GestaltSimilarityCalculator:
 
             # 计算交集面积
             intersection_area = (intersection_bbox[2] - intersection_bbox[0]) * (
-                        intersection_bbox[3] - intersection_bbox[1])
+                    intersection_bbox[3] - intersection_bbox[1])
 
             # 计算并集面积
             area1 = (bbox1[2] - bbox1[0]) * (bbox1[3] - bbox1[1])
@@ -518,7 +527,6 @@ class GestaltSimilarityCalculator:
             rgb1 = hex_to_rgb(fill1)
             rgb2 = hex_to_rgb(fill2)
 
-
             # 如果转换后的RGB值为None，则直接返回最低相似度0.0
             if rgb1 is None or rgb2 is None:
                 return 0.0
@@ -529,7 +537,6 @@ class GestaltSimilarityCalculator:
             # 注意：这个转换公式可能需要根据实际情况调整
             color_similarity = max(0, 1 - (color_diff / (255 * 3 ** 0.5)))
             return round(color_similarity, 3)
-
 
         fill_color_difference = calculate_fill_color_difference(fill1, fill2)
 
@@ -616,7 +623,6 @@ class GestaltSimilarityCalculator:
 
         saturation_difference = calculate_saturation_difference(fill1, fill2)
 
-
         stroke1 = node_attrs.get('stroke', '#000000')  # 默认值
         stroke2 = other_node_attrs.get('stroke', '#000000')  # 默认值
         stroke_color_similarity = self.calculate_fill_or_stroke_similarity(stroke1, stroke2)
@@ -638,6 +644,7 @@ class GestaltSimilarityCalculator:
 
             # 保留3位小数并返回
             return round(similarity, 3)
+
         # 计算stroke-width的相似度
         stroke_width_similarity = calculate_stroke_width_similarity(stroke_width1, stroke_width2)
 
@@ -664,9 +671,11 @@ class GestaltSimilarityCalculator:
         # 如果颜色转换失败（例如，无效的十六进制颜色代码），则直接返回最低相似度0.0
         if rgb1 is None or rgb2 is None:
             return 0.0
+
         def rgb_color_difference(rgb1, rgb2):
             """计算两个RGB颜色之间的欧几里得距离。"""
             return sum((c1 - c2) ** 2 for c1, c2 in zip(rgb1, rgb2)) ** 0.5
+
         # 计算RGB颜色差异，并转换为相似度
         color_diff = rgb_color_difference(rgb1, rgb2)
         color_similarity = max(0, 1 - (color_diff / (255 * 3 ** 0.5)))
@@ -724,7 +733,6 @@ class GestaltSimilarityCalculator:
             weight += position_similarity[key] / 13
         return round(weight, 3)
 
-
     def save_to_file(self):
         output_data = {"Gestalt_Edges": self.edges}
         with open(self.output_file, 'w') as file:
@@ -733,6 +741,7 @@ class GestaltSimilarityCalculator:
     def run(self):
         self.calculate_similarity()
         self.save_to_file()
+
 
 def update_graph_with_similarity_edges():
     extractor = NodeExtractor()
@@ -765,7 +774,3 @@ def update_graph_with_similarity_edges():
     # 保存修改
     with open(input_nodes_file, 'w', encoding='utf-8') as file:
         json.dump(gm_info, file, indent=4)
-
-
-
-

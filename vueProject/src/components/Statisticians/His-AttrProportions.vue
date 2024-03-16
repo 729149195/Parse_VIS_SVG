@@ -98,9 +98,9 @@ const render = (data) => {
         .attr("transform", `translate(${width / 2},${height - 5})`)
         .style("text-anchor", "middle")
         .style("font-size", "10px")
-        .attr("dx", "24em")
-        .attr("dy", ".25em")
-        .text("Community");
+        .attr("dx", "24.5em")
+        .attr("dy", "-2.25em")
+        .text("Attributes");
 
     // 添加 y 轴图例
     svg.append("text")

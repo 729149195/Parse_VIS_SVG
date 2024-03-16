@@ -131,6 +131,7 @@ class GroupCounter:
 
     def process(self):
         result_json = self._count_groups()
+        # result_json = self._count_groups()
         self._write_result_to_file(result_json)
 
     def _count_groups(self):
@@ -181,7 +182,7 @@ class ColorCounter:
                 continue  # 如果 attributes 不是字典类型，跳过此项
 
             color = attributes.get(self.attribute_name)  # 从 attributes 中获取感兴趣的颜色值
-            if color is None or color.lower() == "none":  # 忽略 None 和 "none"
+            if color is None or color.lower() in ["transparent", "none"]:  # 忽略 None 和 "none"
                 continue
 
             self.counter[color] += 1

@@ -1,82 +1,142 @@
 [
     {
-        "group": 18,
-        "num": 16
-    },
-    {
-        "group": 15,
-        "num": 3
-    },
-    {
-        "group": 4,
-        "num": 1
-    },
-    {
-        "group": 16,
-        "num": 1
-    },
-    {
-        "group": 8,
-        "num": 7
-    },
-    {
-        "group": 1,
-        "num": 5
-    },
-    {
         "group": 19,
         "num": 1
     },
     {
-        "group": 17,
-        "num": 8
+        "group": 35,
+        "num": 1
     },
     {
-        "group": 6,
+        "group": 32,
         "num": 2
+    },
+    {
+        "group": 31,
+        "num": 1
+    },
+    {
+        "group": 1,
+        "num": 2
+    },
+    {
+        "group": 29,
+        "num": 1
+    },
+    {
+        "group": 4,
+        "num": 3
+    },
+    {
+        "group": 7,
+        "num": 3
+    },
+    {
+        "group": 30,
+        "num": 4
+    },
+    {
+        "group": 18,
+        "num": 4
+    },
+    {
+        "group": 22,
+        "num": 3
+    },
+    {
+        "group": 17,
+        "num": 4
+    },
+    {
+        "group": 5,
+        "num": 1
+    },
+    {
+        "group": 11,
+        "num": 1
+    },
+    {
+        "group": 2,
+        "num": 4
+    },
+    {
+        "group": 14,
+        "num": 1
+    },
+    {
+        "group": 24,
+        "num": 1
+    },
+    {
+        "group": 8,
+        "num": 1
+    },
+    {
+        "group": 21,
+        "num": 1
+    },
+    {
+        "group": 23,
+        "num": 5
+    },
+    {
+        "group": 15,
+        "num": 1
+    },
+    {
+        "group": 13,
+        "num": 4
+    },
+    {
+        "group": 9,
+        "num": 4
+    },
+    {
+        "group": 25,
+        "num": 1
+    },
+    {
+        "group": 33,
+        "num": 1
+    },
+    {
+        "group": 27,
+        "num": 5
+    },
+    {
+        "group": 10,
+        "num": 2
+    },
+    {
+        "group": 26,
+        "num": 3
+    },
+    {
+        "group": 28,
+        "num": 4
     },
     {
         "group": 20,
         "num": 3
     },
     {
-        "group": 11,
-        "num": 12
-    },
-    {
-        "group": 13,
-        "num": 1
-    },
-    {
-        "group": 9,
-        "num": 3
-    },
-    {
-        "group": 14,
-        "num": 4
+        "group": 6,
+        "num": 5
     },
     {
         "group": 3,
-        "num": 12
+        "num": 4
     },
     {
-        "group": 2,
+        "group": 16,
         "num": 1
     },
     {
-        "group": 10,
-        "num": 10
-    },
-    {
-        "group": 7,
-        "num": 7
+        "group": 34,
+        "num": 3
     },
     {
         "group": 12,
-        "num": 2
-    },
-    {
-        "group": 5,
-        "num": 2
+        "num": 1
     }
 ]

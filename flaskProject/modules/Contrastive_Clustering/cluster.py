@@ -12,7 +12,7 @@ from modules.Contrastive_Clustering.All import ModifiedNetwork  # 确保这个�
 # probabilities_file_path = '../../data/cluster_probabilities.json'  # 新增：聚类概率保存路径
 
 
-model_save_path = "./modules/Contrastive_Clustering/save/model_checkpoint_6_300.tar"  # 设置模型保存路径
+model_save_path = "./modules/Contrastive_Clustering/save/model_checkpoint_self.tar"  # 设置模型保存路径
 dataset_path = "./modules/Contrastive_Clustering/test"
 output_file_path = './data/community_data.json'
 probabilities_file_path = './data/cluster_probabilities.json'  # 新增：聚类概率保存路径

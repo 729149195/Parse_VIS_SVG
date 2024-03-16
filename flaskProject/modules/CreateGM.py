@@ -451,31 +451,23 @@ class SVGParser:
                 parent_path='svg',
                 level=0,
                 layer="0",
-                inherited_attrs={},
+                inherited_attrs=None,
                 layer_counter=0
         ):
             # 提取元素信息，包括标签、属性和文本内容
+            if inherited_attrs is None:
+                inherited_attrs = {}
             tag, attributes, text_content = self.extract_element_info(element, self.existing_tags)
 
             fill = attributes.get('fill')
-            # print(attributes.get('fill'))
-
-            combined_attributes = {**attributes, **inherited_attrs}
-            # combined_attributes = attributes
-            combined_attributes['fill'] = fill
-            # print(combined_attributes)
-
-
-            # print(combined_attributes)
+            combined_attributes = {**attributes, **inherited_attrs, 'fill': fill}
             # 如果元素或继承属性中有 transform，则进行合并
             if "transform" in attributes or "transform" in inherited_attrs:
                 inherited_transform = self.parse_transform(inherited_attrs.get('transform', ''))
                 own_transform = self.parse_transform(attributes.get('transform', ''))
                 # 调用 combine_transforms 方法进行 transform 的合并
                 combined_attributes['transform'] = self.combine_transforms(inherited_transform, own_transform)
-            # 4c78a8
 
-            # 计算bbox并添加到combined_attributes
             bbox = self.get_element_bbox(element, combined_attributes)
             if bbox is not None:
                 combined_attributes['bbox'] = bbox.tolist()  # 转换为列表
@@ -491,6 +483,11 @@ class SVGParser:
                 "marker",
                 "style",
             ]
+
+            if not (attributes.get('display', 'None') != 'none'):
+                is_visible = bool(0)
+
+            # print(tag, is_visible)
             self.graph.add_node(
                 node_id,
                 tag=tag,
@@ -527,135 +524,135 @@ class SVGParser:
 
         add_element_to_graph(svg_root)
 
-    # @staticmethod
-    # def compute_layout_with_progress(graph, num_steps=100, k=None):  # 使用NetworkX的弹簧布局算法(spring_layout)来计算图的布局
-    #     if k is None:
-    #         k = 1 / np.sqrt(len(graph.nodes()))
-    #     pos = nx.spring_layout(graph, k=k, iterations=20)
-    #     for _ in range(num_steps):
-    #         pos = nx.spring_layout(graph, pos=pos, k=k, iterations=20)
-    #
-    #     vertical_spacing = 0.1
-    #     layers = {}
-    #     for node, data in graph.nodes(data=True):
-    #         layers.setdefault(data["level"], []).append(node)
-    #
-    #     for level, nodes in layers.items():
-    #         x_positions = [pos[node][0] for node in nodes]
-    #         x_positions.sort()
-    #         min_x, max_x = min(x_positions), max(x_positions)
-    #         for i, node in enumerate(nodes):
-    #             new_x = min_x + (max_x - min_x) * i / (
-    #                 len(nodes) - 1 if len(nodes) > 1 else 1
-    #             )
-    #             new_y = level * vertical_spacing
-    #             pos[node] = (new_x, new_y)
-    #
-    #     return pos
+    @staticmethod
+    def compute_layout_with_progress(graph, num_steps=100, k=None):  # 使用NetworkX的弹簧布局算法(spring_layout)来计算图的布局
+        if k is None:
+            k = 1 / np.sqrt(len(graph.nodes()))
+        pos = nx.spring_layout(graph, k=k, iterations=20)
+        for _ in range(num_steps):
+            pos = nx.spring_layout(graph, pos=pos, k=k, iterations=20)
 
-    # @staticmethod
-    # def visualize_graph(graph, pos):
-    #     edge_traces = []
-    #     edge_types = set(
-    #         (data.get("style", "solid"), data.get("color", "grey"))
-    #         for _, _, data in graph.edges(data=True)
-    #     )
-    #     for style, color in edge_types:
-    #         edge_x, edge_y = [], []
-    #         for edge in graph.edges(data=True):
-    #             x0, y0 = pos[edge[0]]
-    #             x1, y1 = pos[edge[1]]
-    #             if (
-    #                     edge[2].get("style", "solid") == style
-    #                     and edge[2].get("color", "grey") == color
-    #             ):
-    #                 edge_x.extend([x0, x1, None])
-    #                 edge_y.extend([y0, y1, None])
-    #         edge_traces.append(
-    #             go.Scatter(
-    #                 x=edge_x,
-    #                 y=edge_y,
-    #                 line=dict(width=0.6, color=color),
-    #                 hoverinfo="none",
-    #                 mode="lines",
-    #                 line_shape="spline" if style == "dashed" else "linear",
-    #             )
-    #         )
-    #
-    #     (
-    #         node_x,
-    #         node_y,
-    #         node_size,
-    #         node_color,
-    #         node_shape,
-    #         node_text,
-    #         node_hover_text,
-    #     ) = [], [], [], [], [], [], []
-    #     max_layer = max(int(data["layer"]) for _, data in graph.nodes(data=True))
-    #     min_size, max_size = 10, 25
-    #     size_rate = (max_size - min_size) / (1 + max_layer)
-    #
-    #     for node, attrs in graph.nodes(data=True):
-    #         x, y = pos[node]
-    #         node_x.append(x)
-    #         node_y.append(y)
-    #
-    #         base_tag = attrs["tag"].split("_")[0]
-    #         layer_info = attrs["layer"]
-    #         layer_depth = len([int(n) for n in layer_info.split("_") if n.isdigit()])
-    #
-    #         shape = "circle"  # Default shape
-    #         if base_tag == "rect":
-    #             shape = "square"
-    #         elif base_tag == "circle":
-    #             shape = "circle"
-    #         elif base_tag in ["line", "path"]:
-    #             shape = "circle-open"
-    #
-    #         if not attrs["visible"]:
-    #             color = "lightgrey"
-    #             size = min_size
-    #         else:
-    #             hsv_color = colorsys.hsv_to_rgb(0.3 * attrs["level"], 1.0, 1.0)
-    #             color = f"rgb({int(hsv_color[0] * 255)}, {int(hsv_color[1] * 255)}, {int(hsv_color[2] * 255)})"
-    #             size = max_size - layer_depth * size_rate
-    #             size = max(size, min_size)
-    #
-    #         node_size.append(size)
-    #         node_color.append(color)
-    #         node_shape.append(shape)
-    #         node_text.append(attrs["tag"])
-    #
-    #         hover_text = (
-    #             attrs.get("text_content", "")
-    #             if attrs["tag"] == "text"
-    #             else f"Tag: {attrs['tag']}\n"
-    #                  + "\n".join(f"{key}: {val}" for key, val in attrs["attributes"].items())
-    #         )
-    #         node_hover_text.append(hover_text)
-    #
-    #     node_trace = go.Scatter(
-    #         x=node_x,
-    #         y=node_y,
-    #         mode="markers+text",
-    #         text=node_text,
-    #         hoverinfo="text",
-    #         hovertext=node_hover_text,
-    #         marker=dict(size=node_size, color=node_color, symbol=node_shape),
-    #         textposition="top center",
-    #     )
-    #
-    #     fig = go.Figure(
-    #         data=edge_traces + [node_trace],
-    #         layout=go.Layout(
-    #             showlegend=False,
-    #             hovermode="closest",
-    #             margin=dict(b=0, l=0, r=0, t=0),
-    #             xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-    #             yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-    #         ),
-    #     )
-    #     fig.show()
+        vertical_spacing = 0.1
+        layers = {}
+        for node, data in graph.nodes(data=True):
+            layers.setdefault(data["level"], []).append(node)
+
+        for level, nodes in layers.items():
+            x_positions = [pos[node][0] for node in nodes]
+            x_positions.sort()
+            min_x, max_x = min(x_positions), max(x_positions)
+            for i, node in enumerate(nodes):
+                new_x = min_x + (max_x - min_x) * i / (
+                    len(nodes) - 1 if len(nodes) > 1 else 1
+                )
+                new_y = level * vertical_spacing
+                pos[node] = (new_x, new_y)
+
+        return pos
+
+    @staticmethod
+    def visualize_graph(graph, pos):
+        edge_traces = []
+        edge_types = set(
+            (data.get("style", "solid"), data.get("color", "grey"))
+            for _, _, data in graph.edges(data=True)
+        )
+        for style, color in edge_types:
+            edge_x, edge_y = [], []
+            for edge in graph.edges(data=True):
+                x0, y0 = pos[edge[0]]
+                x1, y1 = pos[edge[1]]
+                if (
+                        edge[2].get("style", "solid") == style
+                        and edge[2].get("color", "grey") == color
+                ):
+                    edge_x.extend([x0, x1, None])
+                    edge_y.extend([y0, y1, None])
+            edge_traces.append(
+                go.Scatter(
+                    x=edge_x,
+                    y=edge_y,
+                    line=dict(width=0.6, color=color),
+                    hoverinfo="none",
+                    mode="lines",
+                    line_shape="spline" if style == "dashed" else "linear",
+                )
+            )
+
+        (
+            node_x,
+            node_y,
+            node_size,
+            node_color,
+            node_shape,
+            node_text,
+            node_hover_text,
+        ) = [], [], [], [], [], [], []
+        max_layer = max(int(data["layer"]) for _, data in graph.nodes(data=True))
+        min_size, max_size = 10, 25
+        size_rate = (max_size - min_size) / (1 + max_layer)
+
+        for node, attrs in graph.nodes(data=True):
+            x, y = pos[node]
+            node_x.append(x)
+            node_y.append(y)
+
+            base_tag = attrs["tag"].split("_")[0]
+            layer_info = attrs["layer"]
+            layer_depth = len([int(n) for n in layer_info.split("_") if n.isdigit()])
+
+            shape = "circle"  # Default shape
+            if base_tag == "rect":
+                shape = "square"
+            elif base_tag == "circle":
+                shape = "circle"
+            elif base_tag in ["line", "path"]:
+                shape = "circle-open"
+
+            if not attrs["visible"]:
+                color = "lightgrey"
+                size = min_size
+            else:
+                hsv_color = colorsys.hsv_to_rgb(0.3 * attrs["level"], 1.0, 1.0)
+                color = f"rgb({int(hsv_color[0] * 255)}, {int(hsv_color[1] * 255)}, {int(hsv_color[2] * 255)})"
+                size = max_size - layer_depth * size_rate
+                size = max(size, min_size)
+
+            node_size.append(size)
+            node_color.append(color)
+            node_shape.append(shape)
+            node_text.append(attrs["tag"])
+
+            hover_text = (
+                attrs.get("text_content", "")
+                if attrs["tag"] == "text"
+                else f"Tag: {attrs['tag']}\n"
+                     + "\n".join(f"{key}: {val}" for key, val in attrs["attributes"].items())
+            )
+            node_hover_text.append(hover_text)
+
+        node_trace = go.Scatter(
+            x=node_x,
+            y=node_y,
+            mode="markers+text",
+            text=node_text,
+            hoverinfo="text",
+            hovertext=node_hover_text,
+            marker=dict(size=node_size, color=node_color, symbol=node_shape),
+            textposition="top center",
+        )
+
+        fig = go.Figure(
+            data=edge_traces + [node_trace],
+            layout=go.Layout(
+                showlegend=False,
+                hovermode="closest",
+                margin=dict(b=0, l=0, r=0, t=0),
+                xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            ),
+        )
+        fig.show()
 
     def get_attributes(self, element):
         attributes = {}
