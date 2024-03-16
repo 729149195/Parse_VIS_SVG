@@ -34,8 +34,8 @@ const render = (data) => {
   const height = 225;
   const marginTop = 20;
   const marginRight = 10;
-  const marginBottom = 25;
-  const marginLeft = 30;
+  const marginBottom = 40;
+  const marginLeft = 45;
 
   // 修改x轴的比例尺为scalePoint，适用于散点图
   const x = d3.scalePoint()
@@ -115,7 +115,25 @@ const render = (data) => {
   //   .attr('y', d => y(d.num) - 8) // 在条形顶部稍微上方位置显示数值
   //   .attr('text-anchor', 'middle') // 确保文本居中对齐
   //   .text(d => d.num); // 设置文本内容为数值
+  // 添加 x 轴图例
+  svg.append("text")
+        .attr("transform", `translate(${width / 2},${height - 5})`)
+        .style("text-anchor", "middle")
+        .style("font-size", "10px")
+        .attr("dx", "11em")
+        .attr("dy", ".25em")
+        .text("Community");
 
+    // 添加 y 轴图例
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 15)
+        .attr("x", 0 - (height / 2))
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .attr("dx", "3.50em")
+        .attr("dy", "-.2em")
+        .text("Community Number");
 
   zoom(svg);
 };

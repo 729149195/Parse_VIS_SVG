@@ -1,5 +1,7 @@
 import json
 import re
+from collections import Counter
+
 
 class TagCounter:
     def __init__(self):
@@ -155,3 +157,51 @@ class GroupCounter:
 # 使用示例
 # counter = GroupCounter()
 # counter.process()
+
+
+class ColorCounter:
+    def __init__(self, attribute_name, input_path, output_path):
+        self.attribute_name = attribute_name  # 指定要统计的属性名（fill 或 stroke）
+        self.input_path = input_path  # 输入文件路径
+        self.output_path = output_path  # 输出文件路径
+        self.counter = Counter()  # 使用 Counter 来统计颜色值的出现次数
+
+    def process_data(self):
+        data = self._load_data()
+        self._count_colors(data)
+        self._save_counts()
+
+    def _load_data(self):
+        with open(self.input_path, 'r') as file:
+            return json.load(file)
+
+    def _count_colors(self, data):
+        for tag, attributes in data.items():  # 假设 data 是一个字典
+            if not isinstance(attributes, dict):
+                continue  # 如果 attributes 不是字典类型，跳过此项
+
+            color = attributes.get(self.attribute_name)  # 从 attributes 中获取感兴趣的颜色值
+            if color is None or color.lower() == "none":  # 忽略 None 和 "none"
+                continue
+
+            self.counter[color] += 1
+
+    def _save_counts(self):
+        with open(self.output_path, 'w') as file:
+            json.dump(dict(self.counter), file, indent=4)
+
+
+class FillColorCounter(ColorCounter):
+    def __init__(self):
+        super().__init__('fill', './GMoutput/extracted_nodes.json', './data/fill_num.json')
+
+
+class StrokeColorCounter(ColorCounter):
+    def __init__(self):
+        super().__init__('stroke', './GMoutput/extracted_nodes.json', './data/stroke_num.json')
+
+
+# fill_counter = FillColorCounter()
+# fill_counter.process_data()
+# stroke_counter = StrokeColorCounter()
+# stroke_counter.process_data()

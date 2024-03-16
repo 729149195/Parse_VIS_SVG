@@ -5,12 +5,12 @@ import os
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.functional import normalize
 
-epochs = 1800
+epochs = 300
 temperature = 0.5
-batch_size = 32
-learning_rate = 0.0001
+batch_size = 128
+learning_rate = 0.003
 dataset_path = "./feature_txt"
-model_save_path = "save/model_checkpoint.tar"  # 设置模型保存路径
+model_save_path = "save/model_checkpoint_6_300.tar"  # 设置模型保存路径
 
 class InstanceLoss(nn.Module):
     def __init__(self, temperature, device):
@@ -136,7 +136,6 @@ class FeatureVectorDataset(Dataset):
 
 def mirror_features_horizontally(features, canvas_width):
     # 假设 features 的顺序是 [tag_encode, opacity, ..., left, right, ..., center_x, ...]
-    # 注意：您需要根据实际的特征顺序调整索引
     left_index = 13  # 示例索引，实际应根据特征向量的结构调整
     right_index = 14
     center_x_index = 15

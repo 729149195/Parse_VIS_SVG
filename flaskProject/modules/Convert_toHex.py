@@ -25,6 +25,7 @@ class ColorFormatConverter:
             attributes = node_value.get("Attributes", {})
             for attr_key, attr_value in attributes.get("attributes", {}).items():
                 if attr_key in ["fill", "stroke"]:
+                    # print(self.convert_color_to_hex(attr_value))
                     attributes["attributes"][attr_key] = self.convert_color_to_hex(attr_value)
 
     def save_json_file(self):

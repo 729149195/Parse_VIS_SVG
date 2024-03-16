@@ -19,12 +19,16 @@
                 <img :src="svgPreview" alt="SVG Preview" class="svg-preview" />
             </el-card>
             <el-button type="primary" @click="evaluateSVG" class="evaluate-button">Process</el-button>
+            <!-- <el-card style="margin-top: 5px;">
+             <span v-if="selectedCommunity" style="color: steelblue; font-size: 13px;">
+                      The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</span>
+            </el-card> -->
         </div>
     </el-scrollbar>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { UploadFilled } from '@element-plus/icons-vue';
 import { useStore } from 'vuex';
 import { ElNotification } from 'element-plus'
@@ -34,6 +38,8 @@ const evaluateUrl = 'http://localhost:8000/evaluate'; // 后端处理地址
 const updatedSvg = 'http://localhost:8000/get-svg' //后端跟新svg地址
 const removefile = 'http://localhost:8000/remove' //移除文件地址
 const svgPreview = ref(null);
+const selectedCommunity = computed(() => store.state.selectedNodes.group);
+const selectedNodeIds = computed(() => store.state.selectedNodes.nodeIds);
 let currentPreviewFileName = ref("file_name"); // 保存当前预览的文件名
 const store = useStore();
 const progress = ref(0);
@@ -194,4 +200,10 @@ const evaluateSVG = async () => {
 .el-progress__text{
     min-width: 15px !important;
 }
+
+.custom-tag {
+    white-space: normal;
+    word-break: break-all;
+    padding: 4px;
+  }
 </style>

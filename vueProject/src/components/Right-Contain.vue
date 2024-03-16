@@ -6,6 +6,7 @@
         <span style="font-size:1.2em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span
             v-if="!gmInfoData">Not
             uploaded or not selected</span></span>
+
         <el-button v-if="gmInfoData" class="button" type="primary" plain><span
             style="margin-right: 3px;">导出</span><el-icon style="margin-right: -4px;">
             <Download />
@@ -20,7 +21,7 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="54.1vh">
+        <el-scrollbar height="53.47vh">
           <div style="justify-content: space-evenly;">
             <!-- <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
                 style="width: 25%; margin-right: 10px;" v-if="gmInfoData" shadow="hover"
@@ -33,23 +34,25 @@
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
                 <div v-html="selectedSvg" class="svg-container" v-if="gmInfoData"></div>
               </el-card>
-              <el-card style="width: 50%; margin:3px;" shadow="hover"><span
-                  class="card_title">community_detection <el-icon style="position: relative; top:0.2em; cursor: pointer;"  @click="refresh"><Refresh /></el-icon></span><br>
+              <el-card style="width: 50%; margin:3px;" shadow="hover"><span class="card_title">community_detection
+                  <el-icon style="position: relative; top:0.2em; cursor: pointer;" @click="refresh">
+                    <Refresh />
+                  </el-icon></span><br>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
                 <CommunityDetection :key="updateKey" v-if="gmInfoData" />
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
-              <el-card style="width: 100%; margin:3px;" shadow="hover" class="statistical">
+              <el-card style="width: 100%; margin:2px;" shadow="hover" class="statistical">
                 <el-scrollbar>
                   <el-empty description="No Data" :image-size="30" v-if="!gmInfoData" />
-                  <div style="display: flex; margin-bottom: 3px;">
+                  <div style="display: flex; margin-bottom: 2px;">
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         nodes number : {{ gmInfoData.DiGraph.nodes }}</el-tag></span>
                     <span v-if="gmInfoData"><el-tag effect="plain">
                         edges number : {{ gmInfoData.DiGraph.edges }}</el-tag></span>
-                    <!-- <span v-if="selectedCommunity"><el-tag effect="plain">
-                        Selected community : {{ selectedCommunity }}</el-tag></span> -->
+                    <span v-if="selectedCommunity"><el-tag effect="plain">
+                        Selected community : {{ selectedCommunity }}</el-tag></span>
                   </div>
                   <!-- <span v-if="selectedCommunity"><el-tag effect="plain">
                       The nodes in {{ selectedCommunity }} community : {{ selectedNodeIds.join(', ') }}</el-tag></span> -->
@@ -74,7 +77,7 @@
         <el-card shadow="hover" style=" width: 52%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <div>
-          <el-dropdown  trigger="click" v-if="gmInfoData">
+            <!-- <el-dropdown  trigger="click" v-if="gmInfoData">
             <span class="el-dropdown-link" style="cursor: pointer;">
               <el-icon><Filter /></el-icon>Other Vis
             </span>
@@ -96,9 +99,11 @@
                 <el-dropdown-item >overlap_ratio</el-dropdown-item>
               </el-dropdown-menu>
             </template>
-          </el-dropdown>
-          <HisAttrProportionsVue v-if="gmInfoData" />
-        </div>
+          </el-dropdown> -->
+            <el-cascader v-model="value_cascader" :options="options_cascader" @change="handleChange_cascader"
+              v-if="gmInfoData" />
+            <HisAttrProportionsVue v-if="gmInfoData" />
+          </div>
         </el-card>
 
         <!-- <el-tooltip placement="top">
@@ -111,7 +116,7 @@
             </el-card>
           </el-tooltip> -->
 
-        
+
         <el-card shadow="hover" style=" width: 28%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <ScatCommunity v-if="gmInfoData" />
@@ -128,12 +133,16 @@ import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
 import HisEleProportions from './His-EleProportions.vue';
-import HisAttrProportionsVue from './His-AttrProportions.vue';
+import HisAttrProportionsVue from './Statisticians/His-AttrProportions.vue';
 import ScatCommunity from './Scat-community.vue';
-import { ArrowDown } from '@element-plus/icons-vue'
 
-const changeSH = ref(true)
-const changebbox = ref(true)
+// const changeSH = ref(true)
+// const changebbox = ref(true)
+const value_cascader = ref([])
+const handleChange_cascader = (value) => {
+  alert(value)
+}
+
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
 const store = useStore();
@@ -146,6 +155,53 @@ const selectedNodeIds = computed(() => store.state.selectedNodes.nodeIds);
 const allVisiableNodes = computed(() => store.state.AllVisiableNodes);
 const baseURL = "http://localhost:8000/static/GMinfo.png";
 const lastUpdate = ref(new Date().getTime());
+
+const options_cascader = [
+  {
+    value: 'color',
+    label: 'color',
+    children: [
+      {
+        value: 'fill',
+        label: 'fill'
+      },
+      {
+        value: 'stroke',
+        label: 'stroke'
+      }
+    ]
+  },
+  {
+    value: 'edge',
+    label: 'edge',
+    children: [
+      {
+        value: 'top',
+        label: 'top'
+      },
+      {
+        value: 'bottom',
+        label: 'bottom'
+      },
+      {
+        value: 'left',
+        label: 'left'
+      },
+      {
+        value: 'right',
+        label: 'right'
+      }
+    ]
+  },
+  {
+    value: 'layer',
+    label: 'layer'
+  },
+  {
+    value: 'similarity',
+    label: 'similarity'
+  }
+]
 
 watch(selectedNodeIds, () => {
   const svgContainer = document.querySelector('.svg-container');
@@ -166,7 +222,7 @@ watch(selectedNodeIds, () => {
   });
 });
 
-const refresh = () =>{
+const refresh = () => {
   const svgContainer = document.querySelector('.svg-container');
   const svg = svgContainer.querySelector('svg');
   svg.querySelectorAll('*').forEach(node => {
@@ -333,13 +389,15 @@ const svg = `
     justify-content: space-around;
   }
 }
-.example-showcase .el-dropdown + .el-dropdown {
+
+.example-showcase .el-dropdown+.el-dropdown {
   margin-left: 15px;
 }
+
 .example-showcase .el-dropdown-link {
   cursor: pointer;
   color: var(--el-color-primary);
   display: flex;
   align-items: center;
 }
-</style>
+</style>./Statisticians/Scat-community.vue./Scat-community.vue./Statisticians/His-AttrProportions.vue

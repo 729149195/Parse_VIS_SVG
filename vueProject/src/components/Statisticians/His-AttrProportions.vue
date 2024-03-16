@@ -34,7 +34,7 @@ const render = (data) => {
     const marginTop = 20;
     const marginRight = 10;
     const marginBottom = 80;
-    const marginLeft = 30;
+    const marginLeft = 50;
 
     const x = d3.scaleBand()
         .domain(data.map(d => d.attribute))
@@ -93,6 +93,25 @@ const render = (data) => {
         .style("pointer-events", "none")
         .attr('transform', `translate(${marginLeft},0)`)
         .call(d3.axisLeft(y));
+
+    svg.append("text")
+        .attr("transform", `translate(${width / 2},${height - 5})`)
+        .style("text-anchor", "middle")
+        .style("font-size", "10px")
+        .attr("dx", "24em")
+        .attr("dy", ".25em")
+        .text("Community");
+
+    // 添加 y 轴图例
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 15)
+        .attr("x", 0 - (height / 2))
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .attr("dx", "5.3em")
+        .attr("dy", "-.2em")
+        .text("Number");
 
     zoom(svg);
 };

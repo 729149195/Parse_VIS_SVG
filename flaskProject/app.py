@@ -7,7 +7,7 @@ from modules.CreateGM import SVGParser
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
-from modules.Statisticians import TagCounter, AttributeCounter, BBoxCounter, GroupCounter
+from modules.Statisticians import TagCounter, AttributeCounter, BBoxCounter, GroupCounter, ColorCounter, FillColorCounter, StrokeColorCounter
 from modules.Gestalt_Edges_Features import update_graph_with_similarity_edges
 from modules.Ex_Features import SVGFeatureExtractor
 from modules.Contrastive_Clustering.cluster import FeatureVectorDataset, ClusterPredictor
@@ -52,6 +52,7 @@ def evaluate_svg():
         # 使用 SVGParser 处理文件
         svg_parser = SVGParser(file_path)
         svg_parser.run()  #解析生成初始MGinfo.json文件
+
         converter = ColorFormatConverter("./GMoutput/GMinfo.json")
         converter.process_file()    # 统一色值为hex
         update_graph_with_similarity_edges()  #创建并添加格式塔边
@@ -61,18 +62,19 @@ def evaluate_svg():
         tag_counter.process()
         counter = AttributeCounter()
         counter.process()  #统计不同属性数量
+        fill_counter = FillColorCounter()
+        fill_counter.process_data()
+        stroke_counter = StrokeColorCounter()
+        stroke_counter.process_data()
         detector = CommunityDetector("./GMoutput/GMinfo.json")
         detector.execute()  # 从GMinfo.json提取可见元素并进行社区检测
-
-
 
         predictor = ClusterPredictor()  #利用训练好的模型对特征向量文件进行分类并输出到community_dectction.json文件中
         predictor.run()
 
-
-
         countergroup = GroupCounter()  # 统计group节点数量信息
         countergroup.process()
+
         output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)  # 读取输出文件
         add_svg_id(file_path,"./GMoutput/GMinfo.json")   #为原始svg元素添加对应id
         if os.path.exists(output_path):
