@@ -51,8 +51,6 @@ class NodeExtractor:
             if not visible or (fill == stroke) or (fill in ['None', 'empty'] and stroke in ['None', 'empty']):
                 continue
 
-            print(tag, fill, stroke)
-
             level = attributes['Attributes']['level']
             layer = attributes['Attributes']['layer'].split('_')
             text_content = attributes['Attributes']['text_content']
@@ -756,7 +754,11 @@ def update_graph_with_similarity_edges():
     with open(output_SimGraph_file, 'r', encoding='utf-8') as file:
         similarity = json.load(file)
 
+    with open(input_SimGraph_file, 'r', encoding='utf-8') as file:
+        extr_info = json.load(file)
+
     gestalt_edges = similarity['Gestalt_Edges']
+    gestalt_nodes = extr_info
 
     # 计算第三个数值的频率
     values = [edge[2] for edge in gestalt_edges if edge[2] > 0]  # 排除权重为0的边
@@ -768,8 +770,8 @@ def update_graph_with_similarity_edges():
 
     # 更新gm_info
     gm_info['DiGraph']['Edges'] = filtered_gestalt_edges
-    edges_count = len(filtered_gestalt_edges)
-    gm_info['DiGraph']['edges'] = edges_count
+    gm_info['DiGraph']['edges'] = len(filtered_gestalt_edges)
+    gm_info['DiGraph']['nodes'] = len(gestalt_nodes)
 
     # 保存修改
     with open(input_nodes_file, 'w', encoding='utf-8') as file:

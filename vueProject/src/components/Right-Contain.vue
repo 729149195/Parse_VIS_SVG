@@ -77,71 +77,38 @@
         <el-card shadow="hover" style=" width: 52%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <div>
-            <!-- <el-dropdown  trigger="click" v-if="gmInfoData">
-            <span class="el-dropdown-link" style="cursor: pointer;">
-              <el-icon><Filter /></el-icon>Other Vis
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>fill_color</el-dropdown-item>
-                <el-dropdown-item>opacity</el-dropdown-item>
-                <el-dropdown-item>brightness</el-dropdown-item>
-                <el-dropdown-item divided>saturation </el-dropdown-item>
-                <el-dropdown-item >stroke_color</el-dropdown-item>
-                <el-dropdown-item >stroke_width</el-dropdown-item>
-                <el-dropdown-item divided>tag_match</el-dropdown-item>
-                <el-dropdown-item >layer</el-dropdown-item>
-                <el-dropdown-item >text_content</el-dropdown-item>
-                <el-dropdown-item >bottom_edge</el-dropdown-item>
-                <el-dropdown-item >left_edge</el-dropdown-item>
-                <el-dropdown-item >right_edge</el-dropdown-item>
-                <el-dropdown-item >area</el-dropdown-item>
-                <el-dropdown-item >overlap_ratio</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown> -->
             <el-cascader v-model="value_cascader" :options="options_cascader" @change="handleChange_cascader"
               v-if="gmInfoData" />
-            <HisAttrProportionsVue v-if="gmInfoData" />
+              <div v-if="gmInfoData">
+                <span v-show="is_fill">is_fill</span>
+                <span v-show="is_stroke">is_stroke</span>
+                <span v-show="is_top">is_top</span>
+                <span v-show="is_bottom">is_bottom</span>
+                <span v-show="is_left">is_left</span>
+                <span v-show="is_right">is_right</span>
+                <span v-show="is_layer">is_layer</span>
+                <span v-show="is_similarity">is_similarity</span>
+                <HisAttrProportionsVue v-show="is_aLLattrNumber"/>
+              </div>
           </div>
         </el-card>
-
-        <!-- <el-tooltip placement="top">
-            <template #content v-if="!changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为网格视图</template>
-            <template #content v-if="changebbox"> 定界框 <br /> 横轴（元素位置）<br /> 纵：(数量/比例) <br />灰色/蓝色为不可视/可视元素 <br />点击切换为直方视图</template>
-            <el-card shadow="hover" style=" width: 25%; position: relative;" @click="changebbox = !changebbox">
-              <HisBbox v-if="!changebbox" />
-              <img :src="imageURLWithTimestamp" alt="GMinfo Image"
-                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%;" v-if="changebbox" />
-            </el-card>
-          </el-tooltip> -->
-
 
         <el-card shadow="hover" style=" width: 28%;">
           <el-empty description="No Data" :image-size="95" v-if="!gmInfoData" />
           <ScatCommunity v-if="gmInfoData" />
         </el-card>
       </el-card>
-
     </div>
-
   </el-card>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
 import HisEleProportions from './His-EleProportions.vue';
 import HisAttrProportionsVue from './Statisticians/His-AttrProportions.vue';
 import ScatCommunity from './Scat-community.vue';
-
-// const changeSH = ref(true)
-// const changebbox = ref(true)
-const value_cascader = ref([])
-const handleChange_cascader = (value) => {
-  alert(value)
-}
 
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
@@ -156,50 +123,90 @@ const allVisiableNodes = computed(() => store.state.AllVisiableNodes);
 const baseURL = "http://localhost:8000/static/GMinfo.png";
 const lastUpdate = ref(new Date().getTime());
 
+const value_cascader = ref([])
+const select_cascader = ref('a')
+
+const is_fill = ref(select_cascader.value === 'fill')
+const is_stroke = ref(select_cascader.value === 'stroke')
+const is_top = ref(select_cascader.value === 'top')
+const is_bottom = ref(select_cascader.value === 'bottom')
+const is_left = ref(select_cascader.value === 'left')
+const is_right = ref(select_cascader.value === 'right')
+const is_layer = ref(select_cascader.value === 'layer')
+const is_similarity = ref(select_cascader.value === 'similarity')
+const is_aLLattrNumber = ref(select_cascader.value === 'aLLattrNumber')
+
+
+const handleChange_cascader = (value) => {
+  select_cascader.value = value[value.length - 1]
+  console.log(select_cascader.value)
+}
+
+onMounted(() =>{
+  value_cascader.value = ['aLLattrNumber']
+  select_cascader.value = 'aLLattrNumber'
+})
+
+watch(select_cascader, ()=>{
+  is_fill.value = select_cascader.value === 'fill'
+  is_stroke.value = select_cascader.value ==='stroke'
+  is_top.value = select_cascader.value === 'top'
+  is_bottom.value = select_cascader.value === 'bottom'
+  is_left.value = select_cascader.value === 'left'
+  is_right.value = select_cascader.value === 'right'
+  is_layer.value = select_cascader.value === 'layer'
+  is_similarity.value = select_cascader.value ==='similarity'
+  is_aLLattrNumber.value = select_cascader.value === 'aLLattrNumber'
+})
+
 const options_cascader = [
   {
     value: 'color',
-    label: 'color',
+    label: 'Color',
     children: [
       {
         value: 'fill',
-        label: 'fill'
+        label: 'Fill'
       },
       {
         value: 'stroke',
-        label: 'stroke'
+        label: 'Stroke'
       }
     ]
   },
   {
     value: 'edge',
-    label: 'edge',
+    label: 'Edge',
     children: [
       {
         value: 'top',
-        label: 'top'
+        label: 'Top'
       },
       {
         value: 'bottom',
-        label: 'bottom'
+        label: 'Bottom'
       },
       {
         value: 'left',
-        label: 'left'
+        label: 'Left'
       },
       {
         value: 'right',
-        label: 'right'
+        label: 'Right'
       }
     ]
   },
   {
     value: 'layer',
-    label: 'layer'
+    label: 'Layer'
   },
   {
     value: 'similarity',
-    label: 'similarity'
+    label: 'Similarity'
+  },
+  {
+    value: 'aLLattrNumber',
+    label: 'ALLattrNumber'
   }
 ]
 
@@ -209,15 +216,13 @@ watch(selectedNodeIds, () => {
 
   const svg = svgContainer.querySelector('svg');
   if (!svg) return;
-  // 首先重置所有节点的透明度
   svg.querySelectorAll('*').forEach(node => {
     node.style.opacity = '';
   });
 
-  // 调整不在 allVisiableNodes 中的节点的透明度
   svg.querySelectorAll('*').forEach(node => {
     if (allVisiableNodes.value.includes(node.id) && !selectedNodeIds.value.includes(node.id)) {
-      node.style.opacity = '0.05'; // 调整透明度
+      node.style.opacity = '0.05'; 
     }
   });
 });
@@ -246,13 +251,6 @@ watch(community_and_initsvg_dialogVisible, (newValue) => {
     refreshComponent(); // 当对话框打开时，刷新组件
   }
 });
-
-
-// const currentFileName = computed(() => {
-//   if (store.state.currentPreviewFileName)
-//     return store.state.currentPreviewFileName.replace('.svg', '');
-// });
-
 
 const imageURLWithTimestamp = computed(() => {
   return `${baseURL}?t=${lastUpdate.value}`;
@@ -400,4 +398,4 @@ const svg = `
   display: flex;
   align-items: center;
 }
-</style>./Statisticians/Scat-community.vue./Scat-community.vue./Statisticians/His-AttrProportions.vue
+</style>

@@ -7,10 +7,10 @@ from modules.CreateGM import SVGParser
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
-from modules.Statisticians import TagCounter, AttributeCounter, BBoxCounter, GroupCounter, ColorCounter, FillColorCounter, StrokeColorCounter
+from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, FillColorCounter, StrokeColorCounter
 from modules.Gestalt_Edges_Features import update_graph_with_similarity_edges
 from modules.Ex_Features import SVGFeatureExtractor
-from modules.Contrastive_Clustering.cluster import FeatureVectorDataset, ClusterPredictor
+from modules.Contrastive_Clustering.cluster import ClusterPredictor
 
 app = Flask(__name__)
 CORS(app)
