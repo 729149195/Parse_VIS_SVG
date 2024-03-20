@@ -138,8 +138,28 @@ def histogram_group_data():
     if not os.path.exists(data_file_path):
         return jsonify({'error': 'Data file not found'}), 404
     with open(data_file_path, 'r', encoding='utf-8') as data_file:
-        ele_num_data = json.load(data_file)
-        return jsonify(ele_num_data)
+        group_num_data = json.load(data_file)
+        return jsonify(group_num_data)
+
+
+@app.route('/fill_num', methods=['GET'])
+def fill_data():
+    data_file_path = os.path.join(app.root_path, 'data', 'fill_num.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        fill_num_data = json.load(data_file)
+        return jsonify(fill_num_data)
+
+
+@app.route('/stroke_num', methods=['GET'])
+def stroke_data():
+    data_file_path = os.path.join(app.root_path, 'data', 'stroke_num.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        stroke_num_data = json.load(data_file)
+        return jsonify(stroke_num_data)
 
 
 @app.route('/community_data')

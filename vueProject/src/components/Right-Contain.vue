@@ -80,8 +80,8 @@
             <el-cascader v-model="value_cascader" :options="options_cascader" @change="handleChange_cascader"
               v-if="gmInfoData" />
               <div v-if="gmInfoData">
-                <span v-show="is_fill">is_fill</span>
-                <span v-show="is_stroke">is_stroke</span>
+                <FillStatistician v-show="is_fill"/>
+                <strokeStatistician v-show="is_stroke"/>
                 <span v-show="is_top">is_top</span>
                 <span v-show="is_bottom">is_bottom</span>
                 <span v-show="is_left">is_left</span>
@@ -108,6 +108,14 @@ import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
 import HisEleProportions from './His-EleProportions.vue';
 import HisAttrProportionsVue from './Statisticians/His-AttrProportions.vue';
+import FillStatistician from './Statisticians/Fill-Statistician.vue';
+import strokeStatistician from './Statisticians/stroke-Statistician.vue';
+import topStatistician from './Statisticians/top-Statistician.vue';
+import bottomStatistician from './Statisticians/bottom-Statistician.vue';
+import leftStatistician from './Statisticians/left-Statistician.vue';
+import rightStatistician from './Statisticians/right-Statistician.vue';
+import layerStatistician from './Statisticians/layer-Statistician.vue';
+import similarityStatistician from './Statisticians/similarity-Statistician.vue';
 import ScatCommunity from './Scat-community.vue';
 
 const community_dialogVisible = ref(false)
