@@ -1,0 +1,17 @@
+关于特征向量：
+特征值的第1列为tag、
+第2列为opacity、
+第3到第5为fill、
+第6到第8为stroke、
+第9为stroke-width、
+第10为stroke-dasharry、
+第11为layer、
+第12为top，
+第13为bottom、
+第14为left、
+第15为right、
+第16为中心点x坐标、
+第17为中心点y坐标、
+第18为元素宽度、
+第19为元素高度、
+第20为元素面积

@@ -72,7 +72,8 @@ const render = (data) => {
             .attr('cx', x(d.tag) + x.bandwidth() / 2)
             .attr('cy', 15) // 轴线下方适当位置
             .attr('r', 5)
-            .attr('fill', d.tag);
+            .attr('fill', d.tag)
+            .attr('stroke', '#999');
     });
 
     // 添加纵轴及横线

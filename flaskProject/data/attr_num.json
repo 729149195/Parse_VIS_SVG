@@ -1,146 +1,114 @@
 [
     {
+        "attribute": "version",
+        "num": 142
+    },
+    {
         "attribute": "class",
-        "num": 415
-    },
-    {
-        "attribute": "fill",
-        "num": 415
-    },
-    {
-        "attribute": "font-family",
-        "num": 415
-    },
-    {
-        "attribute": "font-size",
-        "num": 415
-    },
-    {
-        "attribute": "text-anchor",
-        "num": 415
+        "num": 142
     },
     {
         "attribute": "viewBox",
-        "num": 415
+        "num": 142
     },
     {
         "attribute": "style",
-        "num": 415
+        "num": 142
+    },
+    {
+        "attribute": "fill",
+        "num": 142
+    },
+    {
+        "attribute": "stroke-miterlimit",
+        "num": 141
     },
     {
         "attribute": "transform",
-        "num": 50
-    },
-    {
-        "attribute": "{http://www.w3.org/1999/xlink}href",
-        "num": 2
-    },
-    {
-        "attribute": "x",
-        "num": 24
-    },
-    {
-        "attribute": "y",
-        "num": 24
-    },
-    {
-        "attribute": "dy",
-        "num": 205
-    },
-    {
-        "attribute": "aria-label",
-        "num": 409
-    },
-    {
-        "attribute": "stroke",
-        "num": 384
-    },
-    {
-        "attribute": "pointer-events",
-        "num": 1
-    },
-    {
-        "attribute": "cx",
-        "num": 173
-    },
-    {
-        "attribute": "cy",
-        "num": 173
-    },
-    {
-        "attribute": "r",
-        "num": 173
-    },
-    {
-        "attribute": "stroke-width",
-        "num": 181
-    },
-    {
-        "attribute": "stroke-linejoin",
-        "num": 9
-    },
-    {
-        "attribute": "paint-order",
-        "num": 3
-    },
-    {
-        "attribute": "stroke-dasharray",
-        "num": 3
-    },
-    {
-        "attribute": "x1",
-        "num": 181
-    },
-    {
-        "attribute": "x2",
-        "num": 181
-    },
-    {
-        "attribute": "y1",
-        "num": 181
-    },
-    {
-        "attribute": "y2",
-        "num": 181
-    },
-    {
-        "attribute": "font-weight",
-        "num": 4
-    },
-    {
-        "attribute": "stroke-linecap",
-        "num": 6
-    },
-    {
-        "attribute": "marker-start",
-        "num": 1
-    },
-    {
-        "attribute": "marker-end",
-        "num": 1
-    },
-    {
-        "attribute": "markerWidth",
-        "num": 4
-    },
-    {
-        "attribute": "markerHeight",
-        "num": 4
-    },
-    {
-        "attribute": "orient",
-        "num": 4
+        "num": 141
     },
     {
         "attribute": "id",
-        "num": 4
+        "num": 141
     },
     {
-        "attribute": "font-variant",
-        "num": 16
+        "attribute": "role",
+        "num": 140
     },
     {
-        "attribute": "stroke-opacity",
-        "num": 6
+        "attribute": "aria-roledescription",
+        "num": 140
+    },
+    {
+        "attribute": "aria-hidden",
+        "num": 28
+    },
+    {
+        "attribute": "display",
+        "num": 8
+    },
+    {
+        "attribute": "aria-label",
+        "num": 119
+    },
+    {
+        "attribute": "pointer-events",
+        "num": 87
+    },
+    {
+        "attribute": "text-anchor",
+        "num": 26
+    },
+    {
+        "attribute": "font-family",
+        "num": 26
+    },
+    {
+        "attribute": "font-size",
+        "num": 26
+    },
+    {
+        "attribute": "font-weight",
+        "num": 3
+    },
+    {
+        "attribute": "opacity",
+        "num": 61
+    },
+    {
+        "attribute": "x",
+        "num": 26
+    },
+    {
+        "attribute": "y",
+        "num": 26
+    },
+    {
+        "attribute": "dy",
+        "num": 57
+    },
+    {
+        "attribute": "stroke-width",
+        "num": 33
+    },
+    {
+        "attribute": "x2",
+        "num": 31
+    },
+    {
+        "attribute": "y2",
+        "num": 31
+    },
+    {
+        "attribute": "stroke",
+        "num": 32
+    },
+    {
+        "attribute": "x1",
+        "num": 31
+    },
+    {
+        "attribute": "y1",
+        "num": 31
     }
 ]

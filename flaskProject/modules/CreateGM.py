@@ -482,6 +482,8 @@ class SVGParser:
                 "pattern",
                 "marker",
                 "style",
+                "tspan",
+                "title"
             ]
 
             if not (attributes.get('display', 'None') != 'none'):

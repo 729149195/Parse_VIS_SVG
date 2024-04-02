@@ -1,46 +1,82 @@
 [
     {
+        "group": 15,
+        "num": 3
+    },
+    {
+        "group": 4,
+        "num": 1
+    },
+    {
+        "group": 16,
+        "num": 1
+    },
+    {
         "group": 8,
-        "num": 13
+        "num": 7
+    },
+    {
+        "group": 1,
+        "num": 5
+    },
+    {
+        "group": 19,
+        "num": 1
+    },
+    {
+        "group": 17,
+        "num": 8
+    },
+    {
+        "group": 6,
+        "num": 2
+    },
+    {
+        "group": 20,
+        "num": 3
+    },
+    {
+        "group": 11,
+        "num": 12
+    },
+    {
+        "group": 13,
+        "num": 1
+    },
+    {
+        "group": 9,
+        "num": 3
+    },
+    {
+        "group": 18,
+        "num": 1
+    },
+    {
+        "group": 14,
+        "num": 4
+    },
+    {
+        "group": 3,
+        "num": 12
+    },
+    {
+        "group": 2,
+        "num": 1
     },
     {
         "group": 10,
+        "num": 10
+    },
+    {
+        "group": 7,
+        "num": 7
+    },
+    {
+        "group": 12,
         "num": 2
     },
     {
         "group": 5,
-        "num": 108
-    },
-    {
-        "group": 1,
-        "num": 41
-    },
-    {
-        "group": 3,
-        "num": 24
-    },
-    {
-        "group": 2,
-        "num": 66
-    },
-    {
-        "group": 11,
-        "num": 8
-    },
-    {
-        "group": 9,
-        "num": 72
-    },
-    {
-        "group": 4,
-        "num": 34
-    },
-    {
-        "group": 6,
-        "num": 11
-    },
-    {
-        "group": 7,
-        "num": 17
+        "num": 2
     }
 ]

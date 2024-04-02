@@ -39,7 +39,8 @@
                     <Refresh />
                   </el-icon></span><br>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
-                <CommunityDetection :key="updateKey" v-if="gmInfoData" />
+                <!-- <CommunityDetection :key="updateKey" v-if="gmInfoData" /> -->
+                <CommunityDetectionMult :key="updateKey" v-if="gmInfoData" />
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
@@ -106,6 +107,7 @@
 import { ref, watch, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import CommunityDetection from './Community-Detection.vue';
+import CommunityDetectionMult from './Community-Detection-Mult.vue';
 import HisEleProportions from './His-EleProportions.vue';
 import HisAttrProportionsVue from './Statisticians/His-AttrProportions.vue';
 import FillStatistician from './Statisticians/Fill-Statistician.vue';

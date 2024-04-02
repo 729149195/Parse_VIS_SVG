@@ -11,6 +11,7 @@ from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, Fi
 from modules.Gestalt_Edges_Features import update_graph_with_similarity_edges
 from modules.Ex_Features import SVGFeatureExtractor
 from modules.Contrastive_Clustering.cluster import ClusterPredictor
+from modules.Mirror_RL import FeatureVectorModifier
 
 app = Flask(__name__)
 CORS(app)
@@ -68,6 +69,9 @@ def evaluate_svg():
         stroke_counter.process_data()
         detector = CommunityDetector("./GMoutput/GMinfo.json")
         detector.execute()  # 从GMinfo.json提取可见元素并进行社区检测
+
+        modifier = FeatureVectorModifier()
+        modifier.modify_features()
 
         predictor = ClusterPredictor()  #利用训练好的模型对特征向量文件进行分类并输出到community_dectction.json文件中
         predictor.run()
@@ -166,6 +170,16 @@ def stroke_data():
 def data():
     directory = os.path.join(app.root_path, 'data')  # 文件夹路径
     return send_from_directory(directory, 'community_data.json')
+
+
+@app.route('/community_data_mult')
+def data_mult():
+    data_file_path = os.path.join(app.root_path, 'data', 'community_data_mult.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        stroke_num_data = json.load(data_file)
+        return jsonify(stroke_num_data)
 
 
 if __name__ == '__main__':

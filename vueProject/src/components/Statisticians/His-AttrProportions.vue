@@ -68,6 +68,15 @@ const render = (data) => {
             }));
     };
 
+    const yAxis = svg.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${marginLeft},0)`)
+        .call(d3.axisLeft(y));
+
+    yAxis.selectAll('line')
+        .attr('x2', width - marginLeft - marginRight)
+        .attr('stroke', '#ddd');
+
     svg.append('g')
         .selectAll('path')
         .data(data)
@@ -132,6 +141,5 @@ const roundedRectPath = (d, x, y) => {
             Z`;
 };
 </script>
-  
+
 <style scoped></style>
-  
