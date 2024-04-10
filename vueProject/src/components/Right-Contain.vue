@@ -30,17 +30,30 @@
             </el-tooltip> -->
             <div style="display: flex;">
               <el-card style="width: 50%; margin:3px;" shadow="hover" class="center">
-                <span class="card_title">Init SVG</span><br>
+                <span class="card_title">Init SVG<el-icon
+                    style="position: relative; top:0.2em; left: 5px; cursor: pointer;" @click="refresh">
+                    <Refresh />
+                  </el-icon></span><br>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
                 <div v-html="selectedSvg" class="svg-container" v-if="gmInfoData"></div>
               </el-card>
               <el-card style="width: 50%; margin:3px;" shadow="hover"><span class="card_title">community_detection
-                  <el-icon style="position: relative; top:0.2em; cursor: pointer;" @click="refresh">
-                    <Refresh />
-                  </el-icon></span><br>
+                  <el-icon style="position: relative; top:0.2em; left: 2px;cursor: pointer;"
+                    @click="dialogTableVisible = true">
+                    <Grid />
+                  </el-icon>
+                  <el-icon style="position: relative; top:0.2em; left: 7px;cursor: pointer;" @click="Ismult = !Ismult">
+                    <Switch />
+                  </el-icon>
+                </span><br>
+                <el-dialog v-model="dialogTableVisible" title="heat map of the possibilities" fullscreen="true">
+                  <maxsticStatician :key="updateKey1" v-if="gmInfoData" />
+                </el-dialog>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
-                <!-- <CommunityDetection :key="updateKey" v-if="gmInfoData" /> -->
-                <CommunityDetectionMult :key="updateKey" v-if="gmInfoData" />
+                <div v-if="gmInfoData">
+                  <CommunityDetection :key="updateKey" v-if="!Ismult" />
+                  <CommunityDetectionMult :key="updateKey1" v-if="Ismult" />
+                </div>
               </el-card>
             </div>
             <div style="display: flex; justify-content: center;">
@@ -80,17 +93,17 @@
           <div>
             <el-cascader v-model="value_cascader" :options="options_cascader" @change="handleChange_cascader"
               v-if="gmInfoData" />
-              <div v-if="gmInfoData">
-                <FillStatistician v-show="is_fill"/>
-                <strokeStatistician v-show="is_stroke"/>
-                <span v-show="is_top">is_top</span>
-                <span v-show="is_bottom">is_bottom</span>
-                <span v-show="is_left">is_left</span>
-                <span v-show="is_right">is_right</span>
-                <span v-show="is_layer">is_layer</span>
-                <span v-show="is_similarity">is_similarity</span>
-                <HisAttrProportionsVue v-show="is_aLLattrNumber"/>
-              </div>
+            <div v-if="gmInfoData">
+              <FillStatistician v-show="is_fill" />
+              <strokeStatistician v-show="is_stroke" />
+              <layerStatistician v-show="is_layer" />
+              <span v-show="is_top">is_top</span>
+              <span v-show="is_bottom">is_bottom</span>
+              <span v-show="is_left">is_left</span>
+              <span v-show="is_right">is_right</span>
+              <span v-show="is_similarity">is_similarity</span>
+              <HisAttrProportionsVue v-show="is_aLLattrNumber" />
+            </div>
           </div>
         </el-card>
 
@@ -119,11 +132,15 @@ import rightStatistician from './Statisticians/right-Statistician.vue';
 import layerStatistician from './Statisticians/layer-Statistician.vue';
 import similarityStatistician from './Statisticians/similarity-Statistician.vue';
 import ScatCommunity from './Scat-community.vue';
+import maxsticStatician from './Statisticians/maxstic-Statician.vue';
 
+const dialogTableVisible = ref(false)
 const community_dialogVisible = ref(false)
 const community_and_initsvg_dialogVisible = ref(false)
 const store = useStore();
 const updateKey = ref(0);
+const updateKey1 = ref(0);
+const Ismult = ref(true)
 const gmInfoData = computed(() => store.state.gmInfoData);
 const isLoading = computed(() => store.state.loading);
 const selectedSvg = computed(() => store.state.selectedSvg);
@@ -152,20 +169,20 @@ const handleChange_cascader = (value) => {
   console.log(select_cascader.value)
 }
 
-onMounted(() =>{
+onMounted(() => {
   value_cascader.value = ['aLLattrNumber']
   select_cascader.value = 'aLLattrNumber'
 })
 
-watch(select_cascader, ()=>{
+watch(select_cascader, () => {
   is_fill.value = select_cascader.value === 'fill'
-  is_stroke.value = select_cascader.value ==='stroke'
+  is_stroke.value = select_cascader.value === 'stroke'
   is_top.value = select_cascader.value === 'top'
   is_bottom.value = select_cascader.value === 'bottom'
   is_left.value = select_cascader.value === 'left'
   is_right.value = select_cascader.value === 'right'
   is_layer.value = select_cascader.value === 'layer'
-  is_similarity.value = select_cascader.value ==='similarity'
+  is_similarity.value = select_cascader.value === 'similarity'
   is_aLLattrNumber.value = select_cascader.value === 'aLLattrNumber'
 })
 
@@ -232,7 +249,7 @@ watch(selectedNodeIds, () => {
 
   svg.querySelectorAll('*').forEach(node => {
     if (allVisiableNodes.value.includes(node.id) && !selectedNodeIds.value.includes(node.id)) {
-      node.style.opacity = '0.05'; 
+      node.style.opacity = '0.05';
     }
   });
 });
@@ -249,16 +266,22 @@ const refreshComponent = () => {
   updateKey.value++;
 };
 
+const refreshmax = () => {
+  updateKey1.value++;
+};
+
 
 watch(community_dialogVisible, (newValue) => {
   if (newValue) {
     refreshComponent(); // 当对话框打开时，刷新组件
+    refreshmax();
   }
 });
 
 watch(community_and_initsvg_dialogVisible, (newValue) => {
   if (newValue) {
     refreshComponent(); // 当对话框打开时，刷新组件
+    refreshmax();
   }
 });
 

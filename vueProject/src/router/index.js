@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MaxsticView from '../components/Statisticians/maxstic-Statician.vue'
+import CommunityDetectionMult from '../components/Community-Detection-Mult.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +16,16 @@ const router = createRouter({
     //   name: 'about',
     //   component: () => import('../views/AboutView.vue')
     // }
+    {
+      path: '/maxstic',
+      name: 'maxstic',
+      component: MaxsticView
+    },
+    {
+      path: '/communitymult',
+      name: 'communitymult',
+      component: CommunityDetectionMult
+    }
   ]
 })
 

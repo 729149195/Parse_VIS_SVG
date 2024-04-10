@@ -206,3 +206,63 @@ class StrokeColorCounter(ColorCounter):
 # fill_counter.process_data()
 # stroke_counter = StrokeColorCounter()
 # stroke_counter.process_data()
+
+class LayerDataExtractor:
+    def __init__(self, input_path, output_path):
+        self.input_path = input_path  # 输入文件路径
+        self.output_path = output_path  # 输出文件路径
+
+    def process(self):
+        data = self._load_data()
+        layer_data = self._extract_layers(data)
+        structured_data = self._create_tree_structure(layer_data)
+        self._save_data(structured_data)
+
+    def _load_data(self):
+        # 读取JSON文件
+        with open(self.input_path, 'r') as file:
+            return json.load(file)
+
+    def _extract_layers(self, data):
+        # 提取每个节点的layer数据
+        layer_data = []
+        for node_id, node_data in data.items():
+            if 'layer' in node_data:
+                layer_info = {
+                    'id': node_id,
+                    'layer': node_data['layer']
+                }
+                layer_data.append(layer_info)
+        return layer_data
+
+    def _create_tree_structure(self, data):
+        # 数据结构化转换
+        root = {"name": "root", "children": []}
+
+        for item in data:
+            current_layer = root
+            for depth, layer in enumerate(item["layer"]):
+                found = False
+                for child in current_layer.get("children", []):
+                    if child["name"] == f"layer_{layer}":
+                        current_layer = child
+                        found = True
+                        break
+                if not found:
+                    new_node = {"name": f"layer_{layer}", "children": []}
+                    current_layer.setdefault("children", []).append(new_node)
+                    current_layer = new_node
+            final_node = {"name": item["id"]}
+            current_layer.setdefault("children", []).append(final_node)
+
+        return root
+
+    def _save_data(self, structured_data):
+        # 将结构化数据保存到新的JSON文件中
+        with open(self.output_path, 'w') as file:
+            json.dump(structured_data, file, indent=4)
+
+# 示例使用（请在实际使用时取消注释）
+# extractor = LayerDataExtractor('./GMoutput/extracted_nodes.json', './data/layer_data.json')
+# extractor.process()
+

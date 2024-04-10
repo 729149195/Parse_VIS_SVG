@@ -33,6 +33,7 @@ class SVGFeatureExtractor:
             "mesh", "title"
         ])}
         return tag_map.get(svg_tag, -1)
+        # return 0
 
     def hex_to_rgb(self, hex_color):
         hex_color = hex_color.lstrip('#')
@@ -87,6 +88,7 @@ class SVGFeatureExtractor:
         area = round(width * height, 3)
         return [round(min_top, 3), round(max_bottom, 3), round(min_left, 3), round(max_right, 3), center_x, center_y,
                 width, height, area]
+        # return [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     def process_file(self, json_file_path):
         output_txt_file = os.path.join(self.output_dir, os.path.basename(json_file_path).replace('.json', '.txt'))

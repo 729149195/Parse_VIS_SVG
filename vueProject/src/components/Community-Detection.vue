@@ -1,7 +1,6 @@
 <template>
     <div>
     <svg ref="svgRef" :key="updateKey" width="900" height="700"></svg>
-    <!-- <svg ref="svgRef2" :key="updateKey" width="200" height="700"></svg> -->
     </div>
 </template>
 

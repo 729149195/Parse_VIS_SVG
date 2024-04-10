@@ -7,7 +7,7 @@ from modules.CreateGM import SVGParser
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
-from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, FillColorCounter, StrokeColorCounter
+from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, FillColorCounter, StrokeColorCounter, LayerDataExtractor
 from modules.Gestalt_Edges_Features import update_graph_with_similarity_edges
 from modules.Ex_Features import SVGFeatureExtractor
 from modules.Contrastive_Clustering.cluster import ClusterPredictor
@@ -69,6 +69,8 @@ def evaluate_svg():
         stroke_counter.process_data()
         detector = CommunityDetector("./GMoutput/GMinfo.json")
         detector.execute()  # 从GMinfo.json提取可见元素并进行社区检测
+        extractorlayer = LayerDataExtractor('./GMoutput/extracted_nodes.json', './data/layer_data.json')
+        extractorlayer.process()
 
         modifier = FeatureVectorModifier()
         modifier.modify_features()
@@ -178,8 +180,26 @@ def data_mult():
     if not os.path.exists(data_file_path):
         return jsonify({'error': 'Data file not found'}), 404
     with open(data_file_path, 'r', encoding='utf-8') as data_file:
-        stroke_num_data = json.load(data_file)
-        return jsonify(stroke_num_data)
+        community_data = json.load(data_file)
+        return jsonify(community_data)
+
+@app.route('/layer_data')
+def data_layer():
+    data_file_path = os.path.join(app.root_path, 'data', 'layer_data.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        layer_data = json.load(data_file)
+        return jsonify(layer_data)
+
+@app.route('/cluster_probabilities')
+def cluster_probabilities():
+    data_file_path = os.path.join(app.root_path, 'data', 'cluster_probabilities.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        cluster_probabilities = json.load(data_file)
+        return jsonify(cluster_probabilities)
 
 
 if __name__ == '__main__':

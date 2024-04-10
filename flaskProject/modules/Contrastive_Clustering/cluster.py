@@ -75,6 +75,7 @@ class ClusterPredictor:
                 features = features.to(torch.device('cpu'))
                 _, probabilities = self.model(features)  # 获取聚类概率
                 predicted_clusters = torch.argmax(probabilities, dim=1)
+                print(predicted_clusters)
                 all_identifiers.extend(identifiers)
                 all_predictions.extend(predicted_clusters.tolist())
                 all_probabilities.extend(probabilities.tolist())  # 保存聚类概率

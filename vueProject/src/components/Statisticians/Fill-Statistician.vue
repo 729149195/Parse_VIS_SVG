@@ -92,6 +92,7 @@ const render = (data) => {
         .enter()
         .append('path')
         .attr('fill', d => d.tag) // 使用数据中的颜色值作为填充色
+        .attr('stroke', '#666')
         .attr('d', d => roundedRectPath(d, x, y));
 
     // 添加 x 轴图例
