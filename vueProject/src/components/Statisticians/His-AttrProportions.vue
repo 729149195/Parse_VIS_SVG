@@ -29,7 +29,7 @@ onMounted(async () => {
 const render = (data) => {
     if (!chartContainer.value) return;
 
-    const width = 550;
+    const width = 580;
     const height = 200;
     const marginTop = 20;
     const marginRight = 10;

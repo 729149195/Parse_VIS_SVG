@@ -42,17 +42,20 @@
                     @click="dialogTableVisible = true">
                     <Grid />
                   </el-icon>
-                  <el-icon style="position: relative; top:0.2em; left: 7px;cursor: pointer;" @click="Ismult = !Ismult">
-                    <Switch />
-                  </el-icon>
+                  <el-tooltip content="Top center" effect="customized">
+                    <el-icon style="position: relative; top:0.2em; left: 7px;cursor: pointer;"
+                      @click="Ismult = !Ismult; refresh()">
+                      <Switch />
+                    </el-icon>
+                  </el-tooltip>
                 </span><br>
                 <el-dialog v-model="dialogTableVisible" title="heat map of the possibilities" fullscreen="true">
                   <maxsticStatician :key="updateKey1" v-if="gmInfoData" />
                 </el-dialog>
                 <el-empty description="No Data" :image-size="165" v-if="!gmInfoData" />
                 <div v-if="gmInfoData">
-                  <CommunityDetection :key="updateKey" v-if="!Ismult" />
-                  <CommunityDetectionMult :key="updateKey1" v-if="Ismult" />
+                  <CommunityDetection :key="updateKey" v-if="Ismult" />
+                  <CommunityDetectionMult :key="updateKey1" v-if="!Ismult" />
                 </div>
               </el-card>
             </div>
@@ -97,11 +100,11 @@
               <FillStatistician v-show="is_fill" />
               <strokeStatistician v-show="is_stroke" />
               <layerStatistician v-show="is_layer" />
-              <span v-show="is_top">is_top</span>
-              <span v-show="is_bottom">is_bottom</span>
-              <span v-show="is_left">is_left</span>
-              <span v-show="is_right">is_right</span>
-              <span v-show="is_similarity">is_similarity</span>
+              <topStatistician v-show="is_top"/>
+              <bottomStatistician v-show="is_bottom"/>
+              <leftStatistician v-show="is_left"/>
+              <rightStatistician v-show="is_right"/>
+              <!-- <span v-show="is_similarity">is_similarity</span> -->
               <HisAttrProportionsVue v-show="is_aLLattrNumber" />
             </div>
           </div>
@@ -226,10 +229,6 @@ const options_cascader = [
   {
     value: 'layer',
     label: 'Layer'
-  },
-  {
-    value: 'similarity',
-    label: 'Similarity'
   },
   {
     value: 'aLLattrNumber',
@@ -404,9 +403,7 @@ const svg = `
 
 .statistical {
   font-size: 1em;
-  ;
   font-weight: 900;
-
   span {
     margin-right: 5px;
   }
@@ -430,5 +427,19 @@ const svg = `
   color: var(--el-color-primary);
   display: flex;
   align-items: center;
+}
+
+.el-popper.is-customized {
+  padding: 6px 12px;
+  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
+  color: #000; /* 黑色 */
+  font-weight: 900;
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  background: linear-gradient(45deg, #b2e68d, #bce689);
+  right: 0;
+  color: #000; /* 黑色 */
+  font-weight: 900;
 }
 </style>

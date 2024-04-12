@@ -209,22 +209,23 @@ class StrokeColorCounter(ColorCounter):
 
 class LayerDataExtractor:
     def __init__(self, input_path, output_path):
-        self.input_path = input_path  # 输入文件路径
-        self.output_path = output_path  # 输出文件路径
+        self.input_path = input_path  # Input file path
+        self.output_path = output_path  # Output file path
 
     def process(self):
         data = self._load_data()
         layer_data = self._extract_layers(data)
-        structured_data = self._create_tree_structure(layer_data)
+        # Creating a single top-level object instead of wrapping the array in an object
+        structured_data = self._create_single_top_level_object(layer_data)
         self._save_data(structured_data)
 
     def _load_data(self):
-        # 读取JSON文件
+        # Load JSON file
         with open(self.input_path, 'r') as file:
             return json.load(file)
 
     def _extract_layers(self, data):
-        # 提取每个节点的layer数据
+        # Extract layer data for each node
         layer_data = []
         for node_id, node_data in data.items():
             if 'layer' in node_data:
@@ -235,32 +236,40 @@ class LayerDataExtractor:
                 layer_data.append(layer_info)
         return layer_data
 
-    def _create_tree_structure(self, data):
-        # 数据结构化转换
-        root = {"name": "root", "children": []}
+    def _create_single_top_level_object(self, data):
+        # Create a single top-level object with a "name" and "children" structure
+        structure = {"name": "flare", "children": []}  # Assuming top-level name is "flare"
+        current_level = structure["children"]
 
         for item in data:
-            current_layer = root
-            for depth, layer in enumerate(item["layer"]):
+            layers = item["layer"]
+            if not layers:  # If no layer info, add node directly under "flare"
+                current_level.append({"name": item["id"], "value": 1})
+                continue
+
+            current_level = structure["children"]
+            for layer in layers[:-1]:  # Iterate to the second last element
                 found = False
-                for child in current_layer.get("children", []):
-                    if child["name"] == f"layer_{layer}":
-                        current_layer = child
+                for child in current_level:
+                    if child.get("name") == layer:
+                        current_level = child.get("children", [])
                         found = True
                         break
                 if not found:
-                    new_node = {"name": f"layer_{layer}", "children": []}
-                    current_layer.setdefault("children", []).append(new_node)
-                    current_layer = new_node
-            final_node = {"name": item["id"]}
-            current_layer.setdefault("children", []).append(final_node)
+                    new_node = {"name": layer, "children": []}
+                    current_level.append(new_node)
+                    current_level = new_node["children"]
 
-        return root
+            # Handle the last element, add as a node with "value"
+            current_level.append({"name": item["id"], "value": 1})
+
+        return structure
 
     def _save_data(self, structured_data):
-        # 将结构化数据保存到新的JSON文件中
+        # Save the structured data to a new JSON file
         with open(self.output_path, 'w') as file:
             json.dump(structured_data, file, indent=4)
+
 
 # 示例使用（请在实际使用时取消注释）
 # extractor = LayerDataExtractor('./GMoutput/extracted_nodes.json', './data/layer_data.json')

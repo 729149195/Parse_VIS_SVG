@@ -1,6 +1,6 @@
 <template>
     <div>
-    <svg ref="svgRef" :key="updateKey" width="900" height="700"></svg>
+    <svg ref="svgRef" :key="updateKey" width="900" height="708"></svg>
     </div>
 </template>
 
@@ -293,7 +293,6 @@ const renderGraph = () => {
             const parts = node.id.split("/");
             return parts[parts.length - 1];
         });
-
         // 提交 Vuex mutation 或 action
         store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: clickedNode.group });
     }
@@ -305,6 +304,7 @@ const renderGraph = () => {
             const parts = node.id.split("/");
             return parts[parts.length - 1];
         });
+        
         store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: groupName });
     }
 
@@ -312,7 +312,7 @@ const renderGraph = () => {
 
     const legendGroup = svg.append("g")
         .attr("class", "legend-group")
-        .attr("transform", `translate(${width - 150}, 20)`); // 将图例放在 SVG 的右上角
+        .attr("transform", `translate(${width - 145}, 20)`); // 将图例放在 SVG 的右上角
 
     // 为每个标签添加图例项
     Object.entries(customColorMap).forEach(([tag, color], index) => {

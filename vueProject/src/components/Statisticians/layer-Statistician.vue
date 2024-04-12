@@ -1,113 +1,133 @@
 <template>
-    <div ref="chartContainer" style="width: 550px; height: 200px; overflow: hidden;"></div>
-  </template>
-  
-  <script setup>
-  import { onMounted, ref } from 'vue';
-  import * as d3 from 'd3';
-  
-  const eleURL = "http://localhost:8000/layer_data"
-  const chartContainer = ref(null);
-  
-  onMounted(async () => {
-    if (!chartContainer.value) return;
-    try {
-      const response = await fetch(eleURL);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      renderTree(data);
-    } catch (error) {
-      console.error('There has been a problem with your fetch operation:', error);
+  <div ref="chartContainer" style="width: 562px; height: 200px; overflow: hidden;"></div>
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue';
+import * as d3 from 'd3';
+import { useStore } from 'vuex';
+const store = useStore();
+
+const eleURL = "http://localhost:8000/layer_data";
+const chartContainer = ref(null);
+
+const customColorMap = {
+  "rect": "#E6194B", // 猩红
+  "path": "#3CB44B", // 明绿
+  "circle": "#FFE119", // 鲜黄
+  "line": "#4363D8", // 宝蓝
+  "polygon": "#F58231", // 橙色
+  "polyline": "#911EB4", // 紫色
+  "text": "#46F0F0", // 青色
+  "ellipse": "#F032E6", // 紫罗兰
+  "image": "#BCF60C", // 酸橙
+  "clipPath": "#FABEBE", // 粉红
+};
+
+onMounted(async () => {
+  if (!chartContainer.value) return;
+  try {
+    const response = await fetch(eleURL);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  });
-  
-  const renderTree = (data) => {
-    const width = 550;
-    const height = 200;
-    const margin = { top: 20, right: 10, bottom: 20, left: 40 };
-  
-    d3.select(chartContainer.value).select('svg').remove();
-  
-    const svg = d3.select(chartContainer.value)
-      .append('svg')
-      .attr('viewBox', `0 0 ${width} ${height + margin.top + margin.bottom}`)
-      .style('user-select', 'none');
-  
-    const g = svg.append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-  
-    const zoom = d3.zoom()
-      .scaleExtent([0.5, 8])
-      .on('zoom', (event) => g.attr('transform', event.transform));
-  
-    svg.call(zoom);
-  
-    const root = d3.hierarchy(data).sum(d => d.value);
-    const tree = d3.tree().nodeSize([20, 70]); // [节点之间的垂直距离, 节点之间的水平距离]
+    const data = await response.json();
+    renderTree(data);
+  } catch (error) {
+    console.error('There has been a problem with your fetch operation:', error);
+  }
+});
 
-    const treeData = tree(root);
-  
-    const link = g.selectAll(".link")
-      .data(treeData.links())
-      .join("path")
-      .attr("class", "link")
-      .attr("d", d3.linkHorizontal()
-          .x(d => d.y)
-          .y(d => d.x))
-      .attr("fill", "none")
-      .attr("stroke", "#555")
-      .attr("stroke-opacity", 0.4)
-      .attr("stroke-width", 1.5);
-  
-    const node = g.selectAll(".node")
-      .data(root.descendants())
-      .join("g")
-      .attr("class", "node")
-      .attr("transform", d => `translate(${d.y},${d.x})`);
-  
-    node.append("circle")
-      .attr("r", 2.5)
-      .attr("fill", d => d.children ? "#555" : "#999");
-  
-    node.append("text")
-      .attr("dy", "0.31em")
-      .attr("x", d => d.children ? -6 : 6)
-      .text(d => d.data.name.split("/").pop())
-      .filter(d => d.children)
-      .attr("text-anchor", "end")
-      .clone(true).lower()
-      .attr("stroke-linejoin", "round")
-      .attr("stroke-width", 1)
-      .attr("stroke", "white")
-      .attr("style", "font-size: 1px;");
-  };
-  </script>
-  
-  <style scoped>
-.link {
-  fill: none;
-  stroke: #555;
-  stroke-opacity: 0.4;
-  stroke-width: 1.5;
+const renderTree = (data) => {
+  const width = 562;
+  const height = 200;
+
+  // 清除先前的 SVG 元素（如果存在）
+  d3.select(chartContainer.value).select('svg').remove();
+
+  // 创建 SVG 容器
+  const svg = d3.select(chartContainer.value)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .style('width', '100%')
+    .style('height', 'auto');
+
+  // 配置色彩比例尺
+  const color = d3.scaleOrdinal(data.children.map(d => d.name), d3.schemeTableau10);
+
+  // 计算布局
+  const root = d3.treemap()
+    .size([width, height])
+    .padding(1)
+    .round(true)
+    (d3.hierarchy(data)
+      .sum(d => d.value)
+      .sort((a, b) => b.value - a.value));
+
+  // 添加节点
+  const leaf = svg.selectAll("g")
+    .data(root.leaves())
+    .join("g")
+    .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+  leaf.append("title")
+    .text(d => {
+      // 仅提取以 "/" 分隔的最后一部分名称
+      const lastName = d.data.name.split("/").pop();
+      return `${lastName}`;
+    });
+
+  leaf.append("rect")
+    .attr("fill", d => {
+      const lastName = d.data.name.split("/").pop(); // 获取以 / 分隔的最后一部分字符串
+      const nameWithoutNumber = lastName.replace(/_.*$/, ''); // 去掉 _ 及其后的数字
+      return customColorMap[nameWithoutNumber] || "#000"; // 使用 customColorMap 查找颜色，未找到则默认为黑色
+    })
+    .attr("fill-opacity", 0.6)
+    .attr("width", d => d.x1 - d.x0)
+    .attr("height", d => d.y1 - d.y0)
+    .attr('stroke', '#999')
+    .attr('stroke-width', 0.3)
+    .attr("style", "cursor: pointer;")
+    .attr("rx", 4) // 设置 x 轴圆角半径
+    .attr("ry", 4) // 设置 y 轴圆角半径
+    .on("click", function(event, d) {
+        // 这里的 d 就是点击的那个节点的数据
+        const nodeName = d.data.name.split("/").pop(); // 处理节点name，取最后一部分
+
+        // 可选：控制台输出以便调试
+        console.log("Clicked node name:", nodeName); 
+
+        // 提交 mutation 到 store，传递被点击节点的 name
+        store.commit('UPDATE_SELECTED_NODES', { nodeIds: [nodeName], group: null });
+    });
+
+  // 添加文本
+
+  leaf.append("text")
+    .attr("x", 3)
+    .attr("pointer-events", "none") // 阻止文本元素的所有指针事件
+    .attr("y", "1em") 
+    .text(d => abbreviateText(d.data.name.split("/").pop(), d.x1 - d.x0, 10)) 
+    .append("title") 
+    .text(d => d.data.name.split("/").pop());
+
+  function abbreviateText(text, maxWidth, fontSize) {
+    // 估算每个字符的平均宽度。注意：这个估算取决于字体的具体类型和大小
+    const avgCharWidth = fontSize * 0.7;
+    const maxChars = Math.floor(maxWidth / avgCharWidth);
+
+    if (text.length > maxChars) {
+      return text.substr(0, maxChars - 1) + "…"; // 缩略并添加省略号
+    }
+    return text;
+  }
 }
+</script>
 
-.node {
-  font: 5px sans-serif; /* 调整整个节点的字体大小 */
-}
-
-.node circle {
-  fill: #555;
-  stroke-width: 2px;
-}
-
-.node text {
-  stroke: white;
-  stroke-width: 0.3px;
-  user-select: none;
-  font-size: 10px; /* 直接调整文本的字体大小 */
+<style scoped>
+* {
+  font-size: 0.8em;
+  font-weight: bold;
 }
 </style>
-
-  

@@ -2,21 +2,14 @@ import json
 import os
 import torch
 from torch.utils.data import Dataset, DataLoader
-# from All import ModifiedNetwork  # 确保这个路径正确指向了您定义ModifiedNetwork的模块
 
-from modules.Contrastive_Clustering.All import ModifiedNetwork  # 确保这个路径正确指向了您定义ModifiedNetwork的模块
+from modules.Contrastive_Clustering.All import ModifiedNetwork
 
-# model_save_path = "./save/model_checkpoint_color.tar"  # 设置模型保存路径
-# dataset_path = "./test"
-# output_file_path = '../../data/community_data.json'
-# probabilities_file_path = '../../data/cluster_probabilities.json'  # 新增：聚类概率保存路径
-
-
-model_save_path = "./modules/Contrastive_Clustering/save/model_checkpoint_6_300.tar"  # 设置模型保存路径
+model_save_path = "./modules/Contrastive_Clustering/save/model_checkpoint_6_300.tar"
 dataset_path = "./modules/Contrastive_Clustering/test"
-# dataset_path = "./modules/Contrastive_Clustering/testR"
 output_file_path = './data/community_data.json'
-probabilities_file_path = './data/cluster_probabilities.json'  # 新增：聚类概率保存路径
+output_file_mult_path = './data/community_data_mult.json'
+probabilities_file_path = './data/cluster_probabilities.json'
 
 
 class FeatureVectorDataset(Dataset):
@@ -68,33 +61,27 @@ class ClusterPredictor:
         loader = DataLoader(dataset, batch_size=128, shuffle=False)
         all_identifiers = []
         all_predictions = []
-        all_probabilities = []  # 新增：用于保存聚类概率
+        all_probabilities = []  # For saving cluster probabilities
+        top3_indices_list = []  # To store top 3 indices for new functionality
         self.model.eval()
         with torch.no_grad():
             for identifiers, features in loader:
                 features = features.to(torch.device('cpu'))
-                _, probabilities = self.model(features)  # 获取聚类概率
+                _, probabilities = self.model(features)
                 predicted_clusters = torch.argmax(probabilities, dim=1)
-                print(predicted_clusters)
+                top3_values, top3_indices = torch.topk(probabilities, k=3, dim=1)
                 all_identifiers.extend(identifiers)
                 all_predictions.extend(predicted_clusters.tolist())
-                all_probabilities.extend(probabilities.tolist())  # 保存聚类概率
-        return all_identifiers, all_predictions, all_probabilities
+                all_probabilities.extend(probabilities.tolist())
+                top3_indices_list.extend(top3_indices.tolist())
+        return all_identifiers, all_predictions, all_probabilities, top3_indices_list
 
     def save_probabilities_to_json(self, identifiers, probabilities):
-        # 新增：将聚类概率保存到JSON文件
         data = [{"id": identifier, "probabilities": prob} for identifier, prob in zip(identifiers, probabilities)]
         with open(probabilities_file_path, 'w') as f:
             json.dump(data, f, indent=4)
-        print(f"Cluster probabilities saved to {probabilities_file_path}")
-
-    def run(self):
-        identifiers, predicted_clusters, probabilities = self.predict()
-        self.save_to_json(identifiers, predicted_clusters)
-        self.save_probabilities_to_json(identifiers, probabilities)  # 保存聚类概率
 
     def save_to_json(self, identifiers, predicted_clusters):
-        # 现有的保存聚类结果的方法保持不变
         unique_clusters = sorted(set(predicted_clusters))
         cluster_mapping = {cluster: i + 1 for i, cluster in enumerate(unique_clusters)}
         mapped_clusters = [cluster_mapping[cluster] for cluster in predicted_clusters]
@@ -116,8 +103,85 @@ class ClusterPredictor:
         output_data = {"nodes": nodes, "links": links}
         with open(self.output_file_path, 'w') as f:
             json.dump(output_data, f, indent=4)
-        print(f"Output saved to {self.output_file_path}")
 
+    def generate_graph_data_v2(self, identifiers, top3_indices):
+        graph_data = {
+            "GraphData": {
+                "node": [],
+                "links": [],
+                "group": [],
+                "subgroups": [],
+                "subsubgroups": []
+            }
+        }
+
+        # Initialize groups to hold nodes based on top3 indices
+        groups = {i: [] for i in range(max(max(top3_indices)) + 1)}
+        subgroups = {i: [] for i in range(max(max(top3_indices)) + 1)}
+        subsubgroups = {i: [] for i in range(max(max(top3_indices)) + 1)}
+
+        for identifier, indices in zip(identifiers, top3_indices):
+            # Create node entry
+            graph_data["GraphData"]["node"].append({"id": identifier, "propertyValue": 1})
+
+            # Assign node to groups based on top3 indices
+            for idx, group_index in enumerate(indices):
+                if idx == 0:
+                    groups.setdefault(group_index, []).append(identifier)
+                elif idx == 1:
+                    subgroups.setdefault(group_index, []).append(identifier)
+                elif idx == 2:
+                    subsubgroups.setdefault(group_index, []).append(identifier)
+
+        # Convert groups to required format and remove empty groups
+        graph_data["GraphData"]["group"] = [group for group in [list(set(g)) for g in groups.values()] if group]
+        graph_data["GraphData"]["subgroups"] = [group for group in [list(set(g)) for g in subgroups.values()] if group]
+        graph_data["GraphData"]["subsubgroups"] = [group for group in [list(set(g)) for g in subsubgroups.values()] if group]
+
+        # Generate links within each primary group
+        for group in groups.values():
+            if len(group) > 1:
+                first_node = group[0]
+                for other_node in group[1:]:
+                    graph_data["GraphData"]["links"].append({
+                        "source": first_node,
+                        "target": other_node,
+                        "value": 1
+                    })
+        for group in subgroups.values():
+            if len(group) > 1:
+                first_node = group[0]
+                for other_node in group[1:]:
+                    graph_data["GraphData"]["links"].append({
+                        "source": first_node,
+                        "target": other_node,
+                        "value": 1
+                    })
+        for group in subsubgroups.values():
+            if len(group) > 1:
+                first_node = group[0]
+                for other_node in group[1:]:
+                    graph_data["GraphData"]["links"].append({
+                        "source": first_node,
+                        "target": other_node,
+                        "value": 1
+                    })
+
+        return graph_data
+
+    def save_graph_data_to_json(self, graph_data):
+        if not os.path.exists(os.path.dirname(output_file_mult_path)):
+            os.makedirs(os.path.dirname(output_file_mult_path))
+
+        with open(output_file_mult_path, 'w') as f:
+            json.dump(graph_data, f, indent=4)
+
+    def run(self):
+        identifiers, predicted_clusters, probabilities, top3_indices = self.predict()
+        self.save_to_json(identifiers, predicted_clusters)
+        self.save_probabilities_to_json(identifiers, probabilities)
+        graph_data = self.generate_graph_data_v2(identifiers, top3_indices)
+        self.save_graph_data_to_json(graph_data)
 
 # predictor = ClusterPredictor()
 # predictor.run()
