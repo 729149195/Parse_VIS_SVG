@@ -29,7 +29,7 @@ onMounted(async () => {
 const render = (data) => {
     if (!chartContainer.value) return;
 
-    const width = 550;
+    const width = 580;
     const height = 200;
     const marginTop = 20;
     const marginRight = 10;
@@ -67,6 +67,15 @@ const render = (data) => {
                 svg.selectAll('.x-axis').call(d3.axisBottom(x));
             }));
     };
+
+    const yAxis = svg.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${marginLeft},0)`)
+        .call(d3.axisLeft(y));
+
+    yAxis.selectAll('line')
+        .attr('x2', width - marginLeft - marginRight)
+        .attr('stroke', '#ddd');
 
     svg.append('g')
         .selectAll('path')
@@ -132,6 +141,5 @@ const roundedRectPath = (d, x, y) => {
             Z`;
 };
 </script>
-  
+
 <style scoped></style>
-  
