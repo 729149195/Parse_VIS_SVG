@@ -94,11 +94,7 @@ const renderTree = (data) => {
     .on("click", function(event, d) {
         // 这里的 d 就是点击的那个节点的数据
         const nodeName = d.data.name.split("/").pop(); // 处理节点name，取最后一部分
-
-        // 可选：控制台输出以便调试
-        console.log("Clicked node name:", nodeName); 
-
-        // 提交 mutation 到 store，传递被点击节点的 name
+        // console.log("Clicked node name:", nodeName); 
         store.commit('UPDATE_SELECTED_NODES', { nodeIds: [nodeName], group: null });
     });
 

@@ -1,62 +1,210 @@
 {
-    "60.0-120.0": {
-        "tags": [
-            "text_1",
-            "polygon_1",
-            "polyline_1",
-            "circle_1",
-            "circle_2",
-            "rect_2"
-        ],
-        "total": {
-            "text": 1,
-            "polygon": 1,
-            "polyline": 1,
-            "circle": 2,
-            "rect": 1
-        }
-    },
-    "120.0-180.0": {
+    "0.0-47.1": {
         "tags": [
             "text",
-            "line_1",
-            "ellipse_1"
+            "text_1",
+            "path_6",
+            "path_9",
+            "path_12",
+            "path_15",
+            "path_18",
+            "path_21",
+            "path_24",
+            "path_27",
+            "line_3"
         ],
         "total": {
-            "text": 1,
-            "line": 1,
-            "ellipse": 1
+            "text": 2,
+            "path": 8,
+            "line": 1
         }
     },
-    "180.0-240.0": {
+    "47.1-94.1": {
         "tags": [
-            "rect_1"
+            "text_7",
+            "text_8",
+            "text_9",
+            "text_10",
+            "text_11",
+            "text_12",
+            "text_13",
+            "text_14",
+            "text_15",
+            "text_16",
+            "text_17",
+            "text_18",
+            "text_19",
+            "text_20",
+            "text_21",
+            "text_22",
+            "text_23",
+            "text_24",
+            "text_25",
+            "text_26",
+            "text_27",
+            "text_28",
+            "text_29",
+            "text_30",
+            "text_31",
+            "text_32",
+            "text_33",
+            "text_34",
+            "text_35",
+            "text_36",
+            "text_37",
+            "text_38",
+            "text_39",
+            "text_40",
+            "text_41",
+            "text_42",
+            "text_43",
+            "text_44",
+            "text_45",
+            "text_46",
+            "text_47",
+            "text_48",
+            "text_49",
+            "text_50",
+            "text_51",
+            "text_52",
+            "text_53",
+            "text_54",
+            "text_55",
+            "text_56",
+            "text_57",
+            "text_58",
+            "text_59",
+            "text_60",
+            "text_61",
+            "text_62",
+            "text_63",
+            "text_64",
+            "text_65",
+            "text_66",
+            "text_67",
+            "text_68",
+            "text_69",
+            "text_70",
+            "text_71",
+            "text_72",
+            "text_73",
+            "text_74",
+            "text_75",
+            "text_76",
+            "text_77",
+            "text_79",
+            "line_4"
         ],
         "total": {
-            "rect": 1
+            "text": 72,
+            "line": 1
         }
     },
-    "240.0-300.0": {
+    "94.1-141.2": {
+        "tags": [
+            "text_3",
+            "text_4",
+            "text_5",
+            "text_6",
+            "path_36",
+            "text_78",
+            "text_80",
+            "line_5"
+        ],
+        "total": {
+            "text": 6,
+            "path": 1,
+            "line": 1
+        }
+    },
+    "141.2-188.2": {
+        "tags": [
+            "text_2",
+            "path_31",
+            "path_33",
+            "path_39",
+            "path_42",
+            "path_45",
+            "path_48",
+            "path_51",
+            "path_54",
+            "text_81",
+            "line_6"
+        ],
+        "total": {
+            "text": 2,
+            "path": 8,
+            "line": 1
+        }
+    },
+    "188.2-235.3": {
         "tags": [
             "line",
-            "ellipse",
-            "circle",
+            "line_1",
+            "text_82",
+            "line_7",
+            "line_8",
+            "line_9",
+            "line_10",
+            "line_11",
+            "line_12",
+            "line_13",
+            "line_14",
+            "line_15",
+            "line_16",
+            "line_17",
+            "line_18",
+            "line_19",
+            "line_20",
+            "line_21",
+            "line_22",
+            "line_23",
+            "line_24",
+            "line_25"
+        ],
+        "total": {
+            "line": 21,
+            "text": 1
+        }
+    },
+    "235.3-282.3": {
+        "tags": [
+            "text_83",
+            "text_84",
+            "text_85",
+            "text_86",
+            "text_87",
+            "text_88",
+            "text_89",
+            "text_90",
+            "text_91",
+            "text_92",
+            "text_93",
+            "text_94",
+            "text_95",
+            "text_96",
+            "text_97",
+            "text_98",
+            "text_99",
+            "text_100",
+            "text_101",
             "rect"
         ],
         "total": {
-            "line": 1,
-            "ellipse": 1,
-            "circle": 1,
+            "text": 19,
             "rect": 1
         }
     },
-    "300.0-360.0": {
-        "tags": [
-            "path",
-            "path_1"
-        ],
-        "total": {
-            "path": 2
-        }
+    "282.3-329.4": {
+        "tags": [],
+        "total": {}
+    },
+    "329.4-376.4": {
+        "tags": [],
+        "total": {}
+    },
+    "376.4-423.5": {
+        "tags": [],
+        "total": {}
     }
 }

@@ -29,6 +29,7 @@ export default createStore({
       state.selectedSvg = svgContent;
     },
     UPDATE_SELECTED_NODES(state, payload) {
+      // console.log("Payload received:", payload.nodeIds);
       state.selectedNodes.nodeIds = payload.nodeIds;
       state.selectedNodes.group = payload.group;
     },

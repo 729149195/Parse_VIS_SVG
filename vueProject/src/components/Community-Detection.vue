@@ -228,26 +228,7 @@ const renderGraph = () => {
                 .attr("x", x + xOffset)
                 .attr("y", y + yOffset);
         });
-        // .on("mouseout", (event, d) => {
-        //     svg.selectAll(".labels text")
-        //         .filter(node => node.id === d.id)
-        //         .style("display", "none");
-        // });
-
-    // const labels = svg.append("g")
-    //     .attr("class", "labels")
-    //     .selectAll("text")
-    //     .data(nodes)
-    //     .join("text")
-    //     .text(d => {
-    //         const parts = d.id.split("/");
-    //         return parts[parts.length - 1];
-    //     })
-    //     .attr("font-size", "2.5em")
-    //     .attr("font-weight", 800)
-    //     .attr("opacity", 0.8)
-    //     .style("pointer-events", "none")
-    //     .style("display", "none"); // 默认情况下隐藏文本标签
+    
 
     node.call(d3.drag()
         .on("start", dragstarted)

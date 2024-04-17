@@ -20,13 +20,11 @@ onMounted(async () => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-
         const dataset = Object.keys(data).map((range) => ({
             range,
             tags: data[range].tags, // 确保包含tags
             totals: Object.entries(data[range].total).map(([key, value]) => ({ key, value }))
         }));
-
         renderChart(dataset);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
@@ -102,25 +100,23 @@ const renderChart = (dataset) => {
         .enter().append('g')
         .attr('class', 'range')
         .attr('transform', d => `translate(${xScale(d.range)},0)`)
+        .attr("style", "cursor: pointer;")
         .on('mouseover', (event, d) => {
-            // 先显示工具提示以获取其尺寸
             tooltip.style("visibility", "visible")
                 .html(() => {
                     const tagsContent = d.tags.map(tag => `${tag}<br/>`).join("");
                     const content = `<strong>Range:</strong> ${d.range}<br/><strong>Tags:</strong><br/>${tagsContent}`;
                     return content;
                 });
-
-            // 获取工具提示的高度
             const tooltipHeight = tooltip.node().getBoundingClientRect().height;
-
-            // 根据工具提示高度调整位置，使其从下往上展开
-            tooltip.style("top", (event.pageY - tooltipHeight - 10) + "px") // 减去高度和一些额外的像素以避免鼠标覆盖
+            tooltip.style("top", (event.pageY - tooltipHeight - 10) + "px")
                 .style("left", (event.pageX + 10) + "px");
         })
         .on('mouseout', () => {
             tooltip.style("visibility", "hidden");
-        });
+        }).on('click', (event, d) => {
+        store.commit('UPDATE_SELECTED_NODES', { nodeIds: d.tags, group: null });
+    });
 
     rangeGroup.each(function (d) {
         let yAccumulator = 0;
@@ -169,4 +165,12 @@ const renderChart = (dataset) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.tooltip strong {
+    color: blue; /* 标题颜色 */
+}
+
+.tooltip span {
+    color: black; /* 内容颜色 */
+}
+</style>

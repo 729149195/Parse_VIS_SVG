@@ -82,7 +82,7 @@ function submitAllNodes() {
         return parts[parts.length - 1]; // 假设节点的唯一标识位于id的最后一部分
     });
 
-    console.log(nodeIds); // Optional: For debugging purposes
+    // console.log(nodeIds); // Optional: For debugging purposes
     store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: null }); // 假设这是你的mutation
 }
 
@@ -118,9 +118,9 @@ function hullClicked(event, d) {
             return parts[parts.length - 1];
         });
 
-        // console.log(nodeIds);
+        // console.log(typeof(nodeIds));
         // 向Vuex提交这些节点的ID和组名
-        store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: groupName });
+        store.commit('UPDATE_SELECTED_NODES', { nodeIds, group: null });
     } else {
         // 如果所有的开关都关闭，则只提交被点击的节点
         const parts = d.id.split("/");
