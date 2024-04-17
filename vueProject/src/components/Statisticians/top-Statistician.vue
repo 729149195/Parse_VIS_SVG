@@ -1,144 +1,171 @@
 <template>
-    <div ref="chartContainer"></div>
+    <div ref="chartContainer" style="width: 600px; height: 200px;"></div>
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref } from 'vue';
 import * as d3 from 'd3';
 import { useStore } from 'vuex';
 const store = useStore();
 
-const eleURL = "http://localhost:8000/attr_num_data"
 const chartContainer = ref(null);
+const eleURL = "http://localhost:8000/top_position";
 
 onMounted(async () => {
     if (!chartContainer.value) return;
+
     try {
         const response = await fetch(eleURL);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        store.commit('GET_ELE_NUM_DATA', data);
-        render(data)
+
+        const dataset = Object.keys(data).map((range) => ({
+            range,
+            tags: data[range].tags, // 确保包含tags
+            totals: Object.entries(data[range].total).map(([key, value]) => ({ key, value }))
+        }));
+
+        renderChart(dataset);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
 });
 
-const render = (data) => {
-    if (!chartContainer.value) return;
+const renderChart = (dataset) => {
+    const svgWidth = 600, svgHeight = 200;
+    const margin = { top: 20, right: 55, bottom: 50, left: 45 };
+    const width = svgWidth - margin.left - margin.right;
+    const height = svgHeight - margin.top - margin.bottom;
 
-    const width = 580;
-    const height = 200;
-    const marginTop = 20;
-    const marginRight = 10;
-    const marginBottom = 80;
-    const marginLeft = 50;
+    const xScale = d3.scaleBand()
+        .range([0, width])
+        .padding(0.1)
+        .domain(dataset.map(d => d.range));
 
-    const x = d3.scaleBand()
-        .domain(data.map(d => d.attribute))
-        .range([marginLeft, width - marginRight])
-        .padding(0.1);
+    const yScale = d3.scaleLinear()
+        .range([height, 0])
+        .domain([0, d3.max(dataset, d => d3.sum(d.totals, t => t.value))]).nice();
 
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.num)]).nice()
-        .range([height - marginBottom, marginTop]);
+    const svg = d3.select(chartContainer.value).append('svg')
+        .attr('width', '100%')
+        .attr('height', '100%')
+        .attr('viewBox', `0 0 ${svgWidth} ${svgHeight}`)
+        .style("position", "relative");
 
-    const svg = d3.select(chartContainer.value)
-        .append('svg')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('width', width)
-        .attr('height', height)
-        .attr('style', 'max-width: 100%; height: auto;');
+    const tooltip = d3.select(chartContainer.value)
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background", "white")
+        .style("border", "1px solid #ddd")
+        .style("padding", "10px")
+        .style("border-radius", "5px")
+        .style("pointer-events", "none")
+        .style("box-shadow", "0px 0px 10px rgba(0,0,0,0.1)")
+        .style("white-space", "nowrap");
 
-    const zoom = (svg) => {
-        const extent = [[marginLeft, marginTop], [width - marginRight, height - marginBottom]];
-        svg.call(d3.zoom()
-            .scaleExtent([1, 8])
-            .translateExtent(extent)
-            .extent(extent)
-            .on('zoom', (event) => {
-                x.range([marginLeft, width - marginRight].map(d => event.transform.applyX(d)));
-                svg.selectAll('.bars')
-                    .attr('d', d => roundedRectPath(d, x, y)); // 更新路径
-                svg.selectAll('.bar-text')
-                    .attr('x', d => x(d.attribute) + x.bandwidth() / 2); // 更新文本位置
-                svg.selectAll('.x-axis').call(d3.axisBottom(x));
-            }));
-    };
+    const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const yAxis = svg.append('g')
-        .attr('class', 'y-axis')
-        .attr('transform', `translate(${marginLeft},0)`)
-        .call(d3.axisLeft(y));
-
-    yAxis.selectAll('line')
-        .attr('x2', width - marginLeft - marginRight)
-        .attr('stroke', '#ddd');
-
-    svg.append('g')
-        .selectAll('path')
-        .data(data)
-        .join('path')
-        .attr('class', 'bars')
-        .attr('fill', 'steelblue')
-        .attr('d', d => roundedRectPath(d, x, y));
-
-    svg.append('g')
+    g.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', `translate(0,${height - marginBottom})`)
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .style("pointer-events", "none")
-        .style("font-size", "10px") // 设置字体大小为10px
-        .attr("dx", "-.4em")
-        .attr("dy", ".15em")
-        .attr("transform", "rotate(-45)");
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(xScale));
 
-    svg.append('g')
+    const yAxis = g.append('g')
         .attr('class', 'y-axis')
-        .style("pointer-events", "none")
-        .attr('transform', `translate(${marginLeft},0)`)
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(yScale))
+        .call(g => g.selectAll('.tick line')
+            .clone()
+            .attr('x2', width)
+            .attr('stroke', '#ddd')); // 设置颜色
+
+    const zoom = d3.zoom()
+        .scaleExtent([1, 3])
+        .translateExtent([[0, 0], [width, height]])
+        .extent([[0, 0], [width, height]])
+        .on('zoom', (event) => {
+            const transform = event.transform;
+            xScale.range([0, width].map(d => transform.applyX(d)));
+            g.select('.x-axis').call(d3.axisBottom(xScale));
+            g.selectAll('.range').attr('transform', d => `translate(${xScale(d.range)},0)`);
+            g.selectAll('.range rect').attr('width', xScale.bandwidth());
+        });
+
+    svg.call(zoom);
+
+    const rangeGroup = g.selectAll('.range')
+        .data(dataset)
+        .enter().append('g')
+        .attr('class', 'range')
+        .attr('transform', d => `translate(${xScale(d.range)},0)`)
+        .on('mouseover', (event, d) => {
+            // 先显示工具提示以获取其尺寸
+            tooltip.style("visibility", "visible")
+                .html(() => {
+                    const tagsContent = d.tags.map(tag => `${tag}<br/>`).join("");
+                    const content = `<strong>Range:</strong> ${d.range}<br/><strong>Tags:</strong><br/>${tagsContent}`;
+                    return content;
+                });
+
+            // 获取工具提示的高度
+            const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+
+            // 根据工具提示高度调整位置，使其从下往上展开
+            tooltip.style("top", (event.pageY - tooltipHeight - 10) + "px") // 减去高度和一些额外的像素以避免鼠标覆盖
+                .style("left", (event.pageX + 10) + "px");
+        })
+        .on('mouseout', () => {
+            tooltip.style("visibility", "hidden");
+        });
+
+    rangeGroup.each(function (d) {
+        let yAccumulator = 0;
+        d3.select(this).selectAll('rect')
+            .data(d.totals)
+            .enter().append('rect')
+            .attr('x', 0)
+            .attr('y', t => {
+                const y = yScale(yAccumulator + t.value);
+                yAccumulator += t.value;
+                return y;
+            })
+            .attr('width', xScale.bandwidth())
+            .attr('height', t => height - yScale(t.value))
+            .attr('fill', t => ({
+                "rect": "#E6194B",
+                "path": "#3CB44B",
+                "circle": "#FFE119",
+                "line": "#4363D8",
+                "polygon": "#F58231",
+                "polyline": "#911EB4",
+                "text": "#46F0F0",
+                "ellipse": "#F032E6"
+            }[t.key]))
+            .attr('rx', 3)  // 设置x轴方向的圆角半径
+            .attr('ry', 3); // 设置y轴方向的圆角半径
+    });
 
     svg.append("text")
         .attr("transform", `translate(${width / 2},${height - 5})`)
         .style("text-anchor", "middle")
         .style("font-size", "10px")
-        .attr("dx", "24.5em")
-        .attr("dy", "-2.25em")
-        .text("Attributes");
+        .attr("dx", "26.5em")
+        .attr("dy", "6.5em")
+        .text("Position  zones");
 
-    // 添加 y 轴图例
     svg.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 15)
         .attr("x", 0 - (height / 2))
         .style("text-anchor", "middle")
         .style("font-size", "12px")
-        .attr("dx", "5.3em")
-        .attr("dy", "-.2em")
-        .text("Number");
-
-    zoom(svg);
-};
-
-const roundedRectPath = (d, x, y) => {
-    const x0 = x(d.attribute);
-    const y0 = y(d.num);
-    const x1 = x0 + x.bandwidth();
-    const y1 = y(0);
-    const r = Math.min(x.bandwidth(), y(0) - y(d.num)) / 8; // Radius for the rounded corners
-
-    return `M${x0},${y0 + r}
-            Q${x0},${y0} ${x0 + r},${y0}
-            L${x1 - r},${y0}
-            Q${x1},${y0} ${x1},${y0 + r}
-            L${x1},${y1}
-            L${x0},${y1}
-            Z`;
+        .attr("dx", ".5em")
+        .attr("dy", "0em")
+        .text("Position Number");
 };
 </script>
 

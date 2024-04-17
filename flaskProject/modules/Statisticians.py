@@ -1,6 +1,8 @@
 import json
 import re
 from collections import Counter
+from collections import defaultdict
+import numpy as np
 
 
 class TagCounter:
@@ -276,6 +278,7 @@ class LayerDataExtractor:
 # extractor.process()
 
 
+from collections import defaultdict  # Ensure defaultdict is correctly imported
 class PositionDataProcessor:
     def __init__(self, input_path, output_path, intervals=4):
         self.input_path = input_path
@@ -283,33 +286,44 @@ class PositionDataProcessor:
         self.intervals = intervals  # Number of intervals to divide the data into
 
     def process(self):
-        import json
-        import numpy as np
+        # Optimizing by dynamically adjusting intervals based on data spread and utilizing binary search for range finding
 
-        # Load the input JSON data
         with open(self.input_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
 
-        # Processing for each attribute
-        attributes = ['top', 'bottom', 'left', 'right']
+        attributes = ['Top', 'Bottom', 'Left', 'Right']
         for attr in attributes:
-            # Calculate the min and max values for the attribute
             values = [details[attr] for details in data.values() if attr in details]
             min_val, max_val = min(values), max(values)
-            # Create ranges for the intervals
+
+            # Adjust intervals dynamically based on the range and data spread
+            range_diff = max_val - min_val
+            adjusted_intervals = max(4, int(range_diff / (
+                        np.std(values) / 2)))  # Example adjustment, more sophisticated logic can be added
+            self.intervals = adjusted_intervals
+
             ranges = np.linspace(min_val, max_val, self.intervals + 1)
 
-            # Classify data into intervals
-            classified = {f"{ranges[i]}-{ranges[i + 1]}": [] for i in range(len(ranges) - 1)}
+            classified = {}
+            for i in range(len(ranges) - 1):
+                classified[f"{ranges[i]:.1f}-{ranges[i + 1]:.1f}"] = {"tags": [], "total": defaultdict(int)}
+
             for identifier, details in data.items():
                 value = details.get(attr)
                 if value is not None:
-                    for i in range(len(ranges) - 1):
-                        if ranges[i] <= value < ranges[i + 1]:
-                            classified[f"{ranges[i]}-{ranges[i + 1]}"].append(identifier)
-                            break
+                    # Binary search to find the right interval
+                    index = np.searchsorted(ranges, value, side='right') - 1
+                    if index < len(ranges) - 1:
+                        last_part = identifier.split('/')[-1]  # Keep only the last part after splitting by '/'
+                        key = f"{ranges[index]:.1f}-{ranges[index + 1]:.1f}"
+                        classified[key]["tags"].append(last_part)
+                        tag_type = last_part.split('_')[0]  # Assume the tag format is always "name_index"
+                        classified[key]["total"][tag_type] += 1
 
-            # Save the classified data into separate JSON files
             output_file_path = f"{self.output_path}/{attr}_data.json"
             with open(output_file_path, 'w', encoding='utf-8') as file:
                 json.dump(classified, file, indent=4)
+
+# position_processor = PositionDataProcessor('./data/position.json', './data')
+# # 调用 process 方法开始处理
+# position_processor.process()

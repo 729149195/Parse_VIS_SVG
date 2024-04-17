@@ -33,7 +33,7 @@ const render = (data) => {
     const height = 225;
     const marginTop = 20;
     const marginRight = 10;
-    const marginBottom = 55;
+    const marginBottom = 45;
     const marginLeft = 45;
 
     const x = d3.scaleBand()

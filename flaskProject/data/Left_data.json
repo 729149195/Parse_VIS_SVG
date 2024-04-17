@@ -1,0 +1,64 @@
+{
+    "10.0-78.3": {
+        "tags": [
+            "polyline",
+            "rect",
+            "text",
+            "text_1",
+            "rect_1",
+            "rect_2"
+        ],
+        "total": {
+            "polyline": 1,
+            "rect": 3,
+            "text": 2
+        }
+    },
+    "78.3-146.7": {
+        "tags": [
+            "polygon",
+            "circle",
+            "circle_1",
+            "circle_2"
+        ],
+        "total": {
+            "polygon": 1,
+            "circle": 3
+        }
+    },
+    "146.7-215.0": {
+        "tags": [
+            "path",
+            "path_1",
+            "ellipse"
+        ],
+        "total": {
+            "path": 2,
+            "ellipse": 1
+        }
+    },
+    "215.0-283.3": {
+        "tags": [
+            "line_1",
+            "ellipse_1"
+        ],
+        "total": {
+            "line": 1,
+            "ellipse": 1
+        }
+    },
+    "283.3-351.7": {
+        "tags": [
+            "line",
+            "polyline_1"
+        ],
+        "total": {
+            "line": 1,
+            "polyline": 1
+        }
+    },
+    "351.7-420.0": {
+        "tags": [],
+        "total": {}
+    }
+}

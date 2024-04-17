@@ -1,0 +1,62 @@
+{
+    "60.0-120.0": {
+        "tags": [
+            "text_1",
+            "polygon_1",
+            "polyline_1",
+            "circle_1",
+            "circle_2",
+            "rect_2"
+        ],
+        "total": {
+            "text": 1,
+            "polygon": 1,
+            "polyline": 1,
+            "circle": 2,
+            "rect": 1
+        }
+    },
+    "120.0-180.0": {
+        "tags": [
+            "text",
+            "line_1",
+            "ellipse_1"
+        ],
+        "total": {
+            "text": 1,
+            "line": 1,
+            "ellipse": 1
+        }
+    },
+    "180.0-240.0": {
+        "tags": [
+            "rect_1"
+        ],
+        "total": {
+            "rect": 1
+        }
+    },
+    "240.0-300.0": {
+        "tags": [
+            "line",
+            "ellipse",
+            "circle",
+            "rect"
+        ],
+        "total": {
+            "line": 1,
+            "ellipse": 1,
+            "circle": 1,
+            "rect": 1
+        }
+    },
+    "300.0-360.0": {
+        "tags": [
+            "path",
+            "path_1"
+        ],
+        "total": {
+            "path": 2
+        }
+    }
+}

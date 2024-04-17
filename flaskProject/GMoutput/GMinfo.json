@@ -30,7 +30,6 @@
                     "tag": "g",
                     "attributes": {
                         "stroke": "#ff0000",
-                        "id": "g",
                         "fill": null,
                         "bbox": [
                             [
@@ -55,7 +54,6 @@
                     "attributes": {
                         "d": "M150,350 Q200,300 250,350 T350,350",
                         "stroke-width": "4",
-                        "id": "g",
                         "fill": "None",
                         "Pcode": [
                             "M",
@@ -98,7 +96,6 @@
                     "attributes": {
                         "d": "M150,300 L250,350",
                         "stroke-width": "2",
-                        "id": "g",
                         "fill": "None",
                         "Pcode": [
                             "M",
@@ -139,7 +136,6 @@
                         "stroke": "#000000",
                         "fill": "#ffc0cb",
                         "stroke-width": "2",
-                        "id": "g_1",
                         "bbox": [
                             [
                                 500.0,
@@ -162,7 +158,6 @@
                     "tag": "polygon",
                     "attributes": {
                         "points": "80,300 110,330 80,360",
-                        "id": "g_1",
                         "stroke": "#000000",
                         "fill": null,
                         "stroke-width": "2",
@@ -192,7 +187,6 @@
                     "tag": "polyline",
                     "attributes": {
                         "points": "10,300 40,330 10,360",
-                        "id": "g_1",
                         "stroke": "#000000",
                         "fill": null,
                         "stroke-width": "2",
@@ -224,7 +218,6 @@
                         "fill": "none",
                         "stroke": "#a52a2a",
                         "stroke-width": "2",
-                        "id": "g_2",
                         "bbox": [
                             [
                                 500.0,
@@ -250,7 +243,6 @@
                         "y1": "220",
                         "x2": "400",
                         "y2": "260",
-                        "id": "g_2",
                         "dy": "0",
                         "fill": null,
                         "stroke": "#a52a2a",
@@ -284,7 +276,6 @@
                         "cy": "240",
                         "rx": "40",
                         "ry": "20",
-                        "id": "g_2",
                         "fill": null,
                         "stroke": "#a52a2a",
                         "stroke-width": "2",
@@ -315,7 +306,6 @@
                     "attributes": {
                         "stroke": "#ffa500",
                         "stroke-width": "2",
-                        "id": "g_3",
                         "fill": null,
                         "bbox": [
                             [
@@ -342,7 +332,6 @@
                         "cy": "240",
                         "r": "20",
                         "fill": "#90ee90",
-                        "id": "g_3",
                         "stroke": "#ffa500",
                         "stroke-width": "2",
                         "bbox": [
@@ -373,7 +362,6 @@
                         "x": "10",
                         "y": "220",
                         "fill": "#ffff00",
-                        "id": "g_3",
                         "stroke": "#ffa500",
                         "stroke-width": "2",
                         "bbox": [
@@ -402,7 +390,6 @@
                     "tag": "g_4",
                     "attributes": {
                         "fill": "#808080",
-                        "id": "g_4",
                         "bbox": [
                             [
                                 500.0,
@@ -425,7 +412,6 @@
                     "tag": "path_2",
                     "attributes": {
                         "d": "M10,200 Q60,150 110,200 T210,200",
-                        "id": "g_4",
                         "fill": "None",
                         "Pcode": [
                             "M",
@@ -467,7 +453,6 @@
                     "attributes": {
                         "font-family": "Verdana",
                         "font-size": "12",
-                        "id": "g_5",
                         "fill": null,
                         "bbox": [
                             [
@@ -493,7 +478,6 @@
                         "x": "10",
                         "y": "120",
                         "fill": "#0000ff",
-                        "id": "g_5",
                         "dy": "0",
                         "font-family": "Verdana",
                         "font-size": "12",
@@ -525,7 +509,6 @@
                         "x": "10",
                         "y": "100",
                         "fill": "#000000",
-                        "id": "g_5",
                         "dy": "0",
                         "font-family": "Verdana",
                         "font-size": "12",
@@ -556,7 +539,6 @@
                     "attributes": {
                         "fill": "none",
                         "stroke-width": "2",
-                        "id": "g_6",
                         "bbox": [
                             [
                                 500.0,
@@ -580,7 +562,6 @@
                     "attributes": {
                         "points": "420,10 450,40 420,70",
                         "stroke": "#800080",
-                        "id": "g_6",
                         "fill": null,
                         "stroke-width": "2",
                         "bbox": [
@@ -610,7 +591,6 @@
                     "attributes": {
                         "points": "350,10 380,40 350,70",
                         "stroke": "#008000",
-                        "id": "g_6",
                         "fill": null,
                         "stroke-width": "2",
                         "bbox": [
@@ -642,7 +622,6 @@
                         "stroke-width": "2",
                         "fill": "transparent",
                         "transform": "translate(50.0, 50.0) rotate(0.0) scale(1.0, 1.0)",
-                        "id": "g_7",
                         "bbox": [
                             [
                                 500.0,
@@ -669,7 +648,6 @@
                         "x2": "300",
                         "y2": "60.0",
                         "transform": "translate(80.0, 80.0) rotate(0.0) scale(1.0, 1.0)",
-                        "id": "g_7",
                         "dy": "0",
                         "stroke": "#0000ff",
                         "stroke-width": "2",
@@ -704,7 +682,6 @@
                         "rx": "50",
                         "ry": "25",
                         "transform": "translate(70.0, 70.0) rotate(0.0) scale(1.0, 1.0)",
-                        "id": "g_7",
                         "stroke": "#0000ff",
                         "stroke-width": "2",
                         "fill": null,
@@ -739,7 +716,6 @@
                         "stroke": "#ff0000",
                         "fill": "transparent",
                         "stroke-width": "2",
-                        "id": "circle_1",
                         "bbox": [
                             [
                                 125.0,
@@ -770,7 +746,6 @@
                         "stroke": "#000000",
                         "fill": "transparent",
                         "stroke-width": "2",
-                        "id": "rect_1",
                         "bbox": [
                             [
                                 50.0,
@@ -802,7 +777,6 @@
                         "stroke": "#ff0000",
                         "fill": "transparent",
                         "stroke-width": "2",
-                        "id": "circle_2",
                         "bbox": [
                             [
                                 125.0,
@@ -833,7 +807,6 @@
                         "stroke": "#000000",
                         "fill": "#ff0000",
                         "stroke-width": "2",
-                        "id": "rect_2",
                         "bbox": [
                             [
                                 10.0,

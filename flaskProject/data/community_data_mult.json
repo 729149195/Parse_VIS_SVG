@@ -171,22 +171,22 @@
                 "svg/svg/rect_2"
             ],
             [
-                "svg/svg/g_1/polygon",
                 "svg/svg/g_1/polyline",
+                "svg/svg/g_1/polygon",
                 "svg/svg/g_2/line"
             ],
             [
-                "svg/svg/g_3/circle",
-                "svg/svg/g_5/text"
+                "svg/svg/g_5/text",
+                "svg/svg/g_3/circle"
             ],
             [
                 "svg/svg/rect_1"
             ],
             [
+                "svg/svg/g/path",
                 "svg/svg/g_2/ellipse",
                 "svg/svg/g/path_1",
-                "svg/svg/g_3/rect",
-                "svg/svg/g/path"
+                "svg/svg/g_3/rect"
             ],
             [
                 "svg/svg/g_5/text_1"
@@ -221,8 +221,8 @@
                 "svg/svg/rect_1"
             ],
             [
-                "svg/svg/g/path_1",
-                "svg/svg/g/path"
+                "svg/svg/g/path",
+                "svg/svg/g/path_1"
             ],
             [
                 "svg/svg/g_5/text_1"
@@ -231,8 +231,8 @@
                 "svg/svg/g_6/polyline_1"
             ],
             [
-                "svg/svg/g_3/circle",
-                "svg/svg/g_5/text"
+                "svg/svg/g_5/text",
+                "svg/svg/g_3/circle"
             ],
             [
                 "svg/svg/g_2/line"
@@ -260,8 +260,8 @@
                 "svg/svg/g_2/line"
             ],
             [
-                "svg/svg/g_1/polyline",
-                "svg/svg/g_5/text_1"
+                "svg/svg/g_5/text_1",
+                "svg/svg/g_1/polyline"
             ],
             [
                 "svg/svg/g_2/ellipse"
@@ -273,9 +273,9 @@
                 "svg/svg/g_6/polygon_1"
             ],
             [
-                "svg/svg/g_3/circle",
                 "svg/svg/g_5/text",
-                "svg/svg/g_3/rect"
+                "svg/svg/g_3/rect",
+                "svg/svg/g_3/circle"
             ],
             [
                 "svg/svg/rect_1"
@@ -284,8 +284,8 @@
                 "svg/svg/g_7/line_1"
             ],
             [
-                "svg/svg/g/path_1",
-                "svg/svg/g/path"
+                "svg/svg/g/path",
+                "svg/svg/g/path_1"
             ],
             [
                 "svg/svg/circle_1",

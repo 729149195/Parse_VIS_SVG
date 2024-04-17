@@ -7,7 +7,7 @@ from modules.CreateGM import SVGParser
 from modules.Community_Detection import CommunityDetector
 from modules.Add_id import add_svg_id
 from modules.Convert_toHex import ColorFormatConverter
-from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, FillColorCounter, StrokeColorCounter, LayerDataExtractor
+from modules.Statisticians import TagCounter, AttributeCounter, GroupCounter, FillColorCounter, StrokeColorCounter, LayerDataExtractor, PositionDataProcessor
 from modules.Gestalt_Edges_Features import update_graph_with_similarity_edges
 from modules.Ex_Features import SVGFeatureExtractor
 from modules.Contrastive_Clustering.cluster import ClusterPredictor
@@ -77,6 +77,10 @@ def evaluate_svg():
 
         predictor = ClusterPredictor()  #利用训练好的模型对特征向量文件进行分类并输出到community_dectction.json文件中
         predictor.run()
+
+        position_processor = PositionDataProcessor('./data/position.json', './data')
+        # 调用 process 方法开始处理
+        position_processor.process()
 
         countergroup = GroupCounter()  # 统计group节点数量信息
         countergroup.process()
@@ -200,6 +204,42 @@ def cluster_probabilities():
     with open(data_file_path, 'r', encoding='utf-8') as data_file:
         cluster_probabilities = json.load(data_file)
         return jsonify(cluster_probabilities)
+
+@app.route('/top_position')
+def top_position():
+    data_file_path = os.path.join(app.root_path, 'data', 'Top_data.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        Top_data = json.load(data_file)
+        return jsonify(Top_data)
+
+@app.route('/bottom_position')
+def bottom_position():
+    data_file_path = os.path.join(app.root_path, 'data', 'Bottom_data.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        Bottom_data = json.load(data_file)
+        return jsonify(Bottom_data)
+
+@app.route('/left_position')
+def left_position():
+    data_file_path = os.path.join(app.root_path, 'data', 'Left_data.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        Left_data = json.load(data_file)
+        return jsonify(Left_data)
+
+@app.route('/right_position')
+def right_position():
+    data_file_path = os.path.join(app.root_path, 'data', 'Right_data.json')  # 数据文件路径
+    if not os.path.exists(data_file_path):
+        return jsonify({'error': 'Data file not found'}), 404
+    with open(data_file_path, 'r', encoding='utf-8') as data_file:
+        Right_data = json.load(data_file)
+        return jsonify(Right_data)
 
 
 if __name__ == '__main__':
