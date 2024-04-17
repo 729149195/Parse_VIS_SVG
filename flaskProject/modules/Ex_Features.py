@@ -125,24 +125,37 @@ class SVGFeatureExtractor:
             bbox_encoded = self.extract_bbox_features(node_data.get("bbox", []))
             feature_vector.extend(bbox_encoded)
 
-            # # 假设bbox占用末尾的8个位置
-            # bbox_length = 8
-            # # 现在我们将特征向量中除了bbox之外的所有值设置为0
-            # non_bbox_length = len(feature_vector) - bbox_length
-            # modified_feature_vector = [0] * non_bbox_length + feature_vector[-bbox_length:]
-
-            # 创建一个新的特征向量，除了fill和stroke相关特征外，其他都设置为0
-            # modified_feature_vector = [0] * len(feature_vector)
-            # # 保留fill和stroke相关的特征，这里是索引2到7的位置
-            # modified_feature_vector[0] = feature_vector[0]
-            # modified_feature_vector[2:8] = feature_vector[2:8]
-
             identifiers.append(node_id)
             # features.append(modified_feature_vector)
+
             features.append(feature_vector)
+
+
+
+        # print(identifiers, features)
+        output_json = {}
+        for identifier, feature in zip(identifiers, features):
+            output_json[identifier] = {
+                "Top": feature[11],
+                "Bottom": feature[12],
+                "Left": feature[13],
+                "Right": feature[14],
+                "center_x": feature[15],
+                "center_y": feature[16],
+                "width": feature[17],
+                "height": feature[18],
+                "area": feature[19]
+            }
+            # Serialize the JSON output to a string
+        json_output = json.dumps(output_json, indent=4)
+        json_output_path = './data/position.json'
+        # print("JSON Output:", json_output[:1000])  # print part of JSON output for brevity
+        with open(json_output_path, 'w', encoding='utf-8') as json_file:
+            json_file.write(json_output)
 
         # 转换为numpy数组以便于处理
         features = np.array(features, dtype=float)
+
 
         # 归一化处理，除了第一列和第二列外的所有列
         for col in range(2, features.shape[1]):  # 从第二列开始

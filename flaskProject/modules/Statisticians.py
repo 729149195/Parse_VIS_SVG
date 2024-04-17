@@ -275,3 +275,41 @@ class LayerDataExtractor:
 # extractor = LayerDataExtractor('./GMoutput/extracted_nodes.json', './data/layer_data.json')
 # extractor.process()
 
+
+class PositionDataProcessor:
+    def __init__(self, input_path, output_path, intervals=4):
+        self.input_path = input_path
+        self.output_path = output_path
+        self.intervals = intervals  # Number of intervals to divide the data into
+
+    def process(self):
+        import json
+        import numpy as np
+
+        # Load the input JSON data
+        with open(self.input_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        # Processing for each attribute
+        attributes = ['top', 'bottom', 'left', 'right']
+        for attr in attributes:
+            # Calculate the min and max values for the attribute
+            values = [details[attr] for details in data.values() if attr in details]
+            min_val, max_val = min(values), max(values)
+            # Create ranges for the intervals
+            ranges = np.linspace(min_val, max_val, self.intervals + 1)
+
+            # Classify data into intervals
+            classified = {f"{ranges[i]}-{ranges[i + 1]}": [] for i in range(len(ranges) - 1)}
+            for identifier, details in data.items():
+                value = details.get(attr)
+                if value is not None:
+                    for i in range(len(ranges) - 1):
+                        if ranges[i] <= value < ranges[i + 1]:
+                            classified[f"{ranges[i]}-{ranges[i + 1]}"].append(identifier)
+                            break
+
+            # Save the classified data into separate JSON files
+            output_file_path = f"{self.output_path}/{attr}_data.json"
+            with open(output_file_path, 'w', encoding='utf-8') as file:
+                json.dump(classified, file, indent=4)

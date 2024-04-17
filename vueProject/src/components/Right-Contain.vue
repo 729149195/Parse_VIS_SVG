@@ -21,7 +21,7 @@
       <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
-        <el-scrollbar height="53.47vh">
+        <el-scrollbar height="54vh">
           <div style="justify-content: space-evenly;">
             <!-- <el-tooltip class="box-item" effect="dark" content="description" placement="top" v-if="gmInfoData"><el-card
                 style="width: 25%; margin-right: 10px;" v-if="gmInfoData" shadow="hover"
@@ -42,7 +42,7 @@
                     @click="dialogTableVisible = true">
                     <Grid />
                   </el-icon>
-                  <el-tooltip content="Top center" effect="customized">
+                  <el-tooltip content="change hulls style" effect="customized">
                     <el-icon style="position: relative; top:0.2em; left: 7px;cursor: pointer;"
                       @click="Ismult = !Ismult; refresh()">
                       <Switch />

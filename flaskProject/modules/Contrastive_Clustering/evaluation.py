@@ -32,15 +32,6 @@ def get_cluster_labels_from_indices(indices):
 
 
 def get_y_preds(y_true, cluster_assignments, n_clusters):
-    """
-    Computes the predicted labels, where label assignments now
-    correspond to the actual labels in y_true (as estimated by Munkres)
-    cluster_assignments:    array of labels, outputted by kmeans
-    y_true:                 true labels
-    n_clusters:             number of clusters in the dataset
-    returns:    a tuple containing the accuracy and confusion matrix,
-                in that order
-    """
     confusion_matrix = metrics.confusion_matrix(y_true, cluster_assignments, labels=None)
     # compute accuracy based on optimal 1:1 assignment of clusters to labels
     cost_matrix = calculate_cost_matrix(confusion_matrix, n_clusters)

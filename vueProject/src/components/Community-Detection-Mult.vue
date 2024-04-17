@@ -14,7 +14,7 @@ import { useStore } from 'vuex';
 const store = useStore();
 
 const width = 540;
-const height = 421;
+const height = 426.5;
 const svg = ref(null);
 const apiUrl = 'http://127.0.0.1:8000/community_data_mult';
 const subsubgroupHull = ref(true);
