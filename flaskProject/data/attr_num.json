@@ -1,110 +1,42 @@
 [
     {
-        "attribute": "version",
-        "num": 282
-    },
-    {
-        "attribute": "class",
-        "num": 282
-    },
-    {
         "attribute": "viewBox",
-        "num": 282
-    },
-    {
-        "attribute": "fill",
-        "num": 282
-    },
-    {
-        "attribute": "stroke-miterlimit",
-        "num": 280
-    },
-    {
-        "attribute": "transform",
-        "num": 280
-    },
-    {
-        "attribute": "role",
-        "num": 279
-    },
-    {
-        "attribute": "aria-roledescription",
-        "num": 279
-    },
-    {
-        "attribute": "aria-hidden",
-        "num": 44
-    },
-    {
-        "attribute": "display",
-        "num": 22
-    },
-    {
-        "attribute": "pointer-events",
-        "num": 118
-    },
-    {
-        "attribute": "aria-label",
-        "num": 158
-    },
-    {
-        "attribute": "text-anchor",
-        "num": 102
+        "num": 252
     },
     {
         "attribute": "font-family",
-        "num": 102
+        "num": 252
+    },
+    {
+        "attribute": "text-anchor",
+        "num": 252
+    },
+    {
+        "attribute": "style",
+        "num": 252
+    },
+    {
+        "attribute": "fill",
+        "num": 252
+    },
+    {
+        "attribute": "transform",
+        "num": 251
     },
     {
         "attribute": "font-size",
-        "num": 102
-    },
-    {
-        "attribute": "font-weight",
-        "num": 4
-    },
-    {
-        "attribute": "opacity",
-        "num": 74
+        "num": 250
     },
     {
         "attribute": "x",
-        "num": 103
+        "num": 250
     },
     {
         "attribute": "y",
-        "num": 103
+        "num": 250
     },
     {
         "attribute": "dy",
-        "num": 128
-    },
-    {
-        "attribute": "stroke",
-        "num": 43
-    },
-    {
-        "attribute": "stroke-width",
-        "num": 41
-    },
-    {
-        "attribute": "stroke-dasharray",
-        "num": 3
-    },
-    {
-        "attribute": "x2",
-        "num": 26
-    },
-    {
-        "attribute": "y2",
-        "num": 26
-    },
-    {
-        "attribute": "x1",
-        "num": 26
-    },
-    {
-        "attribute": "y1",
-        "num": 26
+        "num": 250
     }
 ]

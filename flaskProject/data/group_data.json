@@ -1,46 +1,10 @@
 [
     {
-        "group": 5,
-        "num": 3
-    },
-    {
-        "group": 8,
-        "num": 79
+        "group": 1,
+        "num": 92
     },
     {
         "group": 2,
-        "num": 3
-    },
-    {
-        "group": 10,
-        "num": 7
-    },
-    {
-        "group": 11,
-        "num": 2
-    },
-    {
-        "group": 6,
-        "num": 2
-    },
-    {
-        "group": 3,
-        "num": 2
-    },
-    {
-        "group": 9,
-        "num": 8
-    },
-    {
-        "group": 1,
-        "num": 17
-    },
-    {
-        "group": 4,
-        "num": 21
-    },
-    {
-        "group": 7,
-        "num": 2
+        "num": 158
     }
 ]

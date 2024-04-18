@@ -1,27 +1,12 @@
 [
     {
         "tag": "g",
-        "num": 91,
-        "visible": false
-    },
-    {
-        "tag": "path",
-        "num": 61,
+        "num": 1,
         "visible": false
     },
     {
         "tag": "text",
-        "num": 102,
-        "visible": true
-    },
-    {
-        "tag": "line",
-        "num": 26,
-        "visible": true
-    },
-    {
-        "tag": "rect",
-        "num": 1,
+        "num": 250,
         "visible": true
     }
 ]
