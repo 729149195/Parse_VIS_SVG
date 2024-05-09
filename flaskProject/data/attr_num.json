@@ -1,42 +1,110 @@
 [
     {
+        "attribute": "version",
+        "num": 142
+    },
+    {
+        "attribute": "class",
+        "num": 142
+    },
+    {
         "attribute": "viewBox",
-        "num": 252
-    },
-    {
-        "attribute": "font-family",
-        "num": 252
-    },
-    {
-        "attribute": "text-anchor",
-        "num": 252
+        "num": 142
     },
     {
         "attribute": "style",
-        "num": 252
+        "num": 142
     },
     {
         "attribute": "fill",
-        "num": 252
+        "num": 142
+    },
+    {
+        "attribute": "stroke-miterlimit",
+        "num": 141
     },
     {
         "attribute": "transform",
-        "num": 251
+        "num": 141
+    },
+    {
+        "attribute": "role",
+        "num": 140
+    },
+    {
+        "attribute": "aria-roledescription",
+        "num": 140
+    },
+    {
+        "attribute": "aria-hidden",
+        "num": 28
+    },
+    {
+        "attribute": "display",
+        "num": 8
+    },
+    {
+        "attribute": "aria-label",
+        "num": 119
+    },
+    {
+        "attribute": "pointer-events",
+        "num": 87
+    },
+    {
+        "attribute": "text-anchor",
+        "num": 26
+    },
+    {
+        "attribute": "font-family",
+        "num": 26
     },
     {
         "attribute": "font-size",
-        "num": 250
+        "num": 26
+    },
+    {
+        "attribute": "font-weight",
+        "num": 3
+    },
+    {
+        "attribute": "opacity",
+        "num": 61
     },
     {
         "attribute": "x",
-        "num": 250
+        "num": 26
     },
     {
         "attribute": "y",
-        "num": 250
+        "num": 26
     },
     {
         "attribute": "dy",
-        "num": 250
+        "num": 57
+    },
+    {
+        "attribute": "stroke-width",
+        "num": 33
+    },
+    {
+        "attribute": "x2",
+        "num": 31
+    },
+    {
+        "attribute": "y2",
+        "num": 31
+    },
+    {
+        "attribute": "stroke",
+        "num": 32
+    },
+    {
+        "attribute": "x1",
+        "num": 31
+    },
+    {
+        "attribute": "y1",
+        "num": 31
     }
 ]

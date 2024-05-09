@@ -86,11 +86,9 @@ const renderTree = (data) => {
     .attr("fill-opacity", 0.6)
     .attr("width", d => d.x1 - d.x0)
     .attr("height", d => d.y1 - d.y0)
-    .attr('stroke', '#999')
     .attr('stroke-width', 0.3)
     .attr("style", "cursor: pointer;")
-    .attr("rx", 4) // 设置 x 轴圆角半径
-    .attr("ry", 4) // 设置 y 轴圆角半径
+
     .on("click", function(event, d) {
         // 这里的 d 就是点击的那个节点的数据
         const nodeName = d.data.name.split("/").pop(); // 处理节点name，取最后一部分
