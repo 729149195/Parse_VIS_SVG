@@ -1,110 +1,46 @@
 [
     {
-        "attribute": "version",
-        "num": 142
-    },
-    {
-        "attribute": "class",
-        "num": 142
-    },
-    {
         "attribute": "viewBox",
-        "num": 142
+        "num": 89
     },
     {
         "attribute": "style",
-        "num": 142
+        "num": 89
     },
     {
         "attribute": "fill",
-        "num": 142
-    },
-    {
-        "attribute": "stroke-miterlimit",
-        "num": 141
-    },
-    {
-        "attribute": "transform",
-        "num": 141
-    },
-    {
-        "attribute": "role",
-        "num": 140
-    },
-    {
-        "attribute": "aria-roledescription",
-        "num": 140
-    },
-    {
-        "attribute": "aria-hidden",
-        "num": 28
-    },
-    {
-        "attribute": "display",
-        "num": 8
-    },
-    {
-        "attribute": "aria-label",
-        "num": 119
-    },
-    {
-        "attribute": "pointer-events",
-        "num": 87
+        "num": 89
     },
     {
         "attribute": "text-anchor",
-        "num": 26
+        "num": 51
     },
     {
-        "attribute": "font-family",
-        "num": 26
-    },
-    {
-        "attribute": "font-size",
-        "num": 26
-    },
-    {
-        "attribute": "font-weight",
-        "num": 3
-    },
-    {
-        "attribute": "opacity",
-        "num": 61
+        "attribute": "transform",
+        "num": 50
     },
     {
         "attribute": "x",
-        "num": 26
+        "num": 50
     },
     {
         "attribute": "y",
-        "num": 26
+        "num": 50
     },
     {
         "attribute": "dy",
-        "num": 57
+        "num": 50
     },
     {
-        "attribute": "stroke-width",
-        "num": 33
+        "attribute": "font-weight",
+        "num": 18
     },
     {
-        "attribute": "x2",
-        "num": 31
-    },
-    {
-        "attribute": "y2",
-        "num": 31
+        "attribute": "fill-opacity",
+        "num": 14
     },
     {
         "attribute": "stroke",
-        "num": 32
-    },
-    {
-        "attribute": "x1",
-        "num": 31
-    },
-    {
-        "attribute": "y1",
-        "num": 31
+        "num": 37
     }
 ]
