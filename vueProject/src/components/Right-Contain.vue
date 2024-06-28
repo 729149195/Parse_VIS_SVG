@@ -3,7 +3,7 @@
     element-loading-svg-view-box="-10, -10, 50, 50">
     <template #header>
       <div class="card-header">
-        <span style="font-size:1.2em; font-weight: 700;">CurrentSVG : {{ store.state.currentPreviewFileName }} <span
+        <span style="font-size:1.2em; font-weight: 700;">Current_SVG : {{ store.state.currentPreviewFileName }} <span
             v-if="!gmInfoData">Not
             uploaded or not selected</span></span>
 
@@ -18,7 +18,7 @@
       <el-icon>
         <Finished />
       </el-icon>
-      <span style="font-size:1.1em; font-weight: 700;"> Perception process and basis :</span>
+      <span style="font-size:1.1em; font-weight: 700;"> interactivity SVG and Hulls result:</span>
       <!-- 分析过程卡片 -->
       <el-card class="box-card-process" shadow="hover">
         <el-scrollbar height="54vh">
@@ -83,7 +83,7 @@
       <el-icon>
         <Odometer />
       </el-icon>
-      <span style="font-size:1.1em; font-weight: 700;;"> Perceived results and recommendations :</span>
+      <span style="font-size:1.1em; font-weight: 700;;"> Gestalt Quantitative Assessment Dashboard :</span>
       <!-- 结果卡片 -->
       <el-card class="box-card-result" shadow="hover">
         <el-card shadow="hover" style=" width: 18%;">
